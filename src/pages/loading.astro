@@ -64,3 +64,42 @@ import Layout from "../layouts/Layout.astro"
     }
 
     toggle();
+    </script>
+
+
+
+
+<!-- <Layout>
+  <div class="h-[100vh] w-[100vw] flex justify-center items-center bg-gray-500">
+      <div id=container class="h-[70%] w-[70%] flex flex-row justify-between rounded-lg bg-white relative">
+          <div class="h-[100%] w-[50%] bg-redish rounded-l-lg p-2 flex justify-center items-center text-9xl font-black">
+              Register
+          </div>
+          <div class="h-[100%] w-[50%] bg-blackish rounded-r-lg  p-2 flex justify-center items-center text-9xl font-black">
+              Login
+          </div>
+              <div id="toggle_div" class="h-[100%] w-[50%] absolute top-0 right-0 bg-black z-[2] flex justify-center items-center transition-transform duration-1000 transform translate-x-0">
+                  <h1 id="toggle_text" class="font-bold text-white"> hello Welcome!</h1>
+              <button id="btn" class="bg-white h-[25%] w-[50%] font-bold text-4xl rounded-3xl shadow-white shadow-lg border-black border-[2px]">Login</button>
+          </div>
+      </div>
+  </div>
+</Layout>
+<script is:inline>
+  document.getElementById('btn').addEventListener('click', function() {
+      const toggleDiv = document.getElementById('toggle_div');
+      const toggleText = document.getElementById('toggle_text');
+      const btn = document.getElementById('btn');
+      if (toggleDiv.style.transform === 'translateX(0%)') {
+          toggleDiv.style.transform = 'translateX(-100%)';
+          toggleText.textContent = 'Goodbye!';
+          btn.textContent = 'Register';
+      } else {
+          toggleDiv.style.transform = 'translateX(0%)';
+          toggleText.textContent = 'hello Welcome!';
+          btn.textContent = 'Login';
+      }
+  });
+</script> -->
+
+
