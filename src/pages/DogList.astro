@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro"
-const apifetch = await fetch("https://claw-backend-omega.vercel.app/api/pets");
+const apifetch = await fetch("https://backend.yourclaw.tech/api/pets");
 const apidata = await apifetch.json();
+console.log("API Data:", apidata);
 ---
 
 <Layout>

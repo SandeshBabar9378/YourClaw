@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 const { slug } = Astro.params;
-const response = await fetch(`https://claw-backend-omega.vercel.app/api/pets/${slug}`);
+const response = await fetch(`https://backend.yourclaw.tech/api/pets/${slug}`);
 const petData = await response.json();
 if (!petData) {
     throw new Error(`Pet with slug "${slug}" not found.`);

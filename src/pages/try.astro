@@ -131,7 +131,7 @@ import Layout from "../layouts/Layout.astro";
         const password = document.getElementById("login-password").value;
 
         try {
-            const req = await fetch("https://claw-backend-omega.vercel.app/api/users/login", {
+            const req = await fetch("https://backend.yourclaw.tech/api/users/login", {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -172,7 +172,7 @@ import Layout from "../layouts/Layout.astro";
         const password = document.getElementById("signupPassword").value;
 
         try {
-            const req = await fetch("https://claw-backend-omega.vercel.app/api/users", {
+            const req = await fetch("https://backend.yourclaw.tech/api/users", {
                 method: "POST",
                 credentials: "include",
                 headers: {

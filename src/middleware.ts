@@ -21,7 +21,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
         }
         
         try {
-            const response = await fetch('https://claw-backend-omega.vercel.app/api/users/me', {
+            const response = await fetch('https://backend.yourclaw.tech/api/users/me', {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${token}`,

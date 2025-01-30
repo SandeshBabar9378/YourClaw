@@ -261,7 +261,7 @@
         const password = document.getElementById("login-password").value;
 
         try {
-            const req = await fetch("http://localhost:3000/api/users/login", {
+            const req = await fetch("https://backend.yourclaw.tech/api/users/login", {
                 method: "POST",
                 credentials: "include",
                 headers: {
