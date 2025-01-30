@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="h-[100vh] w-screen bg-yellow-500 mb-10 flex items-center justify-center">
+    <div class="container h-[70vh] w-[60vw] bg-slate-600 flex flex-col justify-start items-center overflow-hidden" >
+      <div id="signupdiv" class="h-[100%] w-[100%] flex flex-col justify-start items-center">
+        <header id="signup" class="p-[20%]">Sign Up</header>
+      </div>
+      <div id="logindiv" class="relative top-[25%] bg-red-600 h-[60vh] w-[60vw] transition-all duration-500">
+        <header id="login" class="p-[20%] cursor-pointer">Login</header>
+      </div>
+    </div>
+  </div>
+</Layout>
+<script is:inline>
+  document.getElementById('login').addEventListener('click', () => {
+    document.getElementById('logindiv').classList.toggle('top-[-30%]');
+  });
+
+  document.getElementById('signup').addEventListener('click', () => {
+    document.getElementById('logindiv').classList.remove('top-[-30%]');
+  });
+</script>

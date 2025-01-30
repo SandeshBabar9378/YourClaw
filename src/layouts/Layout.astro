@@ -1,0 +1,46 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<title>Claw</title>
+
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+		</style>
+	</head>
+	<body>
+		<Navbar />
+		<slot/>
+		<BackToTop/>
+		<Footer />
+	</body>
+</html>
+<style>
+	html,
+	body {
+		font-family: Nunito, sans-serif;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.nunito-font {
+		font-family: "Nunito", serif;
+		font-optical-sizing: auto;
+		font-weight: <weight>;
+		font-style: normal;
+	}
+</style>
+<script is:inline src="https://kit.fontawesome.com/2e713726cc.js" crossorigin="anonymous"></script>

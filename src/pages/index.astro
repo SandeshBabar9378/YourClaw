@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqSection from '../components/Faq_section.astro';
+import Brand from "../components/Brand.astro";
+import NewsUpdate from '../components/NewsUpdate.astro';
+---
+<Layout>
+    <div class="relative top-[-5vh] md:static" >
+        
+        <!--Hero section -->
+        <div class="bg-[url('/assets/herobg.jpg')] bg-center bg-cover bg-no-repeat h-[85vh] md:h-[100vh] w-[100vw]">
+            <!-- <img src="/assets/WhitePaw.png" alt="Paw" class="relative left-[49vw] top-[20vh] animate-[wiggle_1s_ease-in-out_infinite]"/> -->
+            <div class="relative top-[25%] md:relative md:top-[40%] text-left md:ml-[5vw] px-5">  
+            <h2 class="md:flex md:items-center text-4xl md:text-6xl font-semibold text-white h-[75px] flex flex-row items-center ">
+                Best Friend 
+                <span class="bg-[url('/assets/bg.svg')] bg-cover bg-no-repeat flex justify-center items-center h-[47px] w-[115px] md:h-16 md:w-40 text-3xl font-semibold text-white md:text-5xl ml-3">With</span> 
+                <img src="/assets/WhitePaw.png" alt="Paw" class="h-[25px] w-[25px] md:h-[36px] md:w-[36px] animate-[wiggle_1s_ease-in-out_infinite]"/>
+            </h2>
+            <h2 class="flex text-4xl md:text-6xl font-semibold text-white">
+                Happy Time
+            </h2>
+            <br />
+            <p class="text-xl font-medium text-white">
+                Human Shampoo on Dogs After six days of delirat, the jury <br /> found Hernandez
+                guilty of first-degree murder.
+            </p><br />
+            <a href="/Login" class="bg-redish h-[] w-[160px] px-3 py-3 flex justify-start items-center text-xl rounded-lg cursor-pointer relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]">
+                <p class="relative z-[3]">View More</p>
+                <img src="/assets/WhitePaw.png" alt="Paw" class="animate-[wiggle_1s_ease-in-out_infinite] ml-3 h-4 w-4 z-10" />
+            </a>
+            <br />
+            </div>
+        </div>
+
+        <!--Testimonial section -->
+        <div class="bg-[url('/assets/testimonial_bg.jpg')] bg-cover h-[110vh] w-[100vw] md:h-[80vh] "> 
+            <div class="text-center relative top-[10%] md:top-[10%]">
+                <h6 class="text-xl font-extrabold text-[#f04336] mb-[18px] md:text-4xl ">Why Choose us?</h6>
+             <h2 class="text-3xl text-[#0a303a] font-extrabold md:text-5xl md:mt-[5vh]"> Best Service to Breeds Your <br/> Loved Dog Explore</h2>
+            </div>
+            <div class=" relative flex flex-col justify-center items-center md:h-[35%] md:w-screen mt-[25px] top-[15vh] md:top-[10%] md:mt-[3%] space-y-4 md:space-y-[0%] md:space-x-[5%] md:flex md:flex-row ">
+             <div class="container ">
+                <h2 class="text-center text-[#0a303a] text-4xl font-extrabold"><span data-target="50">50</span>%</h2>
+                 <p class="text-center text-[#747474] text-base font-semibold"> DOGS ARE FIRST BRED</p>
+             </div>
+             <div class="container ">
+                <h2 class="text-center text-[#0a303a] text-4xl font-extrabold"><span data-target="60">60</span>%</h2>
+                 <p class="text-center text-[#747474] text-base font-semibold"> DOGS ARE FIRST BRED</p>
+             </div>
+             <div class="container ">
+                <h2 class="text-center text-[#0a303a] text-4xl font-extrabold"><span data-target="150">150</span>%</h2>
+                 <p class="text-center text-[#747474] text-base font-semibold"> DOGS ARE FIRST BRED</p>
+             </div>
+             <div class="container ">
+                <h2 class="text-center text-[#0a303a] text-4xl font-extrabold"><span data-target="262">262</span>%</h2>
+                 <p class="text-center text-[#747474] text-base font-semibold"> DOGS ARE FIRST BRED</p>
+             </div>
+            </div>
+        </div>
+
+        <!--After Testimonial section -->        
+        <div class="h-[120vh] md:h-[110vh] w-screen">
+            <!--para -->
+            <div id="" class="h-[43%] md:h-[30%] w-[90%] ml-[5%] flex flex-col justify-center items-center space-y-[7%] md:space-y-[1.3%]">
+                <img src="/assets/RedTransPaw.png" alt="Red Trans Paw" class="animate-[wiggle_1s_ease-in-out_infinite] h-[42px] w-[42px] mt-[25px] p-[2px]" />
+                <h5 class="text-redish text-2xl font-extrabold">Meet the animals</h5>
+                <h2 class="text-blackish text-4xl font-black text-center">Puppies Waiting for Adoption</h2>
+                <p  class="text-blackish text-base leading-7 text-center">The best overall dog DNA test is Embark Breed & Health Kit (view at Chewy), which <br/> provides you with a breed brwn and information most dogs</p>
+            </div>
+            <!--cards 1-->
+            <div class="h-[55%] w-[90%] md:h-[60%] md:w-[100%] ml-[5%] md:ml-0 md:flex justify-center items-center md:space-x-[0.5%] ">
+                <div id="" class="h-[100%] w-[100%] md: md:w-[24%] flex justify-around items-center">
+                    <div class="h-[98%] w-[98%] p-[1%] flex flex-col justify-between items-center">
+                        <img src="/assets/Dogs/Dog1.png" alt="Dog01" class="h-[55%] w-[h-[55%]] md:h-[60%] md:w-[h-[80%]] mt-[5%] md:mt-[3%]">
+                        <div class="h-[35%] md:h-[35%] flex flex-col justify-between items-center">
+                            <div class="flex gap-2"><i class="fa-solid fa-calendar-days" style="color:#f04336;"></i><a class="text-blackish"> Birth : 2021</a></div>
+                            <a class="text-2xl font-black">Golden Retriever</a>
+                            <p class="text-center leading-7">The German Shepherd is a breed <br/> of medium to large-sized.</p>
+                            <a href="/Login" class="text-center group text-lg font-extrabold text-redish hover:text-blackish"> Read More <div class="bg-blackish h-[2px] w-0 group-hover:w-full transition-all duration-500"></div></a>
+                        </div>
+                    </div>
+                </div>
+                <!--cards 2-->
+                <div id="" class="hidden h-[100%] w-[100%] md: md:w-[24%] md:flex justify-around items-center">
+                    <div class="h-[98%] w-[98%] p-[1%] flex flex-col justify-between items-center">
+                        <img src="/assets/Dogs/Dog2.png" alt="Dog01" class="md:h-[60%] md:w-[h-[80%]] mt-[5%] md:mt-[3%]">
+                        <div class="h-[35%] md:h-[35%] flex flex-col justify-between items-center">
+                            <div class="flex gap-2"><i class="fa-solid fa-calendar-days" style="color:#f04336;"></i><a class="text-blackish"> Birth : 2021</a></div>
+                            <a class="text-2xl font-black">Golden Retriever</a>
+                            <p class="text-center leading-7">The German Shepherd is a breed <br/> of medium to large-sized.</p>
+                            <a href="/Login" class="text-center group text-lg font-extrabold text-redish hover:text-blackish"> Read More <div class="bg-blackish h-[2px] w-0 group-hover:w-full transition-all duration-500"></div></a>
+                        </div>
+                    </div>
+                </div>
+                <!--cards 3-->
+                <div id="" class="hidden h-[100%] w-[100%] md: md:w-[24%] md:flex justify-around items-center">
+                    <div class="h-[98%] w-[98%] p-[1%] flex flex-col justify-between items-center">
+                        <img src="/assets/Dogs/Dog3.png" alt="Dog01" class="md:h-[60%] md:w-[h-[80%]] mt-[5%] md:mt-[3%]">
+                        <div class="h-[35%] md:h-[35%] flex flex-col justify-between items-center">
+                            <div class="flex gap-2"><i class="fa-solid fa-calendar-days" style="color:#f04336;"></i><a class="text-blackish"> Birth : 2021</a></div>
+                            <a class="text-2xl font-black">Golden Retriever</a>
+                            <p class="text-center leading-7">The German Shepherd is a breed <br/> of medium to large-sized.</p>
+                            <a href="/Login" class="text-center group text-lg font-extrabold text-redish hover:text-blackish"> Read More <div class="bg-blackish h-[2px] w-0 group-hover:w-full transition-all duration-500"></div></a>
+                        </div>
+                    </div>
+                </div>
+                <!--cards 4-->
+                <div id="" class="hidden h-[100%] w-[100%] md: md:w-[24%] md:flex justify-around items-center">
+                    <div class="h-[98%] w-[98%] p-[1%] flex flex-col justify-between items-center">
+                        <img src="/assets/Dogs/Dog4.png" alt="Dog01" class="md:h-[60%] md:w-[h-[80%]] mt-[5%] md:mt-[3%]">
+                        <div class="h-[35%] md:h-[35%] flex flex-col justify-between items-center">
+                            <div class="flex gap-2"><i class="fa-solid fa-calendar-days" style="color:#f04336;"></i><a class="text-blackish"> Birth : 2021</a></div>
+                            <a class="text-2xl font-black">Golden Retriever</a>
+                            <p class="text-center leading-7">The German Shepherd is a breed <br/> of medium to large-sized.</p>
+                            <a href="/Login" class="text-center group text-lg font-extrabold text-redish hover:text-blackish"> Read More <div class="bg-blackish h-[2px] w-0 group-hover:w-full transition-all duration-500"></div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <FaqSection/>
+
+        <NewsUpdate/>
+
+    </div>
+</Layout>
+
+<style>
+    /* AfterTestimonial */
+    .container {
+        @apply flex flex-col justify-center h-[15vh] w-[30vh] bg-white shadow-2xl rounded-md md:w-[15%] md:h-[100%] 
+    }
+    /*  */
+</style>
+
+<script is:inline>
+/*-------------------------------------------------------------------------------------------------------------------*/
+    /* AfterTestimonial */
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.container h2 span');
+      
+      // Options for the IntersectionObserver
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+  
+      // Create a new IntersectionObserver
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            counter.innerText = '0';
+            
+            // Function to update the counter
+            const updateCounter = () => {
+              const target = +counter.getAttribute('data-target');
+              const count = +counter.innerText;
+              const increment = target / 200; // Define the increment value
+  
+              if (count < target) {
+                counter.innerText = `${Math.ceil(count + increment)}`;
+                setTimeout(updateCounter, 10); // Update the counter every 10ms
+              } else {
+                counter.innerText = target; // Ensure the counter reaches the target
+              }
+            };
+            updateCounter();
+          }
+        });
+      }, observerOptions);
+  
+      // Observe each counter element
+      counters.forEach(counter => {
+        observer.observe(counter);
+      });
+    });
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+</script>

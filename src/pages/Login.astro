@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoginForMobile from '../components/Login/LoginForMobile.astro';
+import LoginForPc from '../components/Login/LoginForPc.astro';
+---
+<Layout>
+
+    <div class="block md:hidden">
+        <LoginForMobile />
+    </div>
+
+    <div class="hidden md:block">
+        <LoginForPc/>
+    </div>
+    
+</Layout>

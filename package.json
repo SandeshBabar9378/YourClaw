@@ -1,0 +1,19 @@
+{
+  "name": "my-package",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/vercel": "^8.0.4",
+    "astro": "^5.1.7",
+    "payload": "^3.19.0",
+    "tailwindcss": "^3.4.17",
+    "vercel": "^39.3.0"
+  }
+}

@@ -1,0 +1,265 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="h-[3vh] bg-[url('/assets/testimonial_bg.jpg')]"></div>
+  <div
+    class="h-[180vh] md:h-[225vh] w-[100vw] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat flex justify-center items-center py-[5%]"
+  >
+    <div
+      class="z-10 bg-white h-[99%] w-[99%] md:w-[90%] flex flex-col md:flex-row justify-center rounded-lg shadow-2xl relative"
+    >
+      <!--Left Side -->
+      <div
+        class="text-blackish flex h-[10%] w-[80%] md:h-[60%] md:w-[40%] flex-col justify-start md:mt-[5%] md:ml-[5%] md:sticky top-[20%]"
+      >
+        <p class="font-black text-5xl p-[0.5%] ml-[5%]">Pet Details</p>
+        <p class="font-bold text-xl p-[0.5%] ml-[5%]">
+          Please fill out all the fields.
+        </p>
+      </div>
+      <!--Right side -->
+      <div class="flex h-[95%] w-[80%] md:w-[60%] flex-col mt-[2%]">
+        <form id="addPetForm" enctype="multipart/form-data">
+          <div class="flex flex-col">
+            <!--ok -->
+            <div class="flex flex-col"></div>
+            <!--ok -->
+            <div class="flex flex-col mt-[4%]">
+              <label
+                for="pet_name"
+                class="text-black font-bold text-xl p-[1%] ml-[2%]">Name</label
+              >
+              <input
+                type="text"
+                id="pet_name"
+                class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
+                value=""
+                required
+                placeholder="e.g., Wisky"
+              />
+            </div>
+            <div class="flex flex-col mt-[4%]">
+              <label
+                for="pet_breed"
+                class="text-black font-bold text-xl p-[1%] ml-[2%]">Breed</label
+              >
+              <input
+                type="text"
+                id="pet_breed"
+                class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
+                value=""
+                required
+                placeholder="e.g., Golden Retriever"
+              />
+            </div>
+          </div>
+          <!--ok -->
+          <div>
+            <div class="flex flex-col mt-[4%]">
+              <label
+                for="pet_color"
+                class="text-black font-bold text-xl p-[1%] ml-[2%]">Color</label
+              >
+              <input
+                type="text"
+                id="pet_color"
+                class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
+                value=""
+                required
+                placeholder="e.g., Orange"
+              />
+            </div>
+          </div>
+          <!--ok -->
+          <div class="flex flex-row justify-around items-center">
+            <div class="flex flex-col mt-[4%] w-[46%]">
+              <label
+                for="gender"
+                class="text-black font-bold text-xl p-[1%] ml-[5%]"
+                >Gender</label
+              >
+              <select
+                id="pet_gender"
+                required
+                class="h-[70%] w-[96%] border mt-1 rounded p-2 mx-[0.5%] bg-gray-50"
+              >
+                <option selected>Choose a option</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col mt-[4%] w-[46%] mr-[4%]">
+              <label for="gender" class="text-black font-bold text-xl p-[1%]"
+                >Neutering/Spaying</label
+              >
+              <select
+                id="pet_neutering"
+                required
+                class="h-[70%] w-[96%] border mt-1 rounded p-2 mx-[0.5%] bg-gray-50"
+              >
+                <option selected>Choose a option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+          <!--ok -->
+          <div class="flex flex-row justify-around items-center">
+            <div class="flex flex-col mt-[4%] w-[46%]">
+              <label
+                for="age"
+                class="text-black font-bold text-xl p-[1%] ml-[5%]">Age</label
+              >
+              <input
+                type="text"
+                id="pet_age"
+                class="h-10 w-[96%] border mt-1 rounded px-2 mx-[0.5%] bg-gray-50"
+                value=""
+                required
+                placeholder="eg.,1 year 2 month"
+              />
+            </div>
+            <div class="flex flex-col mt-[4%] w-[46%]">
+              <label
+                for="weight"
+                class="text-black font-bold text-xl p-[1%] ml-[5%]"
+                >Weight</label
+              >
+              <input
+                type="text"
+                id="pet_weight"
+                class="h-10 border mt-1 rounded px-4 w-[99%] mx-[0.5%] bg-gray-50"
+                value=""
+                required
+                placeholder="eg.,20kg"
+              />
+            </div>
+          </div>
+          <!--ok -->
+          <div class="flex flex-col mt-[4%]">
+            <label
+              for="pet_image"
+              class="text-black font-bold text-xl p-[1%] ml-[2%]"
+              >Pet Image</label
+            >
+            <div
+              class="flex justify-between items-center h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
+            >
+              <input
+                type="file"
+                accept="image/*"
+                id="pet_image"
+                required
+              />
+            </div>
+            <div class="flex flex-col mt-[4%]">
+              <label
+                for="address"
+                class="text-black font-bold text-xl p-[1%] ml-[2%]"
+                >Address</label
+              >
+              <input
+                type="text"
+                id="pet_address"
+                class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
+                value=""
+                placeholder="City, Country"
+              />
+            </div>
+            <div class="flex flex-col mt-[4%]">
+              <label
+                for="address"
+                class="text-black font-bold text-xl p-[1%] ml-[2%]"
+                >About Him/Her :</label
+              >
+              <input
+                type="text"
+                id="pet_bio"
+                class="h-20 border mt-1 rounded px-4 w-[99%] mx-[0.5%] bg-gray-50"
+                required
+                minlength="20"
+                placeholder="Bla, Bla, Bla..."
+              />
+            </div>
+            <button
+              type="submit"
+              class="md:text-xl md:font-medium bg-blackish text-white h-10 md:h-12 w-[25%] md:w-[18%] rounded-lg p-1 border-[2px] mt-[10%] md:ml-[3%] ml-[7%]"
+              >Submit</button
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>
+<script is:inline>
+  const addPetForm = document.getElementById("addPetForm");
+  addPetForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const petName = document.getElementById("pet_name").value;
+      const petBreed = document.getElementById("pet_breed").value;
+      const petColor = document.getElementById("pet_color").value;
+      const petGender = document.getElementById("pet_gender").value;
+      const petNeutering = document.getElementById("pet_neutering").value;
+      const petAge = document.getElementById("pet_age").value;
+      const petWeight = document.getElementById("pet_weight").value;
+      const petImage = document.getElementById("pet_image");
+      const petAddress = document.getElementById("pet_address").value;
+      const petBio = document.getElementById("pet_bio").value;
+
+      if (!petImage.files[0]) {
+          alert("No file selected.");
+          return;
+      }
+
+      // Step 1: Upload image to media collection
+      const mediaFormData = new FormData();
+      mediaFormData.append("file", petImage.files[0]); // Append file
+
+      try {
+          const mediaUploadResponse = await fetch(
+              "https://claw-backend-omega.vercel.app/api/media",
+              {
+                  method: "POST",
+                  body: mediaFormData,
+              },
+          );
+
+          const mediaData = await mediaUploadResponse.json();
+          // console.log("Image Uploaded to Media:", mediaData , mediaData.doc.url);
+
+          // Extract media ID from the response
+          const imageUrl = mediaData.doc.url;
+
+          // Step 2: Send image ID and alt text to Test collection
+          const petDetails = {
+              pet_name : petName,
+              pet_breed : petBreed,
+              pet_color : petColor,
+              pet_gender : petGender,
+              pet_neutering : petNeutering,
+              pet_age : petAge,
+              pet_weight : petWeight,
+              pet_address : petAddress,
+              pet_image : `https://claw-backend-omega.vercel.app${imageUrl}`, // Send media ID
+              pet_bio : petBio,
+          };
+
+          const petResponse = await fetch("https://claw-backend-omega.vercel.app/api/pets", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify(petDetails),
+          });
+          const petData = await petResponse.json();
+          addPetForm.reset();
+          alert("Pet Added Successfully!!! Thank You for your contribution.");
+      } catch (error) {
+          console.error("Error:", error);
+      }
+  });
+</script>

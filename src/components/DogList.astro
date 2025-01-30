@@ -1,0 +1,64 @@
+---
+import { slugify } from "../utils/slugify"; 
+const apifetch = await fetch("https://claw-backend-omega.vercel.app/api/pets");
+const apidata = await apifetch.json();
+// console.log("API Data:", apidata);
+
+const petData = apidata.docs.map((pet) => ({
+    ...pet,
+    slug: slugify(pet.pet_name),
+}));
+const {pet_image} = Astro.props;
+---
+
+<div class="w-screen h-[40%] md:h-[50%] bg-[url('/assets/breeder_details/BreederTop.jpg')] bg-cover bg-no-repeat flex flex-col justify-center gap-3">
+    <h2 class="ml-[3%] w-[250px] md:w-[300px] p-3 text-white text-3xl md:text-4xl font-black bg-redish rounded-lg flex justify-center items-center">Breeder Detail</h2>
+    <div class="ml-[3%] p-3">
+        <a href="#" class="font-bold text-lg text-redish "> Home </a><a class="p-3 font-bold text-lg text-redish">|</a>
+        <a href="#" class=" font-bold text-lg text-white capitalize">Siberian Husky</a>
+    </div>
+</div>
+<div class="h-[480vh] md:h-[170vh] w-screen flex-col items-center ">
+    <!--para -->
+    <div id="" class="h-[9%] mt-[1%] md:h-[20%] w-[90%] ml-[5%] flex flex-col justify-center items-center space-y-[7%] md:space-y-[1.3%]">
+        <img src="/assets/RedTransPaw.png" alt="Red Trans Paw" class="animate-[wiggle_1s_ease-in-out_infinite] h-[42px] w-[42px] mt-[25px] p-[2px]" />
+        <h5 class="text-redish text-2xl font-extrabold">Meet the animals</h5>
+        <h2 class="text-blackish text-4xl font-black text-center">Puppies Waiting for Adoption</h2>
+        <p  class="text-blackish text-base leading-7 text-center">The best overall dog DNA test is Embark Breed & Health Kit (view at Chewy), which <br/> provides you with a breed brwn and information most dogs</p>
+    </div>
+    <div class="h-[45%] md:h-[40%] w-screen flex flex-col flex-wrap items-center md:flex-row md:justify-center md:gap-[2%]">
+        {petData.map((item) => (
+            <a href={`/pets/${item.slug}`} >
+                <div class="flex flex-col justify-center items-center h-[32%] w-[96%] md:h-[100%] md:w-[24%] mt-[2%] md:relative " onclick="window.location.href=`/pets/${item.slug}`">
+                    <img src={item.pet_image} alt={item.pet_name || "Dog"} class="h-[65%] w-[98%] md:rounded-lg flex justify-center items-center"/>
+                <!--dsdsds -->
+                    <div class="bg-white shadow-xl rounded-lg h-[28%] w-[100%] md:w-[80%] flex flex-col justify-evenly md:relative md:top-[-7%]">
+                        <a class="text-2xl font-black text-redish capitalize w-[100%] block text-center">{item.pet_name || "Dog Name"}</a>
+                        <ul class="flex justify-between text-sm font-medium border-[#676666] border-b-[1px] p-[3%] ">
+                            <li class=" text-[#676666]">
+                                <i class="fa-solid fa-gear" style="color: #676666; padding: 2px;"></i>
+                                <a class="text-sm font-medium">{item.pet_breed}</a>
+                            </li>
+                            <li class="text-[#676666]">
+                                <i class="fa-solid fa-calendar-days" style="color: #676666; padding: 2px;"></i>
+                                {item.pet_age || "1 Year"}
+                            </li>
+                        </ul>
+                        <ul class="flex justify-between text-sm font-medium p-[3%]">
+                            <li class="padding: 2px;">
+                                <i class="fa-solid fa-star" style="color: #f39c10;"></i>
+                                <i class="fa-solid fa-star" style="color: #f39c10;"></i>
+                                <i class="fa-solid fa-star" style="color: #f39c10;"></i>
+                                <i class="fa-solid fa-star" style="color: #f39c10;"></i>
+                                <i class="fa-solid fa-star" style="color: #f39c10;"></i>
+                            </li>
+                            <li class="text-[#676666] flex gap-[5px]">
+                                Total Price: <p class="text-black">Free</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+          ))}
+    </div>
+</div>

@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NewsUpdate from "../components/NewsUpdate.astro";
+---
+<Layout>
+    <div class="relative md:static top-[-5vh]">
+        <!--Upper card -->
+        <div class="w-screen h-[40vh] md:h-[50vh] bg-[url('/assets/breeder_details/BreederTop.jpg')] bg-cover bg-no-repeat flex flex-col justify-center gap-3">
+            <h2 class="ml-[3%] w-[250px] md:w-[300px] p-3 text-white text-3xl md:text-4xl font-black bg-redish rounded-lg flex justify-center items-center">Breeder Detail</h2>
+            <div class="ml-[3%] p-3">
+                <a href="#" class="font-bold text-lg text-redish "> Home </a><a class="p-3 font-bold text-lg text-redish">|</a>
+                <a href="#" class=" font-bold text-lg text-white capitalize">Siberian Husky</a>
+            </div>
+        </div>
+
+        <!--Breeder details -->
+        <div class="flex flex-col justify-center items-center md:flex-row md:justify-center md:items-start gap-8 bg-[url('/assets/breeder_details/breeder_bg.jpg')] bg-cover bg-no-repeat h-[290%] w-full md:h-[175%] ">
+            <!-- Left Section - Pet Details -->
+            <div class="bg-white p-8 rounded-lg shadow-2xl w-[88%] md:h-[90%] md:w-[60%] mt-[5%] ">
+                <h1 class="text-3xl font-black text-[#0a303a] mb-4  ">Siberian Husky</h1>        
+                <p class="text-[#0a303a] mb-4 leading-7">
+                    The domestic dog is a doiated dendant of the wolf. The dog t is derived from an ancient, extinct wolf, and the modern grey wolf is the dog's nesdarest living relative. The dog was the first species to be domesticated, by hunter-gateiherers. These will include the core vaccines, which are in a series of three: at 6-, 12-, and 16 weeks old.
+                </p>        
+                <p class="text-[#0a303a] mb-8 leading-7">
+                    The dog was the first species to be domesticated, by hunter-gateiherers. These will include and the modern grey wolf is the dog's.
+                </p>
+                <!--  dog image -->
+                <img alt="Siberian Husky" src="/assets/breeder_details/Siberian_Husky.jpg" class=" w-[100%] h-[15%] bg-auto rounded-lg mb-8 md:w-[100%] md:h-[37%] "/>        
+                <h2 class="text-xl font-black text-[#0a303a] mb-4 ">About Bio</h2>
+                <p class="text-[#0a303a] mb-8 leading-7">
+                    The domestic dog is doiated dendant of the wolf. The dog t is derived from an ancient, extinct wolf, and the modern grey wolf is the dog's nesdarest living relative. The dog was the first species to be dometed, by hunter.
+                </p>
+                <h2 class="text-xl font-black text-[#0a303a] pb-4 border-b-[1px] mb-4">Dog Information</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Gender:</p>
+                        <p class="text-red-500 font-base font-bold">Male</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Age:</p>
+                        <p class="text-red-500 font-base font-bold">1 year</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Color:</p>
+                        <p class="text-red-500 font-base font-bold">White</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Pet ID:</p>
+                        <p class="text-red-500 font-base font-bold">09481</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Weight:</p>
+                        <p class="text-red-500 font-base font-bold"></p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Khatna:</p>
+                        <p class="text-red-500 font-base font-bold">Yes</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">City:</p>
+                        <p class="text-red-500 font-base font-bold">New York</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 font-lg font-bold">Breed:</p>
+                        <p class="text-red-500 font-base font-bold">Husky</p>
+                    </div>
+                    <!--hover button -->
+                    <button class="bg-redish w-[198px] text-xl font-extrabold mt-3 py-3 rounded-lg flex justify-center items-center gap-2 cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1]  before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]">
+                        <p class="relative z-[3] text-xl font-extrabold">Apply Today</p>
+                        <img alt="paw" src="/assets/breeder_details/transpaw.png" class="w-[20px] h-[20px] rotate-45 relative z-[3]"/>
+        
+                    </button>
+                </div>
+            </div>
+        
+            <!-- Right Section - Search Form -->
+            <div class="lg:w-96 flex justify-center w-[88%] sticky mt-[9%] top-[9%]  mb-[6%]">
+                <div class="bg-white p-6 rounded-lg shadow-2xl">
+                    <h2 class="text-xl font-black text-[#0a303a] mb-6 ">Find Your Pets</h2>
+                    
+                    <form class="space-y-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search" class="w-full pl-4 pr-12 py-3 border rounded-lg">
+                            <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-redish text-white p-2 rounded-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+        
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="Location" class="flex-1 px-4 py-3 border rounded-lg">
+                        </div>
+                        <div class="flex justify-between">
+                            <input type="text" placeholder="White" class="w-[47%] px-4 py-3 border rounded-lg">
+                            <input type="text" placeholder="2021" class="w-[47%] px-4 py-3 border rounded-lg">
+                        </div>
+        
+                        <select class="w-full px-4 py-3 border rounded-lg">
+                            <option>Female</option>
+                            <option>Male</option>
+                        </select>
+        
+                        <select class="w-full px-4 py-3 border rounded-lg">
+                            <option>Price</option>
+                            <option>$0 - $500</option>
+                            <option>$501 - $1000</option>
+                            <option>$1001+</option>
+                        </select>
+        
+                        <select class="w-full px-4 py-3 border rounded-lg">
+                            <option>Adult :</option>
+                            <option>Puppy</option>
+                            <option>Young</option>
+                            <option>Adult</option>
+                            <option>Senior</option>
+                        </select>
+        
+                        
+                        <button class="bg-redish h-[50px] w-full py-3 text-xl rounded-lg cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]">
+                            <p class="relative z-[3] text-lg font-black">Find New Pets</p>
+                            </button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!--NewsUpdate -->
+        <NewsUpdate></NewsUpdate>
+    </div>
+</Layout>

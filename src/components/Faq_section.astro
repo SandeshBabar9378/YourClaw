@@ -1,0 +1,107 @@
+---
+import Brand from "./Brand.astro"
+---
+
+<div class="flex flex-col w-screen h-[120vh] bg-[#d5e7ea] md:h-[100vh]">
+  <div class="bg-[url('/assets/WhiteDown.png')] bg-cover bg-no-repeat w-screen h-[20px] md:h-[3%]"></div>
+
+  <div class="flex flex-col w-screen h-[120vh] bg-[#d5e7ea] md:h-[94%] md:flex-row md:items-center md:justify-center md:gap-2">
+    <div class="h-[49%] mt-[5%] flex justify-center items-center md:h-[85%] md:w-[50%]">
+      <img src="/assets/tv.png" alt="Tv" class="md:w-[80%] md:h-[95%] md:p-2 md:mb-[10%]">
+    </div>
+    <!--Right Card -->
+    <div class=" flex flex-col items-start space-y-[5%] md:space-y-[3%] h-[50%] md:h-[85%] md:w-[54%] md:justify-center md:mt-[5%] md:mb-[5%] md:mr-[5%]">
+      <h5 class="text-redish text-2xl font-extrabold ml-[3%] md:ml-[4%]">FAQ Question</h5>
+      <h2 class="text-blackish text-4xl font-black ml-[2%] md:ml-[4%]">History & Family Adoption</h2>
+      
+      <div class="h-[80%] w-[96%] flex flex-col justify-evenly md:justify-around gap-2 ml-[1%] p-[2%] md:gap-0 md:h-[90%] md:w-[98%] md:mr-[1%]">
+        <!--question 1 -->
+        <div> 
+          <button id="close_question1" class="text-blackish flex justify-between items-center ml-[1%] md:ml-0 h-[5vh] md:h-[60px] w-[100%] bg-white rounded-t-md rounded-b-md text-xl font-black drop-shadow-md"><h3 class="ml-[1.5vw]">
+            Working For Dog Adoption </h3>
+            <div id="circle1" class="flex justify-center items-center bg-[url('/assets/down.png')] bg-cover bg-no-repeat bg-center h-[3.7vh] w-[4.6vh] mr-[1.5vw]"></div>
+          </button>
+          <div id="answer1" class="text-blackish md:leading-7 md:font-medium hidden bg-white ml-[1%] md:ml-0 h-[15vh] w-[100%] rounded-b-md py-[2vh] md:py-[3vh]  px-[3vw] ">
+              The best overall dog DNA test is embark breed & health Kit (view atths Chewy), which provides you with a breed brwn and ition on provides ancestors most dogs.</p>
+          </div>
+        </div>
+        <!--question 2 -->
+        <div> 
+          <button id="close_question2" class="text-blackish flex justify-between items-center ml-[1%] md:ml-0 h-[5vh] md:h-[60px] w-[100%] bg-white rounded-t-md rounded-b-md text-xl font-black drop-shadow-md"><h3 class="ml-[1.5vw]">
+            Competitions & Awards </h3>
+            <div id="circle2" class="flex justify-center items-center bg-[url('/assets/down.png')] bg-cover bg-no-repeat bg-center h-[3.7vh] w-[4.6vh] mr-[1.5vw]"></div>
+            </button>
+            <div id="answer2" class="text-blackish md:leading-7 md:font-medium hidden bg-white ml-[1%] md:ml-0 h-[15vh] w-[100%] rounded-b-md py-[2vh] md:py-[3vh]  px-[3vw] ">
+              The best overall dog DNA test is embark breed & health Kit (view atths Chewy), which provides you with a breed brwn and ition on provides ancestors most dogs.</p>
+          </div>
+        </div>
+        <!--question 3 -->
+        <div> 
+          <button id="close_question3" class="text-blackish flex justify-between items-center ml-[1%] md:ml-0 h-[5vh] md:h-[60px] w-[100%] bg-white rounded-t-md rounded-b-md text-xl font-black drop-shadow-md"><h3 class="ml-[1.5vw]">
+            Health of Pet </h3>
+            <div id="circle3" class="flex justify-center items-center bg-[url('/assets/down.png')] bg-cover bg-no-repeat bg-center h-[3.7vh] w-[4.6vh] mr-[1.5vw]"></div>
+            </button>
+            <div id="answer3" class="text-blackish md:leading-7 md:font-medium hidden bg-white ml-[1%] md:ml-0 h-[15vh] w-[100%] rounded-b-md py-[2vh] md:py-[3vh]  px-[3vw]  ">
+              The best overall dog DNA test is embark breed & health Kit (view atths Chewy), which provides you with a breed brwn and ition on provides ancestors most dogs.</p>
+          </div>
+        </div>
+        <!--question 4 only for desktop -->
+        <div class="hidden md:block"> 
+          <button id="close_question4" class="text-blackish flex justify-between items-center ml-[1%] md:ml-0 h-[5vh] md:h-[60px] w-[100%] bg-white rounded-t-md rounded-b-md text-xl font-black drop-shadow-md"><h3 class="ml-[1.5vw]">
+            The puppies are 3 months old </h3>
+            <div id="circle4" class="flex justify-center items-center bg-[url('/assets/down.png')] bg-cover bg-no-repeat bg-center h-[3.7vh] w-[4.6vh] mr-[1.5vw]"></div>
+            </button>
+            <div id="answer4" class="text-blackish md:leading-7 md:font-medium hidden bg-white ml-[1%] md:ml-0 h-[15vh] w-[100%] rounded-b-md py-[2vh] md:py-[3vh]  px-[3vw]  ">
+              The best overall dog DNA test is embark breed & health Kit (view atths Chewy), which provides you with a breed brwn and ition on provides ancestors most dogs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Brand -->
+  <div class="bg-[url('/assets/brands/BrandTop.png')] bg-cover bg-no-repeat w-screen h-[4%] "></div>
+
+</div> 
+<Brand/>
+
+
+
+
+
+<script is:inline>
+  const toggleAnswer = (questionId, answerId, circleId) => {
+    document.getElementById(questionId).addEventListener('click', () => {
+      const answer = document.getElementById(answerId);
+      const circle = document.getElementById(circleId);
+
+      ['answer1', 'answer2', 'answer3', 'answer4'].forEach(id => {
+        if (id !== answerId) {
+          document.getElementById(id).classList.add('hidden');
+        }
+      });
+
+      answer.classList.toggle('hidden');
+
+      if (answer.classList.contains('hidden')) {
+        circle.style.backgroundImage = "url('/assets/down.png')";
+      } else {
+        circle.style.backgroundImage = "url('/assets/up.png')";
+      }
+
+      ['answer1', 'answer2', 'answer3', 'answer4'].forEach(id => {
+        if (id !== answerId) {
+          document.getElementById(id).classList.add('hidden');
+          document.getElementById(`circle${id.slice(-1)}`).style.backgroundImage = "url('/assets/down.png')";
+        }
+      });
+    });
+  };
+
+  document.getElementById('answer1').classList.remove('hidden');
+  document.getElementById('circle1').style.backgroundImage = "url('/assets/up.png')";
+  toggleAnswer('close_question1', 'answer1', 'circle1');
+  toggleAnswer('close_question2', 'answer2', 'circle2');
+  toggleAnswer('close_question3', 'answer3', 'circle3');
+  toggleAnswer('close_question4', 'answer4', 'circle4');
+
+</script>

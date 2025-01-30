@@ -1,0 +1,142 @@
+<div class="mobile-only h-[100vh] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat">
+  <div class="flex items-center justify-center h-screen">
+    <div class="container">
+      <div class="signup-section">
+        <header>Sign Up</header>
+        <form>
+          <input type="text" placeholder="First name" required />
+          <input type="text" placeholder="Last name" required />
+          <input type="email" placeholder="Email address" required />
+          <input type="password" placeholder="Password" required />
+          <input type="password" placeholder="Confirm Password" required />
+          <a href="#">Forget Password?</a>
+          <button type="submit" class="btn flex justify-around items-center">
+            <p class="text-black text-3xl font-semibold">Submit</p>
+            <img
+              src="/assets/GrayTransPaw.jpg"
+              alt="Paw"
+              class="rotate-90 ml-3 h-10 w-10 z-10"
+            />
+          </button>
+        </form>
+      </div>
+
+      <div class="login-section relative">
+        <header>Login</header>
+        <form>
+          <input type="email" placeholder="Email address" class="" required />
+          <input
+            type="password"
+            placeholder="Password"
+            class="mt-[2%]"
+            required
+          />
+          <a href="#">Forget Password?</a>
+          <button type="submit" class="btn flex justify-around items-center mt-[8%]">
+            <p class="text-blackish text-3xl font-semibold">Submit</p>
+            <img
+              src="/assets/GrayTransPaw.jpg"
+              alt="Paw"
+              class="rotate-90 ml-3 h-10 w-10 z-10"
+            />
+          </button>
+        </form>
+        <div class="flex flex-col justify-center items-center mb-[40%] ml-[5%]">
+          <dotlottie-player src="https://lottie.host/7fe59fe4-6f7e-4c33-81f8-bed1aa1d5af5/eH4ZO2d1zX.lottie" background="transparent" speed="1.2" style="padding:10px; width: 300px; height: 300px; filter: drop-shadow(0 0 0.50rem white); " loop autoplay></dotlottie-player>
+          <p class="text-center text-5xl font-bold text-white mt-[2%]">
+            Welcome Back..
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .container {
+    @apply bg-redish relative w-[100%] h-[80svh] overflow-hidden pt-5 pb-[5%] px-[30px] rounded-3xl shadow-2xl text-white;
+  }
+  .login-section {
+    @apply bg-blackish flex flex-col items-center absolute bottom-[-80%] z-20 -translate-x-2/4 w-[calc(100%_+_180px)] h-full transition-all duration-[0.6s] ease-[ease] py-5 rounded-[290px] left-2/4;
+  }
+  .login-section header,
+  .signup-section header {
+    @apply text-8xl text-center text-white font-semibold cursor-pointer mt-[20%];
+  }
+  .login-section header {
+    @apply text-white opacity-60 mt-[10%];
+  }
+  .container form {
+    @apply flex flex-col items-center h-[50svh] gap-[3%] mt-[12%];
+  }
+  form input {
+    @apply outline-none bg-white text-2xl text-blackish font-semibold px-[5%] h-[8%] w-[85%] py-2.5 rounded-lg border-[none] focus:outline-double  focus:ring-4 focus:ring-black;
+  }
+
+  form a {
+    @apply text-white text-3xl underline mt-[5%];
+  }
+
+  form .btn {
+    @apply cursor-pointer w-[35%] h-[9%] px-[15px] py-2.5 rounded-lg border-2 bg-[#fefeff] mt-[3%];
+  }
+
+  .login-section input {
+    @apply text-xl text-blackish font-bold px-[5%] h-[15%] w-[200%] py-2.5 rounded-lg border-[3px];
+  }
+
+  .login-section .btn {
+    @apply cursor-pointer w-[75%] h-[15%] px-[15px] py-[3px] rounded-lg border-2 bg-white;
+  }
+  /* active css  */
+  .container.active .login-section {
+    @apply bottom-[-17%] shadow-2xl rounded-[250px];
+  }
+  .container.active .login-section header {
+    @apply opacity-100;
+  }
+  .container.active .signup-section header {
+    @apply opacity-60;
+  }
+
+  /* Hide for PC view */
+  @media (min-width: 1024px) {
+    .mobile-only {
+      display: none;
+    }
+  }
+</style>
+<script
+  src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+  type="module"></script>
+<script is:inline>
+  const container = document.querySelector(".container");
+  const signupButton = document.querySelector(".signup-section header");
+  const loginButton = document.querySelector(".login-section header");
+
+  loginButton.addEventListener("click", () => {
+    container.classList.add("active");
+    signupButton.classList.add("blur-[3px]");
+    loginButton.classList.add("mt-[50vh]");
+  });
+
+  signupButton.addEventListener("click", () => {
+    container.classList.remove("active");
+    signupButton.classList.remove("blur-[3px]");
+    loginButton.classList.remove("mt-[50vh]");
+  });
+
+  const password = document.querySelector('input[placeholder="Password"]');
+  const confirmPassword = document.querySelector(
+    'input[placeholder="Confirm Password"]'
+  );
+  const submitButton = document.querySelector(
+    '.signup-section button[type="submit"]'
+  );
+
+  submitButton.addEventListener("click", (event) => {
+    if (password.value !== confirmPassword.value) {
+      event.preventDefault();
+      alert("Passwords do not match!");
+    }
+  });
+</script>
