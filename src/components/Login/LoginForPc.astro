@@ -1,282 +1,227 @@
-<div id="mu">
-    <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form>
-                <h1>Create Account</h1>
-                <div class="h-[2%]"></div>
-                <div class="flex gap-[2%]">
-                    <input type="text" placeholder="First Name" required />
-                    <input type="text" placeholder="Last Name" required />
-                </div>
-                <input type="email" placeholder="Email" required />
-                <input type="password" placeholder="Password" required />
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    required
-                />
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="form-container sign-in">
-            <form id="login-form">
-                <h1>Sign In</h1>
-                <div class="h-[2%]"></div>
-                <input
-                    id="login-email"
-                    type="email"
-                    placeholder="Email"
-                    required
-                />
-                <input
-                    id="login-password"
-                    type="password"
-                    placeholder="Password"
-                    required
-                />
+<div class="h-[100vh] w-[100vw] flex justify-center items-center bg-gray-500">
+  <div class="h-[80%] w-[70%] flex flex-row justify-between rounded-3xl bg-redish relative">
+    <!-- Login Div -->
+    <div class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center">
+      <div class="h-[80%] w-[100%] flex flex-col justify-between items-center">
+        <h2 class="font-bold text-white text-5xl">Login</h2>
 
-                <a href="#">Forget Your Password?</a>
-                <button type="submit">Sign In</button>
-            </form>
+        <div class="w-[100%] h-[35%] flex flex-col justify-between items-center">
+          <!-- Email Input --> 
+          <div class="form-control">
+            <input type="text" required="">
+            <label>
+              <span><i class="fa-regular fa-envelope mr-2"></i></span>
+              <span style="transition-delay:0ms">E</span><span style="transition-delay:50ms">m</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">i</span><span style="transition-delay:200ms">l</span>
+            </label>
+          </div>
+          <!-- Password Input -->
+          <div class="form-control">
+            <input type="password" required="">
+            <label>
+              <span><i class="fa-solid fa-lock mr-2"></i></span>
+              <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+            </label>
+          </div>
         </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>
-                        Enter your personal details to use all of site features
-                    </p>
-                    <button class="" id="login">Sign In</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>
-                        Register with your personal details to use all of site
-                        features
-                    </p>
-                    <button class="">Sign Up</button>
-                </div>
-            </div>
-        </div>
+        <!-- Submit Button -->
+        <button class="bg-blackish text-white text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
+      </div>
     </div>
+
+    <!--Register Div -->
+    <div class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center">
+      <div class="h-[90%] w-[100%] flex flex-col justify-between items-center">
+        <h2 class="font-bold text-white text-5xl">Register</h2>
+
+        <div class="w-[100%] h-[63%] flex flex-col justify-between items-center">
+          <!-- Name Input --> 
+          <div class="form-control">
+            <input type="text" required="">
+            <label>
+              <span><i class="fa-regular fa-user mr-2"></i></span>
+              <span style="transition-delay:0ms">N</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">m</span><span style="transition-delay:150ms">e</span>
+            </label>
+          </div>
+          <!-- Email Input --> 
+          <div class="form-control">
+            <input type="text" required="">
+            <label>
+              <span><i class="fa-regular fa-envelope mr-2"></i></span>
+              <span style="transition-delay:0ms">E</span><span style="transition-delay:50ms">m</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">i</span><span style="transition-delay:200ms">l</span>
+            </label>
+          </div>
+          <!-- Password Input -->
+          <div class="form-control">
+            <input type="password" required="">
+            <label>
+              <span><i class="fa-solid fa-lock mr-2"></i></span>
+              <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+            </label>
+          </div>
+          <!-- Password Input -->
+          <div class="form-control">
+            <input type="password" required="">
+            <label>
+              <span><i class="fa-solid fa-lock mr-2"></i></span>
+              <span style="transition-delay:0ms">C</span><span style="transition-delay:25ms">o</span><span style="transition-delay:50ms">n</span><span style="transition-delay:75ms">f</span><span style="transition-delay:100ms">i</span><span style="transition-delay:125ms">r</span><span style="transition-delay:150ms">m</span><span style="transition-delay:175ms">&nbsp;</span><span style="transition-delay:200ms">P</span><span style="transition-delay:225ms">a</span><span style="transition-delay:250ms">s</span><span style="transition-delay:275ms">s</span><span style="transition-delay:300ms">w</span><span style="transition-delay:325ms">o</span><span style="transition-delay:350ms">r</span><span style="transition-delay:375ms">d</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="bg-blackish text-white text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[9%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
+      </div>
+    </div>
+    <!-- Toggle Div -->
+    <div id="toggle_div" class="h-[100%] w-[50%] absolute top-0 right-0 rounded-r-3xl bg-[#3AAAFD] z-[2] flex flex-col justify-center gap-y-[10%] items-center transition-transform duration-1000 transform translate-x-0">
+      <div class="flex flex-col justify-evenly items-center w-[100%] mt-[10%] h-[20%]">
+        <h1 id="toggle_text1" class="text-5xl font-bold text-white p-1">Welcome Back!</h1>
+        <h3 class="text-[32px] font-bold text-white p-1">Sir/Madam...</h3>
+      </div>
+      <dotlottie-player src="https://lottie.host/b187aa74-bcdf-477a-8d89-73d2f81d74f9/weeAP7NWRg.lottie" background="transparent" speed="1" class="h-[40%] w-[h-[40%]]" loop autoplay></dotlottie-player>
+      <div class="flex flex-col items-center w-[100%] p-1 mb-[5%]">
+        <p id="toggle_text2" class="tracking-wide text-lg font-bold text-white">Don't you have any account ?</p>
+        <button id="btn" class=" underline text-blackish font-bold text-2xl ">Register</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
-    #mu {
-        background-image: "/assets/testimonial_bg.jpg";
-        background: cover;
-        background-repeat: no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100vh;
+    .form-control {
+      @apply relative w-[75%];
     }
-
-    .container {
-        background-color: #fff;
-        border-radius: 30px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-        position: relative;
-        overflow: hidden;
-        width: 768px;
-        max-width: 100%;
-        min-height: 480px;
+    .form-control input {
+      @apply bg-transparent block w-full text-lg text-white px-0 py-[15px] border-b-2 border-b-[solid] border-0;
     }
-
-    .container p {
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0.3px;
-        margin: 20px 0;
+    .form-control input:focus,
+    .form-control input:valid {
+      @apply border-b-[white];
+      outline: 0;
     }
-
-    .container span {
-        font-size: 12px;
+    .form-control label {
+      @apply absolute pointer-events-none left-0 top-[15px];
     }
-
-    .container a {
-        color: #333;
-        font-size: 13px;
-        text-decoration: none;
-        margin: 15px 0 10px;
+    .form-control label span {
+      @apply inline-block text-xl font-semibold min-w-[5px] text-white transition-[0.3s] duration-[cubic-bezier(0.68,-0.55,0.265,1.55)];
     }
-
-    .container button {
-        background-color: #512da8;
-        color: #fff;
-        font-size: 12px;
-        padding: 10px 45px;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        margin-top: 10px;
-        cursor: pointer;
-    }
-
-    .container button.hidden {
-        background-color: transparent;
-        border-color: #fff;
-    }
-
-    .container form {
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 40px;
-        height: 100%;
-    }
-
-    .container input {
-        background-color: #eee;
-        border: none;
-        margin: 8px 0;
-        padding: 10px 15px;
-        font-size: 13px;
-        border-radius: 8px;
-        width: 100%;
-        outline: none;
-    }
-
-    .form-container {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        transition: all 0.6s ease-in-out;
-    }
-
-    .sign-in {
-        left: 0;
-        width: 50%;
-        z-index: 2;
-    }
-
-    .container.active .sign-in {
-        transform: translateX(100%);
-    }
-
-    .sign-up {
-        left: 0;
-        width: 50%;
-        opacity: 0;
-        z-index: 1;
-    }
-
-    .container.active .sign-up {
-        transform: translateX(100%);
-        opacity: 1;
-        z-index: 5;
-        animation: move 0.6s;
-    }
-
-    .toggle-container {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        transition: all 0.6s ease-in-out;
-        border-radius: 150px 0 0 100px;
-        z-index: 1000;
-    }
-
-    .container.active .toggle-container {
-        transform: translateX(-100%);
-        border-radius: 0 150px 100px 0;
-    }
-
-    .toggle {
-        background-color: red;
-        height: 100%;
-        background: linear-gradient(to right, red, red);
-        color: #fff;
-        position: relative;
-        left: -100%;
-        height: 100%;
-        width: 200%;
-        transform: translateX(0);
-        transition: all 0.6s ease-in-out;
-    }
-
-    .container.active .toggle {
-        transform: translateX(50%);
-    }
-
-    .toggle-panel {
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 30px;
-        text-align: center;
-        top: 0;
-        transform: translateX(0);
-        transition: all 0.6s ease-in-out;
-    }
-
-    .toggle-left {
-        transform: translateX(-200%);
-    }
-
-    .container.active .toggle-left {
-        transform: translateX(0);
-    }
-
-    .toggle-right {
-        right: 0;
-        transform: translateX(0);
-    }
-
-    .container.active .toggle-right {
-        transform: translateX(200%);
+    .form-control input:focus + label span,
+    .form-control input:valid + label span {
+      @apply text-[white] translate-y-[-25px];
     }
 </style>
 
+
 <script is:inline>
-    const container = document.getElementById("container");
-    const registerBtn = document.getElementById("register");
-    const loginBtn = document.getElementById("login");
+  document.getElementById('btn').addEventListener('click', function() {
+      const toggleDiv = document.getElementById('toggle_div');
+      const toggleText1 = document.getElementById('toggle_text1');
+      const toggleText2 = document.getElementById('toggle_text2');
+      const btn = document.getElementById('btn');
 
-    registerBtn.addEventListener("click", () => {
-        container.classList.add("active");
-    });
+      // Check if the toggleDiv is currently translated to the left
+      if (toggleDiv.style.transform === 'translateX(-100%)') {
+          // Move it back to the right
+          toggleDiv.style.transform = 'translateX(0%)';
+          toggleText1.textContent = 'Welcome Back!';
+          toggleText2.textContent = "Don't you have any account ?";
+          btn.textContent = 'Register';
+          toggleDiv.classList.remove('rounded-l-3xl');
+          toggleDiv.classList.add('rounded-r-3xl');
+      } else {
+          // Move it to the left
+          toggleDiv.style.transform = 'translateX(-100%)';
+          toggleText1.textContent = 'Hello Welcome!';
+          toggleText2.textContent = 'Do you have any account ?';
+          btn.textContent = 'Login';
+          toggleDiv.classList.add('rounded-l-3xl');
+          toggleDiv.classList.remove('rounded-r-3xl');
+      }
+  });
+ // function handleInputLabel() {
+  //   const Inputs = document.querySelectorAll('.Input');
+  //   const Labels = document.querySelectorAll('.Label');
 
-    loginBtn.addEventListener("click", () => {
-        container.classList.remove("active");
-    });
+  //   Inputs.forEach((Input, index) => {
+  //     const Label = Labels[index];
 
-    const loginForm = document.getElementById("login-form");
-    loginForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const email = document.getElementById("login-email").value;
-        const password = document.getElementById("login-password").value;
-
-        try {
-            const req = await fetch("http://localhost:3000/api/users/login", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-            });
-            const data = await req.json();
-            console.log("Login Data:", data);
-            addPetForm.reset();
-        } catch (err) {
-            console.log(err);
-        }
-    });
+  //     Input.addEventListener('input', () => {
+  //       if (Input.value.trim() !== '') {
+  //         Label.classList.add('hidden');
+  //       } else {
+  //         Label.classList.remove('hidden');
+  //       }
+  //     });
+  //   });
+  // }
+  // handleInputLabel();
 </script>
+
+
+
+<!-- <Layout>
+
+  <div class="h-[100vh] w-[100vw] flex justify-center items-center bg-gray-500">
+    <div class="h-[70%] w-[70%] flex flex-row justify-between rounded-lg bg-white relative">
+      <div class="h-[100%] w-[50%] bg-redish rounded-l-lg p-2 flex justify-center items-center text-9xl font-black">
+          Register
+      </div>
+      <div class="h-[100%] w-[50%] bg-blackish rounded-r-lg  p-2 flex justify-center items-center text-9xl font-black">
+         Login
+      </div>
+      <div id="register" class="h-[100%] w-[49%] absolute top-0 right-0 bg-black z-[2] flex justify-center items-center transition-all duration-[2s] opacity-100">
+        <button id="Registerbutton" class="bg-white h-[25%] w-[50%] font-bold text-4xl rounded-3xl shadow-white shadow-lg border-black border-[2px]">Login</button>
+      </div>
+      <div id="login" class="h-[100%] w-[49%] absolute top-0 left-0 bg-black z-[2] flex justify-center items-center transition-all duration-[2s] opacity-100">
+        <button id="Loginbutton" class="bg-white h-[25%] w-[50%] font-bold text-4xl rounded-3xl shadow-white shadow-lg border-black border-[2px]">Register</button>
+      </div>
+  
+      </div>
+      </div>
+</Layout>
+  
+<script is:inline>
+      function toggle() {
+        let isLeftVisible = false;
+  
+        const toggleLeft = document.getElementById('register');
+        const toggleRight = document.getElementById('login');
+  
+        // Initially hide the left div
+        toggleLeft.style.display = 'none';
+        toggleRight.style.display = 'flex';
+  
+        document.getElementById('Registerbutton').addEventListener('click', () => {
+        if (isLeftVisible) {
+          toggleLeft.style.transform = 'translateX(-100%)';
+          toggleLeft.style.opacity = '0';
+          setTimeout(() => {
+          toggleLeft.style.display = 'none';
+          toggleRight.style.display = 'flex';
+          toggleRight.style.transform = 'translateX(0)';
+          toggleRight.style.opacity = '1';
+          isLeftVisible = false;
+          }, 2000); // Match the duration of the transition
+        }
+        });
+  
+        document.getElementById('Loginbutton').addEventListener('click', () => {
+        if (!isLeftVisible) {
+          toggleRight.style.transform = 'translateX(100%)';
+          toggleRight.style.opacity = '0';
+          setTimeout(() => {
+          toggleRight.style.display = 'none';
+          toggleLeft.style.display = 'flex';
+          toggleLeft.style.transform = 'translateX(0)';
+          toggleLeft.style.opacity = '1';
+          isLeftVisible = true;
+          }, 2000); // Match the duration of the transition
+        }
+        });
+      }
+  
+      toggle();
+</script> -->
+

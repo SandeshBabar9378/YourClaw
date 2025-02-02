@@ -1,95 +1,73 @@
-<div class="mobile-only h-[100vh] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat">
-  <div class="flex items-center justify-center h-screen">
+<div class="mobile-only flex justify-center items-center h-[120vh] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat">
+  
     <div class="container">
-      <div class="signup-section">
-        <header>Sign Up</header>
+      <div class="signup-section ">
+        <header class=" mt-[10%]">Sign Up</header>
         <form>
           <input type="text" placeholder="First name" required />
           <input type="text" placeholder="Last name" required />
           <input type="email" placeholder="Email address" required />
+          <!-- Enter Password -->
           <input type="password" placeholder="Password" required />
+          <!-- Confirm Password -->
           <input type="password" placeholder="Confirm Password" required />
-          <a href="#">Forget Password?</a>
-          <button type="submit" class="btn flex justify-around items-center">
-            <p class="text-black text-3xl font-semibold">Submit</p>
-            <img
-              src="/assets/GrayTransPaw.jpg"
-              alt="Paw"
-              class="rotate-90 ml-3 h-10 w-10 z-10"
-            />
+          <!-- Submit Button-->
+          <button type="submit" class="btn text-blackish text-lg font-bold p-2 flex justify-between items-center cursor-pointer w-[43%] h-[10%] mt-[10%] px-[15px] py-2.5 rounded-lg border-2 bg-[#fefeff]">
+            Submit
+            <img src="/assets/GrayTransPaw.jpg" alt="Paw" class="rotate-90 h-[23px] w-[23px] z-10" />
           </button>
         </form>
       </div>
-
-      <div class="login-section relative">
-        <header>Login</header>
-        <form>
-          <input type="email" placeholder="Email address" class="" required />
-          <input
-            type="password"
-            placeholder="Password"
-            class="mt-[2%]"
-            required
-          />
-          <a href="#">Forget Password?</a>
-          <button type="submit" class="btn flex justify-around items-center mt-[8%]">
-            <p class="text-blackish text-3xl font-semibold">Submit</p>
-            <img
-              src="/assets/GrayTransPaw.jpg"
-              alt="Paw"
-              class="rotate-90 ml-3 h-10 w-10 z-10"
-            />
+      <!-- Login Section -->
+      <div class="login-section relative ">
+        <header class=" pt-[5%]">Login</header>
+        <form class="relative top-[-7%]">
+          <!-- Email Input -->
+          <input type="email" placeholder="Email address" class="mb-[3%]" required />
+          <!-- Password Input-->
+          <input type="password" placeholder="Password" required />
+          <!--Forget Password -->
+          <a href="#" class="underline text-lg font-semibold mt-[12%]">Forget Password?</a>
+          <!--Submit Button -->
+          <button type="submit" class="cursor-pointer w-[50%] h-[18%] px-[15px] mt-[2%] py-2.5 p-2 rounded-lg border-2 bg-[#fefeff] text-blackish text-lg font-bold  flex justify-between items-center relative">
+            Submit
+            <img src="/assets/GrayTransPaw.jpg" alt="Paw" class="rotate-90 h-[23px] w-[23px] z-10" />
           </button>
         </form>
-        <div class="flex flex-col justify-center items-center mb-[40%] ml-[5%]">
-          <dotlottie-player src="https://lottie.host/7fe59fe4-6f7e-4c33-81f8-bed1aa1d5af5/eH4ZO2d1zX.lottie" background="transparent" speed="1.2" style="padding:10px; width: 300px; height: 300px; filter: drop-shadow(0 0 0.50rem white); " loop autoplay></dotlottie-player>
-          <p class="text-center text-5xl font-bold text-white mt-[2%]">
-            Welcome Back..
-          </p>
+        <div class="flex flex-col justify-center items-center mb-[57%] ml-[5%]">
+          <dotlottie-player src="https://lottie.host/7fe59fe4-6f7e-4c33-81f8-bed1aa1d5af5/eH4ZO2d1zX.lottie" background="transparent" speed="1.2" style="padding:5px; width: 95%; height: 95%; filter: drop-shadow(0 0 2rem white); " loop autoplay></dotlottie-player>
         </div>
       </div>
     </div>
-  </div>
 </div>
 <style>
   .container {
-    @apply bg-redish relative w-[100%] h-[80svh] overflow-hidden pt-5 pb-[5%] px-[30px] rounded-3xl shadow-2xl text-white;
+    @apply bg-redish relative w-[90%] h-[95svh] overflow-hidden pt-5 pb-[5%] px-[30px] rounded-3xl shadow-2xl text-white;
   }
   .login-section {
-    @apply bg-blackish flex flex-col items-center absolute bottom-[-80%] z-20 -translate-x-2/4 w-[calc(100%_+_180px)] h-full transition-all duration-[0.6s] ease-[ease] py-5 rounded-[290px] left-2/4;
+    @apply bg-blackish flex flex-col items-center absolute bottom-[-80%] z-20 -translate-x-2/4 w-[calc(100%_+_180px)] h-full transition-all duration-[0.6s] ease-[ease] py-3 rounded-[290px] left-2/4;
   }
   .login-section header,
   .signup-section header {
-    @apply text-8xl text-center text-white font-semibold cursor-pointer mt-[20%];
+    @apply text-5xl text-center text-white font-semibold cursor-pointer;
   }
   .login-section header {
     @apply text-white opacity-60 mt-[10%];
   }
   .container form {
-    @apply flex flex-col items-center h-[50svh] gap-[3%] mt-[12%];
+    @apply flex flex-col items-center h-[50svh] gap-[6%] mt-[20%];
   }
   form input {
-    @apply outline-none bg-white text-2xl text-blackish font-semibold px-[5%] h-[8%] w-[85%] py-2.5 rounded-lg border-[none] focus:outline-double  focus:ring-4 focus:ring-black;
-  }
-
-  form a {
-    @apply text-white text-3xl underline mt-[5%];
-  }
-
-  form .btn {
-    @apply cursor-pointer w-[35%] h-[9%] px-[15px] py-2.5 rounded-lg border-2 bg-[#fefeff] mt-[3%];
+    @apply outline-none bg-white text-lg text-blackish font-semibold px-[5%] h-[10%] w-[97%] py-2.5 rounded-lg border-[none] focus:ring-[1px] focus:ring-blackish;
   }
 
   .login-section input {
-    @apply text-xl text-blackish font-bold px-[5%] h-[15%] w-[200%] py-2.5 rounded-lg border-[3px];
+    @apply text-xl text-blackish font-bold px-[5%] h-[19%] w-[120%] py-2.5 rounded-lg ;
   }
 
-  .login-section .btn {
-    @apply cursor-pointer w-[75%] h-[15%] px-[15px] py-[3px] rounded-lg border-2 bg-white;
-  }
   /* active css  */
   .container.active .login-section {
-    @apply bottom-[-17%] shadow-2xl rounded-[250px];
+    @apply bottom-[-15%] shadow-2xl rounded-[250px];
   }
   .container.active .login-section header {
     @apply opacity-100;
@@ -105,9 +83,7 @@
     }
   }
 </style>
-<script
-  src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
-  type="module"></script>
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 <script is:inline>
   const container = document.querySelector(".container");
   const signupButton = document.querySelector(".signup-section header");
