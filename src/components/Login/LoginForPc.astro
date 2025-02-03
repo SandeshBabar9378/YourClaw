@@ -147,6 +147,7 @@
   //   Inputs.forEach((Input, index) => {
   //     const Label = Labels[index];
 
+<<<<<<< HEAD
   //     Input.addEventListener('input', () => {
   //       if (Input.value.trim() !== '') {
   //         Label.classList.add('hidden');
@@ -157,6 +158,33 @@
   //   });
   // }
   // handleInputLabel();
+=======
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+
+        try {
+            const req = await fetch("https://backend.yourclaw.tech/api/users/login", {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+            const data = await req.json();
+            console.log("Login Data:", data);
+            addPetForm.reset();
+        } catch (err) {
+            console.log(err);
+        }
+    });
+>>>>>>> bf7a63b7c2c6bc9551ca34950bfc70752395a919
 </script>
 
 

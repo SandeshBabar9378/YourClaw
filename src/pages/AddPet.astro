@@ -221,7 +221,6 @@ import Layout from "../layouts/Layout.astro";
 
       try {
           const mediaUploadResponse = await fetch(
-              "https://claw-backend-omega.vercel.app/api/media",
               {
                   method: "POST",
                   body: mediaFormData,
@@ -244,11 +243,11 @@ import Layout from "../layouts/Layout.astro";
               pet_age : petAge,
               pet_weight : petWeight,
               pet_address : petAddress,
-              pet_image : `https://claw-backend-omega.vercel.app${imageUrl}`, // Send media ID
+              pet_image : `https://backend.yourclaw.tech${imageUrl}`, // Send media ID
               pet_bio : petBio,
           };
 
-          const petResponse = await fetch("https://claw-backend-omega.vercel.app/api/pets", {
+          const petResponse = await fetch("https://backend.yourclaw.tech/api/pets", {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",
