@@ -5,8 +5,9 @@
 <!-- Navigation Bar for pc-->
 <div class="hidden lg:block">
   <nav class="relative md:h-[16vh]">
-  <div id="navbar"class="bg-[#ffffff] text-[#f04336] flex justify-between items-center md:h-[15vh] text-xl w-screen ">
-    <div id="logo" class="ml-[5%]">Claw</div>
+  <div id="navbar"class="bg-[#ffffff] text-[#f04336] flex justify-around items-center md:h-[15vh] text-xl w-screen ">
+    <a class="bg-[url('../assets/Logo.png')] bg-cover h-[50%] w-[8%] cursor-not-allowed"></a>
+
     <div id="link" class="flex gap-1 items-center">
       <a href="/" class="h-[40px] w-[100px] p-3 text-center font-extrabold hover:bg-[url('/assets/hoverbg.svg')] hover:bg-cover hover:bg-center hover:bg-no-repeat hover:text-white flex justify-center items-center hover:duration-500"> 
         Home
@@ -21,7 +22,7 @@
         Contact
       </a>
     </div>
-    <a href="/login" class="bg-[red] h-[50px] w-[130px] mr-[5%] text-base font-bold rounded-lg flex justify-center gap-1 items-center cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]">
+    <a href="/login" class="bg-[red] h-[50px] w-[130px] text-base font-bold rounded-lg flex justify-center gap-1 items-center cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]">
       <p class="relative z-[3]">Adopt Me</p>
       <img src="/assets/transpaw.png" alt="TransPaw" class="relative z-[3] rotate-45 h-5"/>
     </a>
@@ -47,7 +48,7 @@
 
 <!--menu -->
 <div id="Mobile_menu" class="h-screen w-[300px] fixed right-0 bg-white top-0 z-20 hidden">
-  <div class="text-[#f04336] flex justify-around items-center h-[15vh] border-b-[1px] border-gray-400">
+  <div class="text-redish flex justify-around items-center h-[15vh] border-b-[1px] border-gray-400">
       <span id="logo" class="text-xl h-[37px] w-[150px]">CLaw</span>
       <button id="cross" class="relative bottom-2 bg-[url('/assets/cross.png')] bg-cover bg-center bg-no-repeat h-[20px] w-[20px]" style="filter: drop-shadow(0 0 0.75rem black);"></button>
   </div>
