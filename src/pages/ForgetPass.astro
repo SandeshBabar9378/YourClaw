@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <div class="flex justify-center items-center w-screen h-[110vh] bg-slate-700">
+        <div class="bg-[url('../assets/newsletter/newsletterbg.jpg')] bg-repeat-y text-white h-[70%] w-[90%] md:w-[50%] rounded-lg flex flex-col justify-around gap-y-[3%] items-center">
+            <dotlottie-player src="https://lottie.host/369fcf89-c51b-400a-b961-c7e5901e2939/CtLDznqrki.lottie" background="transparent" speed="1" class="w-[90%] md:w-[40%] h-[35%] md:h-[35%]" loop autoplay></dotlottie-player>
+            <div class="w-[100%] h-[30%] flex flex-col justify-center items-center relative top-[-5%]">
+                <h2 class="font-extrabold tracking-wide text-3xl mt-[3%] text-center">Forget Password ?</h2>
+                <p class="font-extrabold text-lg text-center mt-[2%] md:mt-[1%]">Enter Your Email ...</p>
+                <input type="email" class="text-black font-semibold py-2 px-[5%] rounded-md w-[80%] md:w-[60%] mt-[7%] md:mt-[4%]" placeholder="Email..." required/>
+            </div>
+            <button type="submit" class="font-bold text-lg bg-blackish rounded-md w-[30%] md:w-[12%] border p-1 relative top-[-8%] md:top-[-6%]">Submit</button>
+            <div class=" flex flex-col items-center">
+                <p class="font-semibold text-lg">Wanna Go To Login Page ?</p>
+                <a href="/Login" class="text-blackish underline font-bold text-xl" >Login</h5>
+            </div>
+        </div>
+    </div>
+</Layout>
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+<script is:inline>
+    document.querySelector('button[type="submit"]').addEventListener('click', function() {
+        alert('Mail is send for Forget Password!');
+    });
+
+</script>
