@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+// import { checkAuth } from '../utils/auth';
+
+// const token = Astro.cookies.get('payload-token')?.value;
+// console.log('trry page',token);
+
+// const isAuthenticated = await checkAuth(token);
+
+// if (!isAuthenticated) {
+//   return Astro.redirect('/Login');
+// }
+
+// const apifetch = await fetch("https://backend.yourclaw.tech/api/media");
+// const apidata = await apifetch.json();
+// // console.log("API Data:", apidata);
+// console.log("API Data of tryyy:", apidata);
+---
+
+<Layout>
+    <!-- Reset Password -->
+    <div class="flex justify-center items-center h-screen">
+        <div class="w-full max-w-md">
+            <form
+                class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                id="resetPasswordForm"
+            >
+                <div class="mb-4">
+                    <label
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                        for="password"
+                    >
+                        New Password
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password"
+                        type="password"
+                        placeholder="New Password"
+                    />
+                </div>
+                <div class="flex items-center justify-between">
+                    <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button"
+                        onclick="handlePasswordReset()"
+                    >
+                        Reset Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</Layout>
+<!-- <script is:inline>
+    const handlePasswordReset = async () => {
+        const password = document.getElementById("password").value;
+        const token = new URLSearchParams(window.location.search).get("token");
+        console.log("Token:", token);
+
+        "localhost:3000/api/users/forgot-password"
+        const response = await fetch(
+            "http://localhost:3000/api/users/reset-password",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    token : token, 
+                    password : password,
+                }),
+            },
+        );
+
+        const data = await response.json();
+        console.log("Response:", data);
+        if (response.ok) {
+            alert("Password has been reset successfully");
+            window.location.href = '/try';
+        } else {
+            alert("Error resetting password");
+        }
+    };
+</script> -->
