@@ -7,7 +7,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     const token = context.cookies.get('payload-token')?.value;
     // console.log("Token:", token);
     
-    const protectedRoutes = ['/pets', '/AddPet','/DogList'];
+    const protectedRoutes = ['/pets', '/add-pet','/dog-list'];
     const isProtectedRoute = protectedRoutes.some((route) =>
         url.pathname.startsWith(route)
     );
