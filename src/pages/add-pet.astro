@@ -21,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <!--Right side -->
       <div class="flex h-[95%] w-[80%] md:w-[60%] flex-col mt-[2%]">
-        <form id="addPetForm" enctype="multipart/form-data">
+        <form id="addPetForm" enctype="multipart/form-data" method="POST">
           <div class="flex flex-col">
             <!--ok -->
             <div class="flex flex-col"></div>
@@ -191,6 +191,23 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </Layout>
 <script is:inline>
+  // function getCookie(name) {
+  //   let cookies = document.cookie.split("; ");
+  //   for (let i = 0; i < cookies.length; i++) {
+  //     let [cookieName, cookieValue] = cookies[i].split("=");
+  //     if (cookieName === name) {
+  //       return decodeURIComponent(cookieValue);
+  //     }
+  //   }
+  //   return null; // Cookie not found
+  // }
+
+  // ✅ Get the "payload-token" cookie
+  // const token = getCookie("payload-token");
+  // console.log("Token:", token); // Output: payload-token ki value ya null
+
+  const authToken = localStorage.getItem('authToken');
+  console.log("Token:", authToken); // Output: payload-token ki value ya null
   const addPetForm = document.getElementById("addPetForm");
   addPetForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -206,7 +223,7 @@ import Layout from "../layouts/Layout.astro";
     const petBio = document.getElementById("pet_bio").value;
 
     if (!petImage.files[0]) {
-      alert("No file selected.");
+      customAlert("No file selected.");
       return;
     }
 
@@ -243,19 +260,20 @@ import Layout from "../layouts/Layout.astro";
         pet_bio: petBio,
       };
 
-      const petResponse = await fetch(
-        "https://backend.yourclaw.tech/api/pets",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(petDetails),
+      const petResponse = await fetch("https://backend.yourclaw.tech/api/pets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
         },
-      );
-      const petData = await petResponse.json();
+        body: JSON.stringify(petDetails),
+      });
+      if (!petResponse.ok) {
+        customAlert("Failed to add pet.");
+        throw new Error("Failed to add pet.");
+      }
       addPetForm.reset();
-      alert("Pet Added Successfully!!! Thank You for your contribution.");
+      customAlert("Pet Added Successfully!!! Thank You for your contribution.");
     } catch (error) {
       console.error("Error:", error);
     }

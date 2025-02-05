@@ -1,0 +1,50 @@
+<style>
+  .alert-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000;
+    display: none;
+  }
+
+  .alert-box.active {
+    display: block;
+  }
+
+  .alert-box button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .alert-box button:hover {
+    background: #ff1f1f;
+  }
+</style>
+
+<div id="custom-alert" class="alert-box">
+  <p id="alert-message"></p>
+  <button onclick="closeCustomAlert()">OK</button>
+</div>
+
+<script is:inline>
+  window.customAlert = function (msg) {
+    document.getElementById("alert-message").innerText = msg;
+    document.getElementById("custom-alert").classList.add("active");
+  };
+
+  window.closeCustomAlert = function () {
+    document.getElementById("custom-alert").classList.remove("active");
+  };
+</script>

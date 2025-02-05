@@ -35,7 +35,7 @@ import Layout from "../layouts/Layout.astro";
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="password"
-                        type="password"
+                        type="text"
                         placeholder="New Password"
                     />
                 </div>
@@ -53,7 +53,7 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
 </Layout>
-<!-- <script is:inline>
+<script is:inline>
     const handlePasswordReset = async () => {
         const password = document.getElementById("password").value;
         const token = new URLSearchParams(window.location.search).get("token");
@@ -77,10 +77,10 @@ import Layout from "../layouts/Layout.astro";
         const data = await response.json();
         console.log("Response:", data);
         if (response.ok) {
-            alert("Password has been reset successfully");
+            customAlert("Password has been reset successfully");
             window.location.href = '/try';
         } else {
-            alert("Error resetting password");
+            customAlert("Error resetting password");
         }
     };
-</script> -->
+</script>

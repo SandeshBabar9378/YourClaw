@@ -112,7 +112,7 @@
   submitButton.addEventListener("click", (event) => {
     if (password.value !== confirmPassword.value) {
       event.preventDefault();
-      alert("Passwords do not match!");
+      customAlert("Passwords do not match!");
     }
   });
 </script>

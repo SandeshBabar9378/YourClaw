@@ -152,11 +152,14 @@ import Layout from "../layouts/Layout.astro";
                 document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=Lax`;
 
                 // After successful signup, redirect to home
-                alert(`Login successful!! Welcome Back ${data.user.name} You are Redirecting to home page...`);
-                window.location.href = '/';
+                customAlert(`Login successful!! Welcome Back ${data.user.name} You are Redirecting to home page...`);
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 3000);
+                // window.location.href = '/';
             } else {
                 // Handle signup error here
-                alert("The email or password provided is incorrect. Please try again.");
+                customAlert("The email or password provided is incorrect. Please try again.");
                 console.error("Login failed:", data);
             }
             loginForm.reset();
@@ -187,7 +190,7 @@ import Layout from "../layouts/Layout.astro";
             const data = await req.json();
             if (req.ok) {
                 // After successful signup, redirect to home
-                alert("Signup successful!! Redirecting to Login page...");
+                customAlertv("Signup successful!! Redirecting to Login page...");
                 if (data.token) {
                     localStorage.setItem('authToken', data.token);
                     document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=Lax`;
@@ -200,7 +203,7 @@ import Layout from "../layouts/Layout.astro";
             signupForm.reset();
         } catch (err) {
             console.log(err);
-            alert("An error occurred during signup. Please try again.");
+            customAlert("An error occurred during signup. Please try again.");
         }
     });
 </script>
