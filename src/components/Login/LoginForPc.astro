@@ -1,6 +1,6 @@
 <script is:inline src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
-<div class="h-[100vh] w-[100vw] flex justify-center items-center bg-gray-500">
+<div class="h-[100vh] w-[100vw] flex justify-center items-center bg-[#f2efe8]">
   <div class="h-[80%] w-[70%] flex flex-row justify-between rounded-3xl bg-redish relative">
     <!-- Login Div -->
     <div class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center">
@@ -25,34 +25,34 @@
             </label>
           </div>
         </div>
-        <a href="/forget-pass" class="text-white text-lg font-medium underline relative bottom-[-6.5%]">Forget Password ?</a>
+        <a href="/forget-pass" class="text-white text-lg font-medium underline ">Forget Password ?</a>
 
         <!-- Submit Button -->
-        <button class="bg-blackish text-white text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
+        <button class="bg-blackish text-white relative bottom-7 text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
       </div>
     </div>
 
     <!--Register Div -->
     <div class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center">
       <div class="h-[90%] w-[100%] flex flex-col justify-between items-center">
-        <h2 class="font-bold text-white text-5xl">Register</h2>
+        <h2 class="font-bold text-white text-5xl relative -top-6">Register</h2>
 
-        <div class="w-[100%] h-[63%] flex flex-col justify-between items-center">
+        <div class="w-[100%] h-[82%] flex flex-col justify-between items-center">
           <!--Role Input -->
-          <div class="">
+          <div class="mt-2 w-[75%] flex flex-col items-center">
             <label
                 for="Login"
-                class="text-white font-bold text-xl p-[1%] ml-[5%]"
+                class="text-white font-bold text-xl p-[1%]"
                 >Who are you?</label
               >
               <select
                 id="Role"
                 required
-                class="h-[50%] w-[96%] border mt-1 rounded p-2 mx-[0.5%] bg-gray-50"
+                class="h-[50%] w-[50%] mt-1 rounded p-1 mx-[0.5%] text-black "
               >
-                <option selected>Choose a option</option>
-                <option value="Giver">Giver</option>
-                <option value="Adpoter">Adopter</option>
+                <option class="text-black" selected>Choose a option</option>
+                <option class="text-black" value="Giver">Giver</option>
+                <option class="text-black" value="Adpoter">Adopter</option>
               </select>
           </div>
           <!-- Name Input --> 
@@ -83,26 +83,27 @@
           <div class="form-control">
             <input type="password" required="">
             <label>
-              <span><i class="fa-solid fa-lock mr-2"></i></span>
+              <span ><i class="fa-solid fa-lock mr-2"></i></span>
               <span style="transition-delay:0ms">C</span><span style="transition-delay:25ms">o</span><span style="transition-delay:50ms">n</span><span style="transition-delay:75ms">f</span><span style="transition-delay:100ms">i</span><span style="transition-delay:125ms">r</span><span style="transition-delay:150ms">m</span><span style="transition-delay:175ms">&nbsp;</span><span style="transition-delay:200ms">P</span><span style="transition-delay:225ms">a</span><span style="transition-delay:250ms">s</span><span style="transition-delay:275ms">s</span><span style="transition-delay:300ms">w</span><span style="transition-delay:325ms">o</span><span style="transition-delay:350ms">r</span><span style="transition-delay:375ms">d</span>
             </label>
           </div>
         </div>
 
         <!-- Submit Button -->
-        <button class="bg-blackish text-white text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[9%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
+        <button class="bg-blackish text-white relative -bottom-4 text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[9%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
       </div>
     </div>
     <!-- Toggle Div -->
-    <div id="toggle_div" class="h-[100%] w-[50%] absolute top-0 right-0 rounded-r-3xl bg-[#3AAAFD] z-[2] flex flex-col justify-center gap-y-[10%] items-center transition-transform duration-1000 transform translate-x-0">
-      <div class="flex flex-col justify-evenly items-center w-[100%] mt-[10%] h-[20%]">
+    <div id="toggle_div" class="h-[100%] w-[50%] absolute top-0 right-0 rounded-r-3xl bg-blackish z-[2] flex flex-col justify-center gap-y-[7%] items-center transition-transform duration-1000 transform translate-x-0">
+      <div class="flex flex-col justify-center items-center w-[100%] h-[15%]">
         <h1 id="toggle_text1" class="text-5xl font-bold text-white p-1">Welcome Back!</h1>
         <h3 class="text-[32px] font-bold text-white p-1">Sir/Madam...</h3>
       </div>
-      <dotlottie-player src="https://lottie.host/b187aa74-bcdf-477a-8d89-73d2f81d74f9/weeAP7NWRg.lottie" background="transparent" speed="1" class="h-[40%] w-[h-[40%]]" loop autoplay></dotlottie-player>
-      <div class="flex flex-col items-center w-[100%] p-1 mb-12">
+      <!-- <dotlottie-player src="https://lottie.host/b187aa74-bcdf-477a-8d89-73d2f81d74f9/weeAP7NWRg.lottie" background="transparent" speed="1" class="h-[40%] w-[h-[40%]]" loop autoplay></dotlottie-player> -->
+      <img src="/assets/pc-login-toggle.gif" alt="pc-login-toggle" class="h-[250px] w-[260px]"/>
+      <div class="flex flex-col items-center w-[100%] p-1 ">
         <p id="toggle_text2" class="tracking-wide text-lg font-bold text-white">Don't you have any account ?</p>
-        <button id="btn" class="underline text-blackish font-bold text-2xl ">Register</button>
+        <button id="btn" class="underline text-white hover:text-redish font-bold text-2xl ">Register</button>
       </div>
     </div>
   </div>
@@ -110,7 +111,7 @@
 
 <style>
     .form-control {
-      @apply relative w-[75%];
+      @apply relative w-[75%] ;
     }
     .form-control input {
       @apply bg-transparent block w-full text-lg text-white px-0 py-[15px] border-b-2 border-b-[solid] border-0;
@@ -128,7 +129,7 @@
     }
     .form-control input:focus + label span,
     .form-control input:valid + label span {
-      @apply text-[white] translate-y-[-25px];
+      @apply text-[white] translate-y-[-25px] text-lg ;
     }
 </style>
 
