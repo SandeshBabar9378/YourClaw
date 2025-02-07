@@ -138,6 +138,7 @@
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
       try {
+          showLoader()
           const req = await fetch(
               "https://backend.yourclaw.tech/api/users/login",
               {

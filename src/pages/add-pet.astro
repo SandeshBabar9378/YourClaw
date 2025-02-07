@@ -228,6 +228,7 @@ import Layout from "../layouts/Layout.astro";
       return;
     }
 
+    showLoader();
     // Step 1: Upload image to media collection
     const mediaFormData = new FormData();
     mediaFormData.append("file", petImage.files[0]); // Append file
@@ -278,8 +279,10 @@ import Layout from "../layouts/Layout.astro";
         throw new Error("Failed to add pet.");
       }
       addPetForm.reset();
+      hideLoader();
       customAlert("Pet Added Successfully!!! Thank You for your contribution.");
     } catch (error) {
+      hideLoader();
       console.error("Error:", error);
     }
   });

@@ -63,12 +63,15 @@ if (!petData) {
     </div>
 </Layout>
 <script is:inline define:vars={{ slug }}>
+import { custom } from "astro:schema";
+
     const authToken = localStorage.getItem('authToken');
     const petId = slug;
 
     document.getElementById("adopt-btn").addEventListener("click", async () => {
         console.log("Adopting pet with ID:", petId);
         console.log("Auth Token:", authToken);
+        showLoader();
         const response = await fetch("https://backend.yourclaw.tech/api/adoption-requests", {
             method: "POST",
             credentials: "include", 
@@ -81,10 +84,9 @@ if (!petData) {
                 status : "pending",
             }),
         });
-
         const data = await response.json();
         // customAlert(data.message);
-        console.log(data);
-        console.log("Adopting pet with ID:", petId);
+        hideLoader();
+        customAlert("Adoption request sent successfully!\n We Will Shortly Contact You");
     });
 </script>
