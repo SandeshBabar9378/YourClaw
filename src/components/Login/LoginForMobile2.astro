@@ -1,0 +1,85 @@
+<div class="mobile-only flex justify-center items-center h-[110vh] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat">
+    <div class="container bg-blackish relative w-[90%] h-[100svh] overflow-hidden pt-5 pb-[5%] px-[30px] rounded-3xl shadow-2xl text-white" id="container">
+      
+      <!-- Login Section -->
+      <div class="login-section relative ">
+        <header class=" pt-[5%] text-5xl text-center text-white font-semibold cursor-pointer" onclick="toggleActive()">Login</header>
+        <form class="relative top-[-7%] flex flex-col items-center h-[50svh] gap-[4%] mt-16">
+          <!-- Email Input -->
+          <input type="email" placeholder="Email address" class="mb-[3%]" required />
+          <!-- Password Input-->
+          <input type="password" placeholder="Password" required />
+          <!--Forget Password -->
+          <a href="/forget-pass" class="underline text-lg font-semibold mt-6">Forget Password?</a>
+          <!--Submit Button -->
+          <button type="submit" class="cursor-pointer w-[43%] h-10 px-[15px] mt-[2%] py-2.5 p-2 rounded-lg border-2 bg-[#fefeff] text-blackish text-lg font-bold  flex justify-between items-center relative">
+            Submit
+            <img src="/assets/GrayTransPaw.jpg" alt="Paw" class="rotate-90 h-[23px] w-[23px]" />
+          </button>
+        </form>
+        <div class="flex flex-col justify-center items-center relative -top-24 ml-[14%]">
+          <dotlottie-player src="https://lottie.host/7fe59fe4-6f7e-4c33-81f8-bed1aa1d5af5/eH4ZO2d1zX.lottie" background="transparent" speed="1.2" style="padding:5px; width: 10rem; height: 10rem; filter: drop-shadow(0 0 2rem white); " loop autoplay></dotlottie-player>
+        </div>
+      </div>
+      <!-- Signup Section -->
+      <div class="signup-section bg-redish flex flex-col items-center absolute bottom-[-80%] z-20 -translate-x-2/4 w-[calc(100%_+_180px)] h-full transition-all duration-[0.6s] ease-[ease] py-3 rounded-[290px] left-2/4">
+        <header class="opacity-60 pt-[9%] pl-[30%] pr-[30%] text-5xl text-center text-white font-semibold cursor-pointer" onclick="toggleActive()">Sign Up</header>
+        <form class="flex flex-col items-center h-[52svh] gap-4 mt-8">
+          <label
+              for="Login"
+              class="text-white font-bold text-xl"
+              >Who are you?</label
+            >
+            <select
+              id="Role"
+              required
+              class="text-black h-[12%] w-[60%] text-center text-sm border rounded p-2 bg-gray-50"
+            >
+              <option selected>Choose a option</option>
+              <option value="Giver">Giver</option>
+              <option value="Adopter">Adopter</option>
+            </select>
+          <input type="text" placeholder="First name" required />
+          <input type="text" placeholder="Last name" required />
+          <input type="email" placeholder="Email address" required />
+          <!-- Enter Password -->
+          <input type="password" placeholder="Password" required />
+          <!-- Confirm Password -->
+          <input type="password" placeholder="Confirm Password" required />
+          <!-- Submit Button-->
+          <button type="submit" class="btn text-blackish text-lg font-bold p-2 flex justify-between items-center cursor-pointer w-32 h-10 mt-2 px-[15px] py-2.5 rounded-lg border-2 bg-[#fefeff]">
+            Submit
+            <img src="/assets/GrayTransPaw.jpg" alt="Paw" class="rotate-90 h-[23px] w-[23px] z-10" />
+          </button>
+        </form>
+      </div>
+    </div>
+</div>
+<style>
+    form input {
+        @apply outline-none bg-white text-lg text-blackish font-semibold px-[5%] h-[12%] w-[97%] py-2.5 rounded-lg border-[none] focus:ring-[1px] focus:ring-blackish;
+    }
+
+    .signup-section input {
+    @apply text-xl text-blackish font-semibold px-[6%] h-[11.5%] w-[120%] py-3 rounded-lg ;
+  }
+
+  /* active css  */
+  .container.active .signup-section {
+    @apply bottom-[-12%] shadow-2xl rounded-[250px];
+  }
+  .container.active .signup-section header {
+    @apply opacity-100;
+  }
+  .container.active .login-section header {
+    @apply opacity-60;
+  }
+
+</style>
+
+<script is:inline>
+    function toggleActive() {
+        document.getElementsByClassName('signup-section')[0].classList.toggle('active');
+        document.getElementById('container').classList.toggle('active');
+    }
+</script>

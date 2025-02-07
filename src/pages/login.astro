@@ -3,10 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import LoginForMobile2 from '../components/Login/LoginForMobile2.astro';
 import LoginForPc from '../components/Login/LoginForPc.astro';
 ---
-<Layout>
+<div class="hidden">
+<Layout></Layout>
+</div>
 
     <div class="block md:hidden">
-        <div class="relative md:static top-[-5vh]">
+        <div class="relative md:static ">
         <LoginForMobile2 />
         </div>
     </div>
@@ -15,4 +17,4 @@ import LoginForPc from '../components/Login/LoginForPc.astro';
         <LoginForPc/>
     </div>
     
-</Layout>
+
