@@ -59,9 +59,8 @@ import Layout from "../layouts/Layout.astro";
         const token = new URLSearchParams(window.location.search).get("token");
         console.log("Token:", token);
 
-        "localhost:3000/api/users/forgot-password"
         const response = await fetch(
-            "http://localhost:3000/api/users/reset-password",
+            "https://backend.yourclaw.tech/api/users/reset-password",
             {
                 method: "POST",
                 headers: {

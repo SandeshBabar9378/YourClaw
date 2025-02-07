@@ -208,6 +208,7 @@ import Layout from "../layouts/Layout.astro";
 
   const authToken = localStorage.getItem('authToken');
   console.log("Token:", authToken); // Output: payload-token ki value ya null
+
   const addPetForm = document.getElementById("addPetForm");
   addPetForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -259,6 +260,8 @@ import Layout from "../layouts/Layout.astro";
         pet_image: `https://backend.yourclaw.tech${imageUrl}`, // Send media ID
         pet_bio: petBio,
       };
+      console.log("Pet Details:", petDetails);
+      console.log("Auth Token:", authToken);
 
       const petResponse = await fetch("https://backend.yourclaw.tech/api/pets", {
         method: "POST",
@@ -268,6 +271,8 @@ import Layout from "../layouts/Layout.astro";
         },
         body: JSON.stringify(petDetails),
       });
+
+      console.log("Pet Response:", petResponse);
       if (!petResponse.ok) {
         customAlert("Failed to add pet.");
         throw new Error("Failed to add pet.");

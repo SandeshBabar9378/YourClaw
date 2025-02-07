@@ -129,37 +129,44 @@ import Layout from "../layouts/Layout.astro";
         event.preventDefault();
         const email = document.getElementById("login-email").value;
         const password = document.getElementById("login-password").value;
-
         try {
-            const req = await fetch("https://backend.yourclaw.tech/api/users/login", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
+            showLoader();
+            const req = await fetch(
+                "https://backend.yourclaw.tech/api/users/login",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
                 },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-            });
+            );
             const data = await req.json();
-            console.log(data);
+            // console.log(data);
 
             if (req.ok && data.token) {
-                localStorage.setItem('authToken', data.token);
-                
+                localStorage.setItem("authToken", data.token);
                 // Set token in cookie manually if needed
-                document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=Lax`;
-
+                document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None; Secure=true`;
                 // After successful signup, redirect to home
-                customAlert(`Login successful!! Welcome Back ${data.user.name} You are Redirecting to home page...`);
+                hideLoader();
+                customAlert(
+                    `Login successful!! Welcome Back ${data.user.name}\nYou are Redirecting to home page...`,
+                );
                 setTimeout(() => {
-                    window.location.href = '/';
-                }, 3000);
+                    window.location.href = "/";
+                }, 4000);
                 // window.location.href = '/';
             } else {
                 // Handle signup error here
-                customAlert("The email or password provided is incorrect. Please try again.");
+                hideLoader();
+                customAlert(
+                    "The email or password provided is incorrect. Please try again.",
+                );
                 console.error("Login failed:", data);
             }
             loginForm.reset();
@@ -167,13 +174,14 @@ import Layout from "../layouts/Layout.astro";
             console.log(err);
         }
     });
-    
+
     signupForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const name = document.getElementById("name").value;
         const email = document.getElementById("signupEmail").value;
         const password = document.getElementById("signupPassword").value;
 
+        console.log(name, email, password);
         try {
             const req = await fetch("https://backend.yourclaw.tech/api/users", {
                 method: "POST",
@@ -185,17 +193,20 @@ import Layout from "../layouts/Layout.astro";
                     name: name,
                     email: email,
                     password: password,
+                    user_role: "Adopter",
                 }),
             });
             const data = await req.json();
             if (req.ok) {
                 // After successful signup, redirect to home
-                customAlertv("Signup successful!! Redirecting to Login page...");
+                customAlert("Signup successful!! Redirecting to Login page...");
                 if (data.token) {
-                    localStorage.setItem('authToken', data.token);
-                    document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=Lax`;
+                    localStorage.setItem("authToken", data.token);
+                    document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
                 }
-                window.location.href = '/try';
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 4000);
             } else {
                 // Handle signup error here
                 console.error("Signup failed:", data);

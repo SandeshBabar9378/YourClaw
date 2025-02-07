@@ -1,9 +1,8 @@
 <div class="mobile-only flex justify-center items-center h-[120vh] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat">
-  
     <div class="container">
       <div class="signup-section ">
         <header class=" mt-[10%]">Sign Up</header>
-        <form>
+        <form >
           <label
               for="Login"
               class="text-black font-bold text-xl"
@@ -16,7 +15,7 @@
             >
               <option selected>Choose a option</option>
               <option value="Giver">Giver</option>
-              <option value="Adpoter">Adopter</option>
+              <option value="Adopter">Adopter</option>
             </select>
           <input type="text" placeholder="First name" required />
           <input type="text" placeholder="Last name" required />
@@ -97,7 +96,7 @@
     }
   }
 </style>
-<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+<script is:inline src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 <script is:inline>
   const container = document.querySelector(".container");
   const signupButton = document.querySelector(".signup-section header");
@@ -128,5 +127,99 @@
       event.preventDefault();
       customAlert("Passwords do not match!");
     }
+  });
+</script>
+<script is:inline>
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+
+  loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      try {
+          const req = await fetch(
+              "https://backend.yourclaw.tech/api/users/login",
+              {
+                  method: "POST",
+                  credentials: "include",
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                      email: email,
+                      password: password,
+                  }),
+              },
+          );
+          const data = await req.json();
+          // console.log(data);
+
+          if (req.ok && data.token) {
+              localStorage.setItem("authToken", data.token);
+              // Set token in cookie manually if needed
+              document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None; Secure=true`;
+              // After successful signup, redirect to home
+              customAlert(
+                  `Login successful!! Welcome Back ${data.user.name}\nYou are Redirecting to home page...`,
+              );
+              setTimeout(() => {
+                  window.location.href = "/";
+              }, 4000);
+              // window.location.href = '/';
+          } else {
+              // Handle signup error here
+              customAlert(
+                  "The email or password provided is incorrect. Please try again.",
+              );
+              console.error("Login failed:", data);
+          }
+          loginForm.reset();
+      } catch (err) {
+          console.log(err);
+      }
+  });
+
+  signupForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+
+      console.log(name, email, password);
+      try {
+          const req = await fetch("http://localhost:3000/api/users", {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                  name: name,
+                  email: email,
+                  password: password,
+                  user_role: "Adopter",
+              }),
+          });
+          const data = await req.json();
+          if (req.ok) {
+              // After successful signup, redirect to home
+              customAlert("Signup successful!! Redirecting to Login page...");
+              if (data.token) {
+                  localStorage.setItem("authToken", data.token);
+                  document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
+              }
+              setTimeout(() => {
+                  window.location.href = "/";
+              }, 4000);
+          } else {
+              // Handle signup error here
+              console.error("Signup failed:", data);
+          }
+          signupForm.reset();
+      } catch (err) {
+          console.log(err);
+          customAlert("An error occurred during signup. Please try again.");
+      }
   });
 </script>

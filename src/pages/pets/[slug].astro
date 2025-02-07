@@ -7,44 +7,84 @@ if (!petData) {
     throw new Error(`Pet with slug "${slug}" not found.`);
 }
 ---
+
 <Layout>
     <div class="flex items-center justify-center py-10">
         <div class="max-w-2xl w-full bg-white shadow-lg rounded-lg p-6">
             <!-- Pet Image -->
             <div class="flex justify-center mb-6">
-                <img 
-                    src={petData.pet_image} 
-                    alt={petData.pet_name} 
+                <img
+                    src={petData.pet_image}
+                    alt={petData.pet_name}
                     class="rounded-lg shadow-md w-full h-auto max-h-80 object-cover"
                 />
             </div>
-            
+
             <!-- Pet Details -->
             <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">
                 {petData.pet_name}
             </h1>
-            
+
             <ul class="text-gray-600 space-y-2">
                 <li>
-                    <strong class="text-gray-800">Breed:</strong> {petData.pet_breed}
+                    <strong class="text-gray-800">Breed:</strong>
+                    {petData.pet_breed}
                 </li>
                 <li>
-                    <strong class="text-gray-800">Color:</strong> {petData.pet_color}
+                    <strong class="text-gray-800">Color:</strong>
+                    {petData.pet_color}
                 </li>
                 <li>
-                    <strong class="text-gray-800">Age:</strong> {petData.pet_age}
+                    <strong class="text-gray-800">Age:</strong>
+                    {petData.pet_age}
                 </li>
                 <li>
-                    <strong class="text-gray-800">Weight:</strong> {petData.pet_weight}
+                    <strong class="text-gray-800">Weight:</strong>
+                    {petData.pet_weight}
                 </li>
                 <li>
-                    <strong class="text-gray-800">About:</strong> {petData.pet_bio}
+                    <strong class="text-gray-800">About:</strong>
+                    {petData.pet_bio}
                 </li>
                 <li>
-                    <strong class="text-gray-800">Address:</strong> {petData.pet_address}
+                    <strong class="text-gray-800">Address:</strong>
+                    {petData.pet_address}
                 </li>
             </ul>
+            <div class="flex justify-center mt-6">
+                <button
+                    id="adopt-btn"
+                    class="bg-blackish hover: text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                    Adopt {petData.pet_name}
+                </button>
+            </div>
         </div>
     </div>
 </Layout>
+<script is:inline define:vars={{ slug }}>
+    const authToken = localStorage.getItem('authToken');
+    const petId = slug;
 
+    document.getElementById("adopt-btn").addEventListener("click", async () => {
+        console.log("Adopting pet with ID:", petId);
+        console.log("Auth Token:", authToken);
+        const response = await fetch("https://backend.yourclaw.tech/api/adoption-requests", {
+            method: "POST",
+            credentials: "include", 
+            headers: {  
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({
+                petId : petId,
+                status : "pending",
+            }),
+        });
+
+        const data = await response.json();
+        // customAlert(data.message);
+        console.log(data);
+        console.log("Adopting pet with ID:", petId);
+    });
+</script>

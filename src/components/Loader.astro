@@ -1,0 +1,38 @@
+<!-- Loader (Hidden by Default) -->
+<div id="globalLoader" class="loader-container hidden">
+    <img src="/assets/preloader.gif" alt="Loading..." class="loader" />
+  </div>
+  
+  <style>
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .hidden {
+      display: none;
+    }
+    .loader {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+<script is:inline>
+    // Show Loader
+    function showLoader() {
+      document.getElementById("globalLoader").classList.remove("hidden");
+    }
+  
+    // Hide Loader
+    function hideLoader() {
+      document.getElementById("globalLoader").classList.add("hidden");
+    }
+</script>
+    
