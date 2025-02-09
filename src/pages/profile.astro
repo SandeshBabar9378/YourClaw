@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
-<Layout>
+<div class="hidden"><Layout></Layout></div>
     <div class="relative md:static top-[-5vh]">
         <!--Strrt -->
         <div class=" w-screen p-[2%] h-[40vh] mb-[10%] md:mb-[5%] md:mt-[0.3%] md:h-[50vh] bg-[url('/assets/breeder_details/BreederTop.jpg')] bg-cover bg-no-repeat flex flex-col justify-center gap-3">
@@ -12,14 +12,20 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </div>
         <!--main -->
-        <div class="h-[100vh] w-[100vw] flex flex-row justify-between">
+        <div class="h-[100vh] w-[100vw] flex flex-row justify-between relative top-[-10vh]">
             <!--left -->
-            <div class="flex flex-col justify-between md:w-[30%] h-[100%] bg-black p-3">
+            <div class="flex flex-col justify-between md:w-[25%] h-[100%] bg-black p-3">
+                <div class="text-3xl font-bold text-white">
+                    <h2>Hello</h2>
+                    <h1>Sandesh Babar</h1>
+                </div>
+
+
                 <div>
+                    <a href="#" class="text-white font-bold">Reset Password</a>
+                    <a href="#" class="text-white font-bold">Logout</a>
                 </div>    
-                <a href="#" class="text-white font-bold">Reset Password</a>
-                <a href="#" class="text-white font-bold">Logout</a>
+                
             </div>     
         </div>
     </div>
-</Layout>
