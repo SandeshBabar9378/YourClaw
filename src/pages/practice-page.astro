@@ -1,59 +1,74 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import { checkAuth } from '../utils/auth';
 
-// const token = Astro.cookies.get('payload-token')?.value;
-// console.log('trry page',token);
-
-// const isAuthenticated = await checkAuth(token);
-
-// if (!isAuthenticated) {
-//   return Astro.redirect('/Login');
-// }
-
-// const apifetch = await fetch("https://backend.yourclaw.tech/api/media");
-// const apidata = await apifetch.json();
-// // console.log("API Data:", apidata);
-// console.log("API Data of tryyy:", apidata);
+const response = await fetch(`http://localhost:3000/api/adoption-requests`);
+const petData = await response.json();
 ---
 
 <Layout>
-    <!-- Reset Password -->
-    <div class="flex justify-center items-center h-screen">
-        <div class="w-full max-w-md">
-            <form
-                class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-                id="resetPasswordForm"
-            >
-                <div class="mb-4">
-                    <label
-                        class="block text-gray-700 text-sm font-bold mb-2"
-                        for="password"
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          Adoption Requests
+        </h2>
+      
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            petData.docs.map((item) => (
+              <li class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div class="p-6 space-y-4">
+                  <!-- Header with Pet Name and Status -->
+                  <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      {item.petId.pet_name}
+                    </h3>
+                    <span class={`px-3 py-1 rounded-full text-sm font-medium
+                      ${
+                        item.status.toLowerCase() === 'pending'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : item.status.toLowerCase() === 'approved'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}
                     >
-                        New Password
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password"
-                        type="text"
-                        placeholder="New Password"
-                    />
-                </div>
-                <div class="flex items-center justify-between">
+                      {item.status}
+                    </span>
+                  </div>
+      
+                  <!-- Details -->
+                  <div class="space-y-3">
+                    <div class="flex items-center text-gray-600">
+                      <span class="font-medium mr-2">Owned By:</span>
+                      <span>{item.petId.owner.name}</span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                      <span class="font-medium mr-2">Requested By:</span>
+                      <span>{item.adoptedBy.name}</span>
+                    </div>
+                  </div>
+      
+                  <!-- Action Buttons -->
+                  <div class="flex gap-3 pt-4">
                     <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button"
-                        onclick="handlePasswordReset()"
+                      data-id={item.id}
+                      class="btn-approve flex-1 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors duration-200 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     >
-                        Reset Password
+                      Approve
                     </button>
+                    <button
+                      data-id={item.id}
+                      class="btn-reject flex-1 bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded-md transition-colors duration-200 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                    >
+                      Reject
+                    </button>
+                  </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
+              </li>
+            ))
+          }
+        </ul>
+      </div>
 </Layout>
-<script is:inline>
+<!-- <script is:inline>
     const handlePasswordReset = async () => {
         const password = document.getElementById("password").value;
         const token = new URLSearchParams(window.location.search).get("token");
@@ -82,4 +97,53 @@ import Layout from "../layouts/Layout.astro";
             customAlert("Error resetting password");
         }
     };
+</script> -->
+<script is:inline>
+    async function updateStatus(requestId, status) {
+        showLoader();
+        try {
+            const response = await fetch(
+                `http://localhost:3000/api/adoption-requests/${requestId}`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        // Authorization: "Bearer ADMIN_TOKEN",/
+                    },
+                    body: JSON.stringify({ status }),
+                },
+            );
+
+            if (!response.ok)
+                throw new Error("Failed to update request status");
+            hideloader();
+            customAlert(`Request ${status}!`);
+        } catch (error) {
+            hideloader();
+            console.error("Error updating request status:", error);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".btn-approve").forEach((button) => {
+            button.addEventListener("click", function () {
+                const petId = this.getAttribute("data-id");
+                updateStatus(petId, "approved");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+                
+            });
+        });
+
+        document.querySelectorAll(".btn-reject").forEach((button) => {
+            button.addEventListener("click", function () {
+                const petId = this.getAttribute("data-id");
+                updateStatus(petId, "rejected");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            });
+        });
+    });
 </script>

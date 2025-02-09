@@ -281,6 +281,9 @@ import Layout from "../layouts/Layout.astro";
       addPetForm.reset();
       hideLoader();
       customAlert("Pet Added Successfully!!! Thank You for your contribution.");
+      setTimeout(() => {
+        window.location.href = "/dog-list";
+      }, 2000);
     } catch (error) {
       hideLoader();
       console.error("Error:", error);
