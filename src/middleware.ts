@@ -16,7 +16,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     // Protected route logic
     if (isProtectedRoute) {
         if (!token) {
-            console.log("No Token Found. Redirecting...");
+            console.log("No Token Found.\nYou are not a LoggedIn\n\nRedirecting...");
             return context.redirect('/try');
         }
         
@@ -35,7 +35,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
                 return context.redirect('/try');
             }
             const userData = await response.json();
-            // console.log("User Verified:", userData);
+            console.log("User Verified:", userData);
         } catch (error) {
             console.error("Error verifying token:", error);
             return context.redirect('/try');

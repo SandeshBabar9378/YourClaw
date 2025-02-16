@@ -208,9 +208,9 @@ import Layout from "../layouts/Layout.astro";
                     localStorage.setItem("authToken", data.token);
                     document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
                 }
-                // setTimeout(() => {
-                //     window.location.href = "/";
-                // }, 4000);
+                setTimeout(() => {
+                    window.location.href = "/try";
+                }, 4000);
             } else {
                 // Handle signup error here
                 hideLoader();

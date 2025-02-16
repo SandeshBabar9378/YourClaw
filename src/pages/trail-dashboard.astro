@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// const authToken = Astro.localStorage.getItem('authToken');
+// fetching token from local storage
+const token = Astro.cookies.get("payload-token")?.value || "";
+try {
+    const response = await fetch("https://backend.yourclaw.tech/api/users/me", {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    const data = await response.json();
+    // console.log("User Role:", data.user.id);
+    var responseUserId = data.user.id;
+} catch (error) {
+    console.error("Error fetching user data:", error);
+}
+
+const userId = responseUserId; // Replace with logged-in user's ID from cookie/localStorage
+
+// ✅ Fetch Giver's Pets
+let petsData = { docs: [] };
+try {
+    const petsResponse = await fetch(`https://backend.yourclaw.tech/api/pets?where[owner][equals]=${userId}`);
+    petsData = await petsResponse.json();
+    // console.log("Pets Data:", petsData);
+} catch (error) {
+    console.error("Error fetching pets:", error);
+}
+
+// ✅ Fetch Adopter's Adoption Requests
+let requestsData = { docs: [] };
+try {
+    const requestsResponse = await fetch(`https://backend.yourclaw.tech/api/adoption-requests?where[adoptedBy][equals]=${userId}`);
+    requestsData = await requestsResponse.json();
+    // console.log("Adoption Requests Data:", requestsData);
+} catch (error) {
+    console.error("Error fetching adoption requests:", error);
+}
+---
+
+<Layout>
+    <div class="container mx-auto px-4 py-8">
+        <!-- Giver's Pets Section -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">My Added Pets</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {
+                petsData.docs && petsData.docs.length > 0 ? (
+                    petsData.docs.map((pet) => (
+                        <li class="bg-white rounded-lg shadow-md p-4">
+                            <h3 class="text-lg font-semibold">{pet.pet_name}</h3>
+                            <p class="text-gray-600">Breed: {pet.pet_breed}</p>
+                        </li>
+                    ))
+                ) : (
+                    <p>No pets added yet.</p>
+                )
+            }
+        </ul>
+
+        <!-- Adopter's Requests Section -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">My Adoption Requests</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {
+                requestsData.docs && requestsData.docs.length > 0 ? (
+                    requestsData.docs.map((req) => (
+                        <li class="bg-white rounded-lg shadow-md p-4">
+                            <h3 class="text-lg font-semibold">{req.petId?.pet_name || "Unknown Pet"}</h3>
+                            <p class="text-gray-600">Status: {req.status}</p>
+                        </li>
+                    ))
+                ) : (
+                    <p>No adoption requests found.</p>
+                )
+            }
+        </ul>
+    </div>
+</Layout>
