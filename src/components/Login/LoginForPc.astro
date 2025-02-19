@@ -1,165 +1,262 @@
-<script is:inline src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+---
+import CustomAlert from "../../components/CustomAlert.astro";
+import Loader from "../../components/Loader.astro";
+---
+<CustomAlert/>
+<Loader/>
+<script
+  is:inline
+  src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+  type="module"></script>
 
 <div class="h-[100vh] w-[100vw] flex justify-center items-center bg-[#f2efe8]">
-  <div class="h-[80%] w-[70%] flex flex-row justify-between rounded-3xl bg-redish relative">
+  <div
+    class="h-[80%] w-[70%] flex flex-row justify-between rounded-3xl bg-redish relative"
+  >
     <!-- Login Div -->
-    <div class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center">
-      <div class="h-[80%] w-[100%] flex flex-col justify-between items-center">
+    <div
+      class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center"
+    >
+      <form
+        id="loginFormPc"
+        class="h-[80%] w-[100%] flex flex-col justify-between items-center"
+      >
         <h2 class="font-bold text-white text-5xl">Login</h2>
 
-        <div class="w-[100%] h-[35%] flex flex-col justify-between items-center">
-          <!-- Email Input --> 
+        <div
+          class="w-[100%] h-[35%] flex flex-col justify-between items-center"
+        >
+          <!-- Email Input -->
           <div class="form-control relative top-[5%]">
-            <input type="text" required="">
+            <input type="email" id="login-emailPc" required="" />
             <label>
               <span><i class="fa-regular fa-envelope mr-2"></i></span>
-              <span style="transition-delay:0ms">E</span><span style="transition-delay:50ms">m</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">i</span><span style="transition-delay:200ms">l</span>
+              <span style="transition-delay:0ms">E</span><span
+                style="transition-delay:50ms">m</span
+              ><span style="transition-delay:100ms">a</span><span
+                style="transition-delay:150ms">i</span
+              ><span style="transition-delay:200ms">l</span>
             </label>
           </div>
           <!-- Password Input -->
           <div class="form-control mt-4">
-            <input type="password" required="">
+            <input type="password" id="login-passwordPc" required="" />
             <label>
               <span><i class="fa-solid fa-lock mr-2"></i></span>
-              <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+              <span style="transition-delay:0ms">P</span><span
+                style="transition-delay:50ms">a</span
+              ><span style="transition-delay:100ms">s</span><span
+                style="transition-delay:150ms">s</span
+              ><span style="transition-delay:200ms">w</span><span
+                style="transition-delay:250ms">o</span
+              ><span style="transition-delay:300ms">r</span><span
+                style="transition-delay:350ms">d</span
+              >
             </label>
           </div>
         </div>
-        <a href="/forget-pass" class="text-white text-lg font-medium underline ">Forget Password ?</a>
+        <a href="/forget-pass" class="text-white text-lg font-medium underline"
+          >Forget Password ?</a
+        >
 
         <!-- Submit Button -->
-        <button class="bg-blackish text-white relative bottom-7 text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
-      </div>
+        <button
+          type="submit"
+          class="bg-blackish text-white relative bottom-7 text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
+          >Submit <img
+            src="/assets/transpaw.png"
+            alt="transpaw"
+            class="rotate-45 bg-blackish"
+          />
+        </button>
+      </form>
     </div>
 
     <!--Register Div -->
-    <div class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center">
-      <div class="h-[90%] w-[100%] flex flex-col justify-between items-center">
+    <div
+      class="h-[100%] w-[50%] rounded-l-3xl p-8 flex justify-center items-center"
+    >
+      <form
+        id="signupFormPc"
+        class="h-[90%] w-[100%] flex flex-col justify-between items-center"
+      >
         <h2 class="font-bold text-white text-5xl relative -top-6">Register</h2>
 
-        <div class="w-[100%] h-[82%] flex flex-col justify-between items-center">
+        <div
+          class="w-[100%] h-[82%] flex flex-col justify-between items-center"
+        >
           <!--Role Input -->
           <div class="mt-2 w-[75%] flex flex-col items-center">
-            <label
-                for="Login"
-                class="text-white font-bold text-xl p-[1%]"
-                >Who are you?</label
-              >
-              <select
-                id="Role"
-                required
-                class="h-[50%] w-[50%] mt-1 rounded p-1 mx-[0.5%] text-black "
-              >
-                <option class="text-black" selected>Choose a option</option>
-                <option class="text-black" value="Giver">Giver</option>
-                <option class="text-black" value="Adpoter">Adopter</option>
-              </select>
+            <label for="Login" class="text-white font-bold text-xl p-[1%]"
+              >Who are you?</label
+            >
+            <select
+              id="RolePc"
+              required
+              class="h-[50%] w-[50%] mt-1 rounded p-1 mx-[0.5%] text-black"
+            >
+              <option class="text-black" selected>Choose a option</option>
+              <option class="text-black" value="Giver">Giver</option>
+              <option class="text-black" value="Adpoter">Adopter</option>
+            </select>
           </div>
-          <!-- Name Input --> 
+          <!-- Name Input -->
           <div class="form-control">
-            <input type="text" required="">
+            <input id="namePc" type="text" required />
             <label>
               <span><i class="fa-regular fa-user mr-2"></i></span>
-              <span style="transition-delay:0ms">N</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">m</span><span style="transition-delay:150ms">e</span>
+              <span style="transition-delay:0ms">N</span><span
+                style="transition-delay:50ms">a</span
+              ><span style="transition-delay:100ms">m</span><span
+                style="transition-delay:150ms">e</span
+              >
             </label>
           </div>
-          <!-- Email Input --> 
+          <!-- Email Input -->
           <div class="form-control">
-            <input type="text" required="">
+            <input id="signupEmailPc" type="text" required />
             <label>
               <span><i class="fa-regular fa-envelope mr-2"></i></span>
-              <span style="transition-delay:0ms">E</span><span style="transition-delay:50ms">m</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">i</span><span style="transition-delay:200ms">l</span>
+              <span style="transition-delay:0ms">E</span><span
+                style="transition-delay:50ms">m</span
+              ><span style="transition-delay:100ms">a</span><span
+                style="transition-delay:150ms">i</span
+              ><span style="transition-delay:200ms">l</span>
             </label>
           </div>
           <!-- Password Input -->
           <div class="form-control">
-            <input type="password" required="">
+            <input id="signupPasswordPc" type="password" required />
             <label>
               <span><i class="fa-solid fa-lock mr-2"></i></span>
-              <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+              <span style="transition-delay:0ms">P</span><span
+                style="transition-delay:50ms">a</span
+              ><span style="transition-delay:100ms">s</span><span
+                style="transition-delay:150ms">s</span
+              ><span style="transition-delay:200ms">w</span><span
+                style="transition-delay:250ms">o</span
+              ><span style="transition-delay:300ms">r</span><span
+                style="transition-delay:350ms">d</span
+              >
             </label>
           </div>
           <!-- Password Input -->
-          <div class="form-control">
-            <input type="password" required="">
+          <!-- <div class="form-control">
+            <input type="password" required/>
             <label>
-              <span ><i class="fa-solid fa-lock mr-2"></i></span>
-              <span style="transition-delay:0ms">C</span><span style="transition-delay:25ms">o</span><span style="transition-delay:50ms">n</span><span style="transition-delay:75ms">f</span><span style="transition-delay:100ms">i</span><span style="transition-delay:125ms">r</span><span style="transition-delay:150ms">m</span><span style="transition-delay:175ms">&nbsp;</span><span style="transition-delay:200ms">P</span><span style="transition-delay:225ms">a</span><span style="transition-delay:250ms">s</span><span style="transition-delay:275ms">s</span><span style="transition-delay:300ms">w</span><span style="transition-delay:325ms">o</span><span style="transition-delay:350ms">r</span><span style="transition-delay:375ms">d</span>
+              <span><i class="fa-solid fa-lock mr-2"></i></span>
+              <span style="transition-delay:0ms">C</span><span
+                style="transition-delay:25ms">o</span
+              ><span style="transition-delay:50ms">n</span><span
+                style="transition-delay:75ms">f</span
+              ><span style="transition-delay:100ms">i</span><span
+                style="transition-delay:125ms">r</span
+              ><span style="transition-delay:150ms">m</span><span
+                style="transition-delay:175ms">&nbsp;</span
+              ><span style="transition-delay:200ms">P</span><span
+                style="transition-delay:225ms">a</span
+              ><span style="transition-delay:250ms">s</span><span
+                style="transition-delay:275ms">s</span
+              ><span style="transition-delay:300ms">w</span><span
+                style="transition-delay:325ms">o</span
+              ><span style="transition-delay:350ms">r</span><span
+                style="transition-delay:375ms">d</span
+              >
             </label>
-          </div>
+          </div> -->
         </div>
 
         <!-- Submit Button -->
-        <button class="bg-blackish text-white relative -bottom-4 text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[9%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400">Submit <img src="/assets/transpaw.png" alt="transpaw" class=" rotate-45 bg-blackish"/> </button>
-      </div>
+        <button
+          type="submit"
+          class="bg-blackish text-white relative -bottom-4 text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[9%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
+          >Submit <img
+            src="/assets/transpaw.png"
+            alt="transpaw"
+            class="rotate-45 bg-blackish"
+          />
+        </button>
+      </form>
     </div>
     <!-- Toggle Div -->
-    <div id="toggle_div" class="h-[100%] w-[50%] absolute top-0 right-0 rounded-r-3xl bg-blackish z-[2] flex flex-col justify-center gap-y-[7%] items-center transition-transform duration-1000 transform translate-x-0">
+    <div
+      id="toggle_div"
+      class="h-[100%] w-[50%] absolute top-0 right-0 rounded-r-3xl bg-blackish z-[2] flex flex-col justify-center gap-y-[7%] items-center transition-transform duration-1000 transform translate-x-0"
+    >
       <div class="flex flex-col justify-center items-center w-[100%] h-[15%]">
-        <h1 id="toggle_text1" class="text-5xl font-bold text-white p-1">Welcome Back!</h1>
+        <h1 id="toggle_text1" class="text-5xl font-bold text-white p-1">
+          Welcome Back!
+        </h1>
         <h3 class="text-[32px] font-bold text-white p-1">Sir/Madam...</h3>
       </div>
       <!-- <dotlottie-player src="https://lottie.host/b187aa74-bcdf-477a-8d89-73d2f81d74f9/weeAP7NWRg.lottie" background="transparent" speed="1" class="h-[40%] w-[h-[40%]]" loop autoplay></dotlottie-player> -->
-      <img src="/assets/pc-login-toggle.gif" alt="pc-login-toggle" class="h-[250px] w-[260px]"/>
-      <div class="flex flex-col items-center w-[100%] p-1 ">
-        <p id="toggle_text2" class="tracking-wide text-lg font-bold text-white">Don't you have any account ?</p>
-        <button id="btn" class="underline text-white hover:text-redish font-bold text-2xl ">Register</button>
+      <img
+        src="/assets/pc-login-toggle.gif"
+        alt="pc-login-toggle"
+        class="h-[250px] w-[260px]"
+      />
+      <div class="flex flex-col items-center w-[100%] p-1">
+        <p id="toggle_text2" class="tracking-wide text-lg font-bold text-white">
+          Don't you have any account ?
+        </p>
+        <button
+          id="btn"
+          class="underline text-white hover:text-redish font-bold text-2xl"
+          >Register</button
+        >
       </div>
     </div>
   </div>
 </div>
 
 <style>
-    .form-control {
-      @apply relative w-[75%] ;
-    }
-    .form-control input {
-      @apply bg-transparent block w-full text-lg text-white px-0 py-[15px] border-b-2 border-b-[solid] border-0;
-    }
-    .form-control input:focus,
-    .form-control input:valid {
-      @apply border-b-[white];
-      outline: 0;
-    }
-    .form-control label {
-      @apply absolute pointer-events-none left-0 top-[15px];
-    }
-    .form-control label span {
-      @apply inline-block text-xl font-semibold min-w-[5px] text-white transition-[0.3s] duration-[cubic-bezier(0.68,-0.55,0.265,1.55)];
-    }
-    .form-control input:focus + label span,
-    .form-control input:valid + label span {
-      @apply text-[white] translate-y-[-25px] text-lg ;
-    }
+  .form-control {
+    @apply relative w-[75%];
+  }
+  .form-control input {
+    @apply bg-transparent block w-full text-lg text-white px-0 py-[15px] border-b-2 border-b-[solid] border-0;
+  }
+  .form-control input:focus,
+  .form-control input:valid {
+    @apply border-b-[white];
+    outline: 0;
+  }
+  .form-control label {
+    @apply absolute pointer-events-none left-0 top-[15px];
+  }
+  .form-control label span {
+    @apply inline-block text-xl font-semibold min-w-[5px] text-white transition-[0.3s] duration-[cubic-bezier(0.68,-0.55,0.265,1.55)];
+  }
+  .form-control input:focus + label span,
+  .form-control input:valid + label span {
+    @apply text-[white] translate-y-[-25px] text-lg;
+  }
 </style>
 
-
 <script is:inline>
-  document.getElementById('btn').addEventListener('click', function() {
-      const toggleDiv = document.getElementById('toggle_div');
-      const toggleText1 = document.getElementById('toggle_text1');
-      const toggleText2 = document.getElementById('toggle_text2');
-      const btn = document.getElementById('btn');
+  document.getElementById("btn").addEventListener("click", function () {
+    const toggleDiv = document.getElementById("toggle_div");
+    const toggleText1 = document.getElementById("toggle_text1");
+    const toggleText2 = document.getElementById("toggle_text2");
+    const btn = document.getElementById("btn");
 
-      // Check if the toggleDiv is currently translated to the left
-      if (toggleDiv.style.transform === 'translateX(-100%)') {
-          // Move it back to the right
-          toggleDiv.style.transform = 'translateX(0%)';
-          toggleText1.textContent = 'Welcome Back!';
-          toggleText2.textContent = "Don't you have any account ?";
-          btn.textContent = 'Register';
-          toggleDiv.classList.remove('rounded-l-3xl');
-          toggleDiv.classList.add('rounded-r-3xl');
-      } else {
-          // Move it to the left
-          toggleDiv.style.transform = 'translateX(-100%)';
-          toggleText1.textContent = 'Hello Welcome!';
-          toggleText2.textContent = 'Do you have any account ?';
-          btn.textContent = 'Login';
-          toggleDiv.classList.add('rounded-l-3xl');
-          toggleDiv.classList.remove('rounded-r-3xl');
-      }
+    // Check if the toggleDiv is currently translated to the left
+    if (toggleDiv.style.transform === "translateX(-100%)") {
+      // Move it back to the right
+      toggleDiv.style.transform = "translateX(0%)";
+      toggleText1.textContent = "Welcome Back!";
+      toggleText2.textContent = "Don't you have any account ?";
+      btn.textContent = "Register";
+      toggleDiv.classList.remove("rounded-l-3xl");
+      toggleDiv.classList.add("rounded-r-3xl");
+    } else {
+      // Move it to the left
+      toggleDiv.style.transform = "translateX(-100%)";
+      toggleText1.textContent = "Hello Welcome!";
+      toggleText2.textContent = "Do you have any account ?";
+      btn.textContent = "Login";
+      toggleDiv.classList.add("rounded-l-3xl");
+      toggleDiv.classList.remove("rounded-r-3xl");
+    }
   });
-
 </script>
-

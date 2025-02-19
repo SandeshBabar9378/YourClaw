@@ -1,4 +1,5 @@
 import type { MiddlewareResponseHandler } from 'astro';
+import CustomAlert from './components/CustomAlert.astro';
 
 export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     const url = new URL(context.request.url);
@@ -7,7 +8,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     const token = context.cookies.get('payload-token')?.value;
     // console.log("Token:", token);
     
-    const protectedRoutes = ['/pets', '/add-pet','/dog-list'];
+    const protectedRoutes = ['/pets', '/add-pet','/dog-list','/profile'];
     const isProtectedRoute = protectedRoutes.some((route) =>
         url.pathname.startsWith(route)
     );
@@ -17,7 +18,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     if (isProtectedRoute) {
         if (!token) {
             console.log("No Token Found.\nYou are not a LoggedIn\n\nRedirecting...");
-            return context.redirect('/try');
+            return context.redirect('/login');
         }
         
         try {
@@ -32,13 +33,13 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
             if (!response.ok) {
                 console.log("Invalid Token. Redirecting...");
                 context.cookies.delete('payload-token', { path: '/' });
-                return context.redirect('/try');
+                return context.redirect('/login');
             }
             const userData = await response.json();
-            console.log("User Verified:", userData);
+            // console.log("User Verified:", userData);
         } catch (error) {
             console.error("Error verifying token:", error);
-            return context.redirect('/try');
+            return context.redirect('/login');
         }
     }
     

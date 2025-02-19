@@ -1,20 +1,276 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import LoginForMobile2 from '../components/Login/LoginForMobile2.astro';
-import LoginForPc from '../components/Login/LoginForPc.astro';
+import Layout from "../layouts/Layout.astro";
+import LoginForMobile2 from "../components/Login/LoginForMobile2.astro";
+import LoginForPc from "../components/Login/LoginForPc.astro";
+import CustomAlert from "../components/CustomAlert.astro";
+import Loader from "../components/Loader.astro";
 ---
-<div class="hidden">
-<Layout></Layout>
-</div>
 
-    <div class="block md:hidden">
-        <div class="relative md:static ">
-        <LoginForMobile2 />
-        </div>
-    </div>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<title>Claw</title>
+		<!-- <meta name="theme-color" content="#06c1db" /> -->
+		<link
+			rel="website icon"
+			type="png"
+			href="../assets/fevicon.png"
+			class="rounded-lg"
+		/>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+		</style>
+	</head>
+	<body>
+		<CustomAlert/>
+		<Loader/>
+		<div>
+			<div class="block md:hidden">
+				<LoginForMobile2 />
+			</div>
+			<div class="hidden md:block">
+				<LoginForPc />
+			</div>
+		</div>
+	</body>
+</html>
+<style>
+	html,
+	body {
+		font-family: Nunito, sans-serif;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.nunito-font {
+		font-family: "Nunito", serif;
+		font-optical-sizing: auto;
+		font-weight: <weight>;
+		font-style: normal;
+	}
+</style>
+<script
+	is:inline
+	src="https://kit.fontawesome.com/2e713726cc.js"
+	crossorigin="anonymous"></script>
 
-    <div class="hidden md:block">
-        <LoginForPc/>
-    </div>
-    
+<script is:inline>
+	const loginFormPc = document.getElementById("loginFormPc");
+	const signupFormPc = document.getElementById("signupFormPc");
+	loginFormPc.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		const email = document.getElementById("login-emailPc").value;
+		const password = document.getElementById("login-passwordPc").value;
+		try {
+			showLoader();
+			const req = await fetch(
+				"https://backend.yourclaw.tech/api/users/login",
+				{
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email,
+						password: password,
+					}),
+				},
+			);
+			const data = await req.json();
+			// console.log(data);
 
+			if (req.ok && data.token) {
+				localStorage.setItem("authToken", data.token);
+				// Set token in cookie manually if needed
+				document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None; Secure=true`;
+				// After successful signup, redirect to home
+				hideLoader();
+				alert("Login successful!! Redirecting to home page...");
+				customAlert(
+					`Login successful!! Welcome Back ${data.user.name}\nYou are Redirecting to home page...`,
+				);
+				setTimeout(() => {
+					window.location.href = "/";
+				}, 4000);
+				// window.location.href = '/';
+			} else {
+				// Handle signup error here
+				hideLoader();
+				alert(
+					"The email or password provided is incorrect. Please try again.",
+				);
+				customAlert(
+					"The email or password provided is incorrect. Please try again.",
+				);
+				console.error("Login failed:", data);
+			}
+			loginFormPc.reset();
+		} catch (err) {
+			hideLoader();
+			alert("An error occurred during login. Please try again." , err);
+			console.log(err);
+		}
+	});
+
+	signupFormPc.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		const role = document.getElementById("RolePc").value;
+		const name = document.getElementById("namePc").value;
+		const email = document.getElementById("signupEmailPc").value;
+		const password = document.getElementById("signupPasswordPc").value;
+
+		console.log(name, email, password);
+		try {
+			showLoader();
+			const req = await fetch("https://backend.yourclaw.tech/api/users", {
+				method: "POST",
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: name,
+					email: email,
+					password: password,
+					role: role,
+				}),
+			});
+			const data = await req.json();
+			if (req.ok) {
+				// After successful signup, redirect to home
+				hideLoader();
+				customAlert("Signup successful!! Redirecting to Login page...");
+				if (data.token) {
+					console.log("Token:", data.token);
+					localStorage.setItem("authToken", data.token);
+					document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
+				}
+				setTimeout(() => {
+					window.location.href = "/login";
+				}, 4000);
+			} else {
+				// Handle signup error here
+				hideLoader();
+				customAlert("User already exists with this email.");
+				console.error("Signup failed:", data);
+			}
+			signupFormPc.reset();
+		} catch (err) {
+			console.log(err);
+			hideLoader();
+			customAlert("An error occurred during signup. Please try again.");
+		}
+	});
+</script>
+
+<script is:inline>
+	const loginFormmob = document.getElementById("loginFormmob");
+	const signupFormmob = document.getElementById("signupFormmob");
+	loginFormmob.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		const email = document.getElementById("login-emailmob").value;
+		const password = document.getElementById("login-passwordmob").value;
+		try {
+			showLoader();
+			const req = await fetch(
+				"https://backend.yourclaw.tech/api/users/login",
+				{
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email,
+						password: password,
+					}),
+				},
+			);
+			const data = await req.json();
+			// console.log(data);
+			if (req.ok && data.token) {
+				localStorage.setItem("authToken", data.token);
+				// Set token in cookie manually if needed
+				document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None; Secure=true`;
+				// After successful signup, redirect to home
+				hideLoader();
+				customAlert(
+					`Login successful!! Welcome Back ${data.user.name}\nYou are Redirecting to home page...`,
+				);
+				setTimeout(() => {
+					window.location.href = "/";
+				}, 4000);
+				// window.location.href = '/';
+			} else {
+				// Handle signup error here
+				hideLoader();
+				customAlert(
+					"The email or password provided is incorrect. Please try again.",
+				);
+				console.error("Login failed:", data);
+			}
+			loginFormmob.reset();
+		} catch (err) {
+			hideLoader();
+			console.log(err);
+		}
+	});
+
+	signupFormmob.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		const role = document.getElementById("Rolemob").value;
+		const name = document.getElementById("namemob").value;
+		const email = document.getElementById("signupEmailmob").value;
+		const password = document.getElementById("signupPasswordmob").value;
+
+		console.log(name, email, password);
+		try {
+			showLoader();
+			const req = await fetch("https://backend.yourclaw.tech/api/users", {
+				method: "POST",
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: name,
+					email: email,
+					password: password,
+					role: role,
+				}),
+			});
+			const data = await req.json();
+			if (req.ok) {
+				// After successful signup, redirect to home
+				hideLoader();
+				customAlert("Signup successful!! Redirecting to Login page...");
+				if (data.token) {
+					console.log("Token:", data.token);
+					localStorage.setItem("authToken", data.token);
+					document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
+				}
+				setTimeout(() => {
+					window.location.href = "/login";
+				}, 4000);
+			} else {
+				// Handle signup error here
+				hideLoader();
+				customAlert("User already exists with this email.");
+				console.error("Signup failed:", data);
+			}
+			signupFormmob.reset();
+		} catch (err) {
+			console.log(err);
+			hideLoader();
+			customAlert("An error occurred during signup. Please try again.");
+		}
+	});
+</script>

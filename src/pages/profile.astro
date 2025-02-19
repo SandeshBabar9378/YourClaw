@@ -1,278 +1,579 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// const authToken = Astro.localStorage.getItem('authToken');
+// fetching token from local storage
+const token = Astro.cookies.get("payload-token")?.value || "";
+try {
+  const response = await fetch("https://backend.yourclaw.tech/api/users/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  var responseUserRole = data.user.role;
+  var responseUserId = data.user.id;
+  var responseUserName = data.user.name;
+} catch (error) {
+  console.error("Error fetching user data:", error);
+}
+const isGiver = responseUserRole === "Giver";
+let itemsData = { docs: [] };
+
+if (responseUserRole === "Giver") {
+  try {
+    const petsResponse = await fetch(
+      `https://backend.yourclaw.tech/api/pets?where[owner][equals]=${responseUserId}`,
+    );
+    if (petsResponse) itemsData = await petsResponse.json();
+  } catch (error) {
+    console.error("Error fetching pets:", error);
+  }
+} else if (responseUserRole === "Adopter") {
+  console.log("Adopter");
+  try {
+    const requestsResponse = await fetch(
+      `https://backend.yourclaw.tech/api/adoption-requests?where[adoptedBy][equals]=67936c200e33b547942a6ea3`,
+    );
+    if (requestsResponse) itemsData = await requestsResponse.json();
+  } catch (error) {
+    console.error("Error fetching adoption requests:", error);
+  }
+}
 ---
 
 <Layout>
-    <div class="relative md:static top-[-5vh]">
-        <!--start div for spacing -->
-        <div class="h-28 md:h-40"></div>
-        <!--main -->
-        <div class="h-[80vh] w-[100vw] flex flex-col md:flex-row justify-between relative top-[-10vh] ">
-            <!--left -->
-            <div class="md:w-[25%] w-[100%] md:h-[100%] h-[20vh] flex justify-center bg-white md:bg-blackish  md:rounded-r-2xl py-3 px-1">
-                <div class="flex md:flex-col justify-between items-center w-[100%] h-[100%] bg-blackish text-white rounded-2xl p-3">
-                    <div class="flex flex-col md:gap-5  w-[60%] md:w-[90%] md:h-[20%] h-[100%]">
-                        <div class="flex flex-col text-2xl font-semibold md:text-3xl md:font-bold justify-between">
-                            <h2>Hello,</h2>
-                            <h1>Sandesh Babar.</h1>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col gap-2 md:gap-3 text-xl font-semibold md:text-2xl md:font-bold w-[35%] md:w-[90%] md:h-[20%] h-[100%]">
-                      <a href="" class=" group md:h-[40%]"> Reset Password <div class="bg-white h-[2px] w-0 group-hover:w-[75%] transition-all duration-500"></div></a>
-                      <a href="" class=" group md:h-[40%]"> Log Out <div class="bg-white h-[2px] w-0 group-hover:w-[60%] md:group-hover:w-[40%] transition-all duration-500"></div></a>
-                    </div>    
-                </div>  
+  <div class="relative md:static top-[-5vh]">
+    <!--start div for spacing -->
+    <div class="h-28 md:h-40"></div>
+    <!--main -->
+    <div
+      class="h-[80vh] w-[100vw] flex flex-col md:flex-row justify-between relative top-[-10vh]"
+    >
+      <!--left -->
+      <div
+        class="md:w-[25%] w-[100%] md:h-[100%] h-[20vh] flex justify-center bg-white md:bg-blackish md:rounded-r-2xl py-3 px-1"
+      >
+        <div
+          class="flex md:flex-col justify-between items-center w-[100%] h-[100%] bg-blackish text-white rounded-2xl p-3"
+        >
+          <div
+            class="flex flex-col md:gap-5 w-[60%] md:w-[90%] md:h-[20%] h-[100%]"
+          >
+            <div
+              class="flex flex-col text-2xl font-semibold md:text-3xl md:font-bold justify-between"
+            >
+              <h2>Hello,</h2>
+              <h1>{responseUserName}</h1>
             </div>
-            <!--right -->
-            <div class="flex justify-center items-center md:w-[80%] h-[100%] bg-white p-3">
-                <!--box -->
-                <div class="w-[100%] h-[100%] bg-white p-3">
-                    <div class="relative flex flex-col ml-[2.5%] w-[95%] h-[90%] overflow-y-scroll text-gray-700 bg-white shadow-lg border rounded-lg ">
-                        <table class="w-full text-left table-auto min-w-max">
-                          <thead class="sticky top-0 ">
-                            <tr class="border-b border bg-slate-200">
-                              <th class="p-5 w-24 text-xl font-semibold leading-none text-slate-500">Dog </th>
-                              <th class="p-5 w-[30%] text-xl font-semibold leading-none text-slate-500">Name</th>
-                              <th class="py-5 w-[10%] text-xl font-semibold leading-none text-slate-500">Breed</th>
-                              <th class="p-5 w-[10%] text-xl font-semibold leading-none text-slate-500">Color</th>
-                              <th class="py-5 px-3 w-[10%] text-xl font-semibold leading-none text-slate-500">Age</th>
-                              <th class="py-5 px-5 w-[10%] text-xl text-center font-semibold leading-none text-slate-500">Status</th>
-                              <th class="py-5 px-3 w-[20%] text-xl text-center font-semibold leading-none text-slate-500"> </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 ">
-                                <p class="text-sm text-blackish bg-yellow-100 text-center rounded-xl p-1">Pending</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5  text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
-                                <p class="text-sm text-blackish bg-green-100 text-center rounded-xl p-1 ">Approve</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
-                                <p class="text-sm text-blackish bg-red-100 text-center rounded-xl p-1 ">Rejected</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 ">
-                                <p class="text-sm text-blackish bg-yellow-100 text-center rounded-xl p-1">Pending</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5  text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
-                                <p class="text-sm text-blackish bg-green-100 text-center rounded-xl p-1 ">Approve</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
-                                <p class="text-sm text-blackish bg-red-100 text-center rounded-xl p-1 ">Rejected</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 ">
-                                <p class="text-sm text-blackish bg-yellow-100 text-center rounded-xl p-1">Pending</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5  text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
-                                <p class="text-sm text-blackish bg-green-100 text-center rounded-xl p-1 ">Approve</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg" alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="block font-medium text-base text-slate-800">Beautiful Chair</p>
-                              </td>
-                              <td class=" border-b border-slate-200 ">
-                                <p class="text-sm text-slate-500">Husky</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">Orange</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">2.5</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
-                                <p class="text-sm text-blackish bg-red-100 text-center rounded-xl p-1 ">Rejected</p>
-                              </td>
-                              <td class="p-4 border-b border-slate-200 py-5 text-center">
-                                <button type="button" class="text-slate-500 p-1 hover:text-redish">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      
-                </div>
-            </div>   
+          </div>
+
+          <div
+            class="flex flex-col gap-2 md:gap-3 text-xl font-semibold md:text-2xl md:font-bold w-[35%] md:w-[90%] md:h-[20%] h-[100%]"
+          >
+            {
+              isGiver && (
+                <a href="/add-pet" class="group md:h-[40%]">
+                  Add New Pet
+                  <div class="bg-white h-[2px] w-0 group-hover:w-[75%] transition-all duration-500" />
+                </a>
+              )
+            }
+            <a href="" class="group md:h-[40%]">
+              Reset Password
+              <div
+                class="bg-white h-[2px] w-0 group-hover:w-[75%] transition-all duration-500"
+              >
+              </div>
+            </a>
+            <a href="" class="group md:h-[40%]">
+              Log Out <div
+                class="bg-white h-[2px] w-0 group-hover:w-[60%] md:group-hover:w-[40%] transition-all duration-500"
+              >
+              </div></a
+            >
+          </div>
         </div>
+      </div>
+      <!--right -->
+      <div
+        class="flex justify-center items-center md:w-[80%] h-[100%] bg-white p-3"
+      >
+        <!--box -->
+        <div class="w-[100%] h-[100%] bg-white p-3">
+          <div
+            class="relative flex flex-col ml-[2.5%] w-[95%] h-[90%] overflow-y-scroll text-gray-700 bg-white shadow-lg border rounded-lg"
+          >
+            <table class="w-full text-left table-auto min-w-max">
+              <thead class="sticky top-0">
+                <tr class="border-b border bg-slate-200">
+                  <th
+                    class="p-5 w-24 text-xl font-semibold leading-none text-slate-500"
+                    >Dog
+                  </th>
+                  <th
+                    class="p-5 w-[30%] pl-14 text-xl font-semibold leading-none text-slate-500"
+                    >Name</th
+                  >
+                  <th
+                    class="py-5 w-[10%] text-xl font-semibold leading-none text-slate-500"
+                    >Breed</th
+                  >
+                  <th
+                    class="p-5 w-[10%] text-xl font-semibold leading-none text-slate-500"
+                    >Color</th
+                  >
+                  <th
+                    class="py-5 px-3 w-[10%] text-xl font-semibold leading-none text-slate-500"
+                    >Age</th
+                  >
+                  <th
+                    class="py-5 px-5 w-[10%] text-xl text-center font-semibold leading-none text-slate-500"
+                    >Status</th
+                  >
+                  <th
+                    class="py-5 px-3 w-[20%] text-xl text-center font-semibold leading-none text-slate-500"
+                  >
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p
+                      class="text-sm text-blackish bg-yellow-100 text-center rounded-xl p-1"
+                    >
+                      Pending
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr> -->
+                {
+                  itemsData.docs && itemsData.docs.length > 0
+                    ? itemsData.docs.map((item) => (
+                        <tr class="hover:bg-slate-50">
+                          <td class="p-4 border-b border-slate-200 py-5">
+                            <img
+                              src={item.pet_image || item.petId?.pet_image}
+                              alt={item.pet_name || item.petId?.pet_name}
+                              class="w-16 h-16 object-cover rounded"
+                            />
+                          </td>
+                          <td class="p-4 pl-12 border-b border-slate-200 py-5">
+                            <p class="block font-medium text-base text-slate-800">
+                              {item.pet_name || item.petId?.pet_name}
+                            </p>
+                          </td>
+                          <td class="border-b border-slate-200">
+                            <p class="text-sm text-slate-500">
+                              {item.pet_breed || item.petId?.pet_breed}
+                            </p>
+                          </td>
+                          <td class="p-4 border-b border-slate-200 py-5">
+                            <p class="text-sm text-slate-500">
+                              {item.pet_color || item.petId?.pet_color}
+                            </p>
+                          </td>
+                          <td class="p-4 border-b border-slate-200 py-5">
+                            <p class="text-sm text-slate-500">
+                              {item.pet_age || item.petId?.pet_age}
+                            </p>
+                          </td>
+                          <td class="p-4 border-b border-slate-200 py-5">
+                            <p
+                              class={`text-sm text-blackish text-center rounded-xl p-1 ${
+                                item.status?.toLowerCase() === "approved"
+                                  ? "bg-green-100 text-green-800"
+                                  : item.status?.toLowerCase() === "rejected"
+                                    ? "bg-red-100 text-red-800"
+                                    : " bg-yellow-100 text-yellow-800"
+                              }`}
+                            >
+                              {item.status || "Available"}
+                            </p>
+                          </td>
+                          <td class="p-4 border-b border-slate-200 py-5 text-center">
+                            {isGiver && (
+                              <button
+                                type="button"
+                                id="deletebtn"
+                                class="text-slate-500 p-1 hover:text-redish"
+                                data-id={item.id}
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    : null
+                }
+                <!-- <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
+                    <p
+                      class="text-sm text-blackish bg-green-100 text-center rounded-xl p-1"
+                    >
+                      Approve
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
+                    <p
+                      class="text-sm text-blackish bg-red-100 text-center rounded-xl p-1"
+                    >
+                      Rejected
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p
+                      class="text-sm text-blackish bg-yellow-100 text-center rounded-xl p-1"
+                    >
+                      Pending
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
+                    <p
+                      class="text-sm text-blackish bg-green-100 text-center rounded-xl p-1"
+                    >
+                      Approve
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
+                    <p
+                      class="text-sm text-blackish bg-red-100 text-center rounded-xl p-1"
+                    >
+                      Rejected
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p
+                      class="text-sm text-blackish bg-yellow-100 text-center rounded-xl p-1"
+                    >
+                      Pending
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
+                    <p
+                      class="text-sm text-blackish bg-green-100 text-center rounded-xl p-1"
+                    >
+                      Approve
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <img
+                      src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
+                      alt="Product 1"
+                      class="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="block font-medium text-base text-slate-800">
+                      Beautiful Chair
+                    </p>
+                  </td>
+                  <td class="border-b border-slate-200">
+                    <p class="text-sm text-slate-500">Husky</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">Orange</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5">
+                    <p class="text-sm text-slate-500">2.5</p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 w-[10%]">
+                    <p
+                      class="text-sm text-blackish bg-red-100 text-center rounded-xl p-1"
+                    >
+                      Rejected
+                    </p>
+                  </td>
+                  <td class="p-4 border-b border-slate-200 py-5 text-center">
+                    <button
+                      type="button"
+                      class="text-slate-500 p-1 hover:text-redish"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </Layout>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("#deletebtn").forEach((button) => {
+      button.addEventListener("click", async function () {
+        const petId = this.getAttribute("data-id");
+        if (confirm("Are you sure you want to delete this pet?")) {
+          showLoader();
+          const deleteReponse = await fetch(
+            `https://backend.yourclaw.tech/api/pets/${petId}`,
+            {
+              method: "DELETE",
+            },
+          );
+          const deleteReponseJson = await deleteReponse.json();
+          if (deleteReponseJson) {
+            hideLoader();
+            customAlert("Pet deleted successfully");
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          }
+        } else {
+          hideLoader();
+          customAlert("Pet deletion cancelled");
+        }
+      });
+    });
+  });
+</script>
