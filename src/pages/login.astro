@@ -93,7 +93,6 @@ import Loader from "../components/Loader.astro";
 				document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None; Secure=true`;
 				// After successful signup, redirect to home
 				hideLoader();
-				alert("Login successful!! Redirecting to home page...");
 				customAlert(
 					`Login successful!! Welcome Back ${data.user.name}\nYou are Redirecting to home page...`,
 				);
@@ -104,9 +103,6 @@ import Loader from "../components/Loader.astro";
 			} else {
 				// Handle signup error here
 				hideLoader();
-				alert(
-					"The email or password provided is incorrect. Please try again.",
-				);
 				customAlert(
 					"The email or password provided is incorrect. Please try again.",
 				);
@@ -115,7 +111,6 @@ import Loader from "../components/Loader.astro";
 			loginFormPc.reset();
 		} catch (err) {
 			hideLoader();
-			alert("An error occurred during login. Please try again." , err);
 			console.log(err);
 		}
 	});

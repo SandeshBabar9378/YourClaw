@@ -74,12 +74,14 @@ import Layout from "../layouts/Layout.astro";
             },
         );
         const data = await res.json();
-        if (data.success) {
+        console.log(data);
+        if (data.message === "Success") {
             hideLoader();
             customAlert("Password Reset Link Sent To Your Email");
         } else {
             hideLoader();
             customAlert("Email Not Found");
         }
+        forgetForm.reset();
     });
 </script>

@@ -33,7 +33,7 @@ if (responseUserRole === "Giver") {
   console.log("Adopter");
   try {
     const requestsResponse = await fetch(
-      `https://backend.yourclaw.tech/api/adoption-requests?where[adoptedBy][equals]=67936c200e33b547942a6ea3`,
+      `https://backend.yourclaw.tech/api/adoption-requests?where[adoptedBy][equals]=${responseUserId}`,
     );
     if (requestsResponse) itemsData = await requestsResponse.json();
   } catch (error) {
@@ -41,7 +41,6 @@ if (responseUserRole === "Giver") {
   }
 }
 ---
-
 <Layout>
   <div class="relative md:static top-[-5vh]">
     <!--start div for spacing -->
@@ -79,7 +78,7 @@ if (responseUserRole === "Giver") {
                 </a>
               )
             }
-            <a href="" class="group md:h-[40%]">
+            <a href="/forget-pass" class="group md:h-[40%]">
               Reset Password
               <div
                 class="bg-white h-[2px] w-0 group-hover:w-[75%] transition-all duration-500"
