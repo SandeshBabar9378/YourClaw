@@ -32,7 +32,7 @@
           </div></a
         >
         <a
-          href="/dog-list"
+          href="/pets"
           class="group text-2xl font-extrabold text-redish hover:text-blackish"
         >
           Dog List <div
@@ -119,9 +119,13 @@
       style="filter: drop-shadow(0 0 0.75rem black);"></button>
   </div>
   <a href="/" class="menu_element">Home</a>
-  <a href="/dog-list" class="menu_element">Dog List</a>
+  <a href="/profile" class="menu_element">Profile</a>
+  <a href="/pets" class="menu_element">Pet List</a>
+  <a href="/blog-list" class="menu_element">Blog</a>
   <a href="/contact-us" class="menu_element">Contact</a>
-  <a href="/login" class="menu_element">Adopt</a>
+  <a href="/login" class="menu_element">Login</a>
+  <a class="menu_element"><button id="logoutBtnMob"> Log Out  &#160; <i class="fa-solid fa-right-from-bracket"></i></button></a>
+
 
   <div id="social_link" class="">
     <ul
@@ -180,4 +184,12 @@
   }
   window.addEventListener("scroll", handleScroll);
   handleScroll();
+
+  const logoutBtnMob = document.getElementById("logoutBtnMob");
+  logoutBtnMob.addEventListener("click", function () {
+    showLoader();
+    document.cookie = "payload-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    hideLoader();
+    location.href = "/";
+  });
 </script>

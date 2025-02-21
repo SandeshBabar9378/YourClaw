@@ -29,8 +29,8 @@ import Loader from "../components/Loader.astro";
 		</style>
 	</head>
 	<body>
-		<CustomAlert/>
-		<Loader/>
+		<CustomAlert />
+		<Loader />
 		<div>
 			<div class="block md:hidden">
 				<LoginForMobile2 />
@@ -116,52 +116,72 @@ import Loader from "../components/Loader.astro";
 	});
 
 	signupFormPc.addEventListener("submit", async (event) => {
+		showLoader();
 		event.preventDefault();
 		const role = document.getElementById("RolePc").value;
 		const name = document.getElementById("namePc").value;
 		const email = document.getElementById("signupEmailPc").value;
 		const password = document.getElementById("signupPasswordPc").value;
+		const confirmPassword =
+			document.getElementById("confirmPasswordPc").value;
 
-		console.log(name, email, password);
-		try {
-			showLoader();
-			const req = await fetch("https://backend.yourclaw.tech/api/users", {
-				method: "POST",
-				credentials: "include",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					name: name,
-					email: email,
-					password: password,
-					role: role,
-				}),
-			});
-			const data = await req.json();
-			if (req.ok) {
-				// After successful signup, redirect to home
-				hideLoader();
-				customAlert("Signup successful!! Redirecting to Login page...");
-				if (data.token) {
-					console.log("Token:", data.token);
-					localStorage.setItem("authToken", data.token);
-					document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
-				}
-				setTimeout(() => {
-					window.location.href = "/login";
-				}, 4000);
-			} else {
-				// Handle signup error here
-				hideLoader();
-				customAlert("User already exists with this email.");
-				console.error("Signup failed:", data);
-			}
-			signupFormPc.reset();
-		} catch (err) {
-			console.log(err);
+		if (password !== confirmPassword) {
+			event.preventDefault();
 			hideLoader();
-			customAlert("An error occurred during signup. Please try again.");
+			customAlert("Passwords do not match!");
+		} else if (password === "" || confirmPassword === "") {
+			event.preventDefault();
+			hideLoader();
+			customAlert("Password fields cannot be empty!");
+		}
+
+		if (password === confirmPassword) {
+			try {
+				const req = await fetch(
+					"https://backend.yourclaw.tech/api/users",
+					{
+						method: "POST",
+						credentials: "include",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							name: name,
+							email: email,
+							password: password,
+							role: role,
+						}),
+					},
+				);
+				const data = await req.json();
+				if (req.ok) {
+					// After successful signup, redirect to home
+					hideLoader();
+					customAlert(
+						"Signup successful!! Redirecting to Login page...",
+					);
+					if (data.token) {
+						console.log("Token:", data.token);
+						localStorage.setItem("authToken", data.token);
+						document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
+					}
+					setTimeout(() => {
+						window.location.href = "/login";
+					}, 4000);
+				} else {
+					// Handle signup error here
+					hideLoader();
+					customAlert("User already exists with this email.");
+					console.error("Signup failed:", data);
+				}
+				signupFormPc.reset();
+			} catch (err) {
+				console.log(err);
+				hideLoader();
+				customAlert(
+					"An error occurred during signup. Please try again.",
+				);
+			}
 		}
 	});
 </script>
@@ -220,52 +240,71 @@ import Loader from "../components/Loader.astro";
 	});
 
 	signupFormmob.addEventListener("submit", async (event) => {
+		showLoader();
 		event.preventDefault();
 		const role = document.getElementById("Rolemob").value;
 		const name = document.getElementById("namemob").value;
 		const email = document.getElementById("signupEmailmob").value;
 		const password = document.getElementById("signupPasswordmob").value;
+		const confirmPassword = document.getElementById("confirmpassmob").value;
 
-		console.log(name, email, password);
-		try {
-			showLoader();
-			const req = await fetch("https://backend.yourclaw.tech/api/users", {
-				method: "POST",
-				credentials: "include",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					name: name,
-					email: email,
-					password: password,
-					role: role,
-				}),
-			});
-			const data = await req.json();
-			if (req.ok) {
-				// After successful signup, redirect to home
-				hideLoader();
-				customAlert("Signup successful!! Redirecting to Login page...");
-				if (data.token) {
-					console.log("Token:", data.token);
-					localStorage.setItem("authToken", data.token);
-					document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
-				}
-				setTimeout(() => {
-					window.location.href = "/login";
-				}, 4000);
-			} else {
-				// Handle signup error here
-				hideLoader();
-				customAlert("User already exists with this email.");
-				console.error("Signup failed:", data);
-			}
-			signupFormmob.reset();
-		} catch (err) {
-			console.log(err);
+		if (password !== confirmPassword) {
+			event.preventDefault();
 			hideLoader();
-			customAlert("An error occurred during signup. Please try again.");
+			customAlert("Passwords do not match!");
+		} else if (password === "" || confirmPassword === "") {
+			event.preventDefault();
+			hideLoader();
+			customAlert("Password fields cannot be empty!");
+		}
+
+		if (password === confirmPassword) {
+			try {
+				const req = await fetch(
+					"https://backend.yourclaw.tech/api/users",
+					{
+						method: "POST",
+						credentials: "include",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							name: name,
+							email: email,
+							password: password,
+							role: role,
+						}),
+					},
+				);
+				const data = await req.json();
+				if (req.ok) {
+					// After successful signup, redirect to home
+					hideLoader();
+					customAlert(
+						"Signup successful!! Redirecting to Login page...",
+					);
+					if (data.token) {
+						console.log("Token:", data.token);
+						localStorage.setItem("authToken", data.token);
+						document.cookie = `payload-token=${data.token}; path=/; max-age=7200; SameSite=None Secure=true`;
+					}
+					setTimeout(() => {
+						window.location.href = "/login";
+					}, 4000);
+				} else {
+					// Handle signup error here
+					hideLoader();
+					customAlert("User already exists with this email.");
+					console.error("Signup failed:", data);
+				}
+				signupFormmob.reset();
+			} catch (err) {
+				console.log(err);
+				hideLoader();
+				customAlert(
+					"An error occurred during signup. Please try again.",
+				);
+			}
 		}
 	});
 </script>
