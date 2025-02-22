@@ -39,20 +39,20 @@ import Loader from "../../components/Loader.astro";
             </label>
           </div>
           <!-- Password Input -->
-          <div class="form-control mt-4">
+          <div class="form-control mt-4 relative">
             <input type="password" id="login-passwordPc" required="" />
             <label>
               <span><i class="fa-solid fa-lock mr-2"></i></span>
               <span style="transition-delay:0ms">P</span><span
                 style="transition-delay:50ms">a</span
               ><span style="transition-delay:100ms">s</span><span
-                style="transition-delay:150ms">s</span
-              ><span style="transition-delay:200ms">w</span><span
-                style="transition-delay:250ms">o</span
-              ><span style="transition-delay:300ms">r</span><span
-                style="transition-delay:350ms">d</span
-              >
+                style="transition-delay:150ms">s</span><span
+                style="transition-delay:200ms">w</span><span
+                style="transition-delay:250ms">o</span><span
+                style="transition-delay:300ms">r</span><span
+                style="transition-delay:350ms">d</span>
             </label>
+            <i class="fa fa-eye  text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleLoginPassword"></i>
           </div>
         </div>
         <a href="/forget-pass" class="text-white text-lg font-medium underline"
@@ -87,9 +87,7 @@ import Loader from "../../components/Loader.astro";
         >
           <!--Role Input -->
           <div class="mt-2 w-[75%] flex flex-col items-center">
-            <label for="Login" class="text-white font-bold text-xl p-[1%]"
-              >Who are you?</label
-            >
+            <label for="Login" class="text-white font-bold text-xl p-[1%]">Who are you?</label>
             <select
               id="RolePc"
               required
@@ -106,10 +104,9 @@ import Loader from "../../components/Loader.astro";
             <label>
               <span><i class="fa-regular fa-user mr-2"></i></span>
               <span style="transition-delay:0ms">N</span><span
-                style="transition-delay:50ms">a</span
-              ><span style="transition-delay:100ms">m</span><span
-                style="transition-delay:150ms">e</span
-              >
+                style="transition-delay:50ms">a</span><span
+                style="transition-delay:100ms">m</span><span
+                style="transition-delay:150ms">e</span>
             </label>
           </div>
           <!-- Email Input -->
@@ -118,62 +115,65 @@ import Loader from "../../components/Loader.astro";
             <label>
               <span><i class="fa-regular fa-envelope mr-2"></i></span>
               <span style="transition-delay:0ms">E</span><span
-                style="transition-delay:50ms">m</span
-              ><span style="transition-delay:100ms">a</span><span
-                style="transition-delay:150ms">i</span
-              ><span style="transition-delay:200ms">l</span>
+                style="transition-delay:50ms">m</span><span
+                style="transition-delay:100ms">a</span><span
+                style="transition-delay:150ms">i</span><span
+                style="transition-delay:200ms">l</span>
             </label>
           </div>
           <!-- Password Input -->
-          <div class="form-control">
+          <div class="form-control relative">
             <input id="signupPasswordPc" type="password" required />
             <label>
               <span><i class="fa-solid fa-lock mr-2"></i></span>
               <span style="transition-delay:0ms">P</span><span
-                style="transition-delay:50ms">a</span
-              ><span style="transition-delay:100ms">s</span><span
-                style="transition-delay:150ms">s</span
-              ><span style="transition-delay:200ms">w</span><span
-                style="transition-delay:250ms">o</span
-              ><span style="transition-delay:300ms">r</span><span
-                style="transition-delay:350ms">d</span
-              >
+                style="transition-delay:50ms">a</span><span
+                style="transition-delay:100ms">s</span><span
+                style="transition-delay:150ms">s</span><span
+                style="transition-delay:200ms">w</span><span
+                style="transition-delay:250ms">o</span><span
+                style="transition-delay:300ms">r</span><span
+                style="transition-delay:350ms">d</span>
             </label>
+            <i class="fa fa-eye text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleSignupPassword"></i>
           </div>
-          <!-- Password Input -->
-          <div class="form-control">
+          <!-- Confirm Password Input -->
+          <div class="form-control relative">
             <input id="confirmPasswordPc" type="password" required/>
             <label>
               <span><i class="fa-solid fa-lock mr-2"></i></span>
               <span style="transition-delay:0ms">C</span><span
-                style="transition-delay:25ms">o</span
-              ><span style="transition-delay:50ms">n</span><span
-                style="transition-delay:75ms">f</span
-              ><span style="transition-delay:100ms">i</span><span
-                style="transition-delay:125ms">r</span
-              ><span style="transition-delay:150ms">m</span><span
-                style="transition-delay:175ms">&nbsp;</span
-              ><span style="transition-delay:200ms">P</span><span
-                style="transition-delay:225ms">a</span
-              ><span style="transition-delay:250ms">s</span><span
-                style="transition-delay:275ms">s</span
-              ><span style="transition-delay:300ms">w</span><span
-                style="transition-delay:325ms">o</span
-              ><span style="transition-delay:350ms">r</span><span
-                style="transition-delay:375ms">d</span
-              >
+                style="transition-delay:25ms">o</span><span
+                style="transition-delay:50ms">n</span><span
+                style="transition-delay:75ms">f</span><span
+                style="transition-delay:100ms">i</span><span
+                style="transition-delay:125ms">r</span><span
+                style="transition-delay:150ms">m</span><span
+                style="transition-delay:175ms">&nbsp;</span><span
+                style="transition-delay:200ms">P</span><span
+                style="transition-delay:225ms">a</span><span
+                style="transition-delay:250ms">s</span><span
+                style="transition-delay:275ms">s</span><span
+                style="transition-delay:300ms">w</span><span
+                style="transition-delay:325ms">o</span><span
+                style="transition-delay:350ms">r</span><span
+                style="transition-delay:375ms">d</span>
             </label>
+            <i class="fa fa-eye text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleConfirmPassword"></i>
           </div>
         </div>
 
         <!-- Submit Button -->
         <button
           type="submit"
-          class="bg-blackish text-white relative -bottom-4 text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[9%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
+          class="bg-blackish text-white relative"
+        <button
+          type="submit"
+          class="bg-blackish text-white relative -bottom-4 text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[5%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
           >Submit <img
             src="/assets/transpaw.png"
             alt="transpaw"
-            class="rotate-45 bg-blackish"
+            class="rotate-45 bg-blackish w- h-1"
           />
         </button>
       </form>
@@ -258,5 +258,31 @@ import Loader from "../../components/Loader.astro";
       toggleDiv.classList.add("rounded-l-3xl");
       toggleDiv.classList.remove("rounded-r-3xl");
     }
+  });
+
+  function togglePasswordVisibility(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
+  }
+
+  document.getElementById("toggleLoginPassword").addEventListener("click", function () {
+    togglePasswordVisibility("login-passwordPc", "toggleLoginPassword");
+  });
+
+  document.getElementById("toggleSignupPassword").addEventListener("click", function () {
+    togglePasswordVisibility("signupPasswordPc", "toggleSignupPassword");
+  });
+
+  document.getElementById("toggleConfirmPassword").addEventListener("click", function () {
+    togglePasswordVisibility("confirmPasswordPc", "toggleConfirmPassword");
   });
 </script>
