@@ -1,10 +1,16 @@
 ---
-
+const token = Astro.cookies.get("payload-token")?.value || "";
+let user;
+if (token) {
+  user = true;
+} else {
+  user = false;
+}
 ---
 
 <!-- Navigation Bar for pc-->
 <div class="hidden lg:block">
-  <nav id="navbarpc" class="relative md:h-[13vh] ">
+  <nav id="navbarpc" class="relative md:h-[13vh]">
     <div
       class="bg-[#ffffff] text-[#f04336] flex justify-around items-center md:h-[15vh] text-xl w-screen relative z-30"
     >
@@ -13,7 +19,8 @@
       ></a>
 
       <div id="link" class="w-[40%] flex justify-evenly items-center">
-        <a id="home"
+        <a
+          id="home"
           href="/"
           class="group text-2xl font-extrabold text-redish hover:text-blackish"
         >
@@ -59,17 +66,33 @@
           </div></a
         >
       </div>
-      <a
-        href="/login"
-        class="bg-[red] h-[50px] w-[130px] rounded-lg flex justify-center gap-4 items-center cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]"
-      >
-        <p class="relative z-[3] text-xl font-bold">Login </p>
-        <img
-          src="/assets/transpaw.png"
-          alt="TransPaw"
-          class="relative z-[3] rotate-45 h-5"
-        />
-      </a>
+      {
+        user ? (
+          <a
+            id="logoutBtnPc"
+            class="bg-[red] h-[50px] w-[130px] rounded-lg flex justify-center gap-4 items-center cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]"
+          >
+            <button class="relative z-[3] text-xl font-bold">Log Out</button>
+            <img
+              src="/assets/transpaw.png"
+              alt="TransPaw"
+              class="relative z-[3] rotate-45 h-5"
+            />
+          </a>
+        ) : (
+          <a
+            href="/login"
+            class="bg-[red] h-[50px] w-[130px] rounded-lg flex justify-center gap-4 items-center cursor-pointer transition-[8.0s] relative overflow-hidden text-[white] z-[1] before:absolute before:w-full before:h-[0%] before:z-[2] before:duration-1000 before:rounded-[50%_50%_0_0] before:left-0 before:bottom-0 hover:before:h-[180%] before:bg-[#0a303a]"
+          >
+            <p class="relative z-[3] text-xl font-bold">Login</p>
+            <img
+              src="/assets/transpaw.png"
+              alt="TransPaw"
+              class="relative z-[3] rotate-45 h-5"
+            />
+          </a>
+        )
+      }
     </div>
     <div
       class="relative bottom-6 w-screen h-[50px] bg-cover bg-no-repeat bg-[url('/assets/cloud.png')] drop-shadow-2xl"
@@ -124,8 +147,11 @@
   <a href="/blog-list" class="menu_element">Blog</a>
   <a href="/contact-us" class="menu_element">Contact</a>
   <a href="/login" class="menu_element">Login</a>
-  <a class="menu_element"><button id="logoutBtnMob"> Log Out  &#160; <i class="fa-solid fa-right-from-bracket"></i></button></a>
-
+  <a class="menu_element"
+    ><button id="logoutBtnMob">
+      Log Out &#160; <i class="fa-solid fa-right-from-bracket"></i></button
+    ></a
+  >
 
   <div id="social_link" class="">
     <ul
@@ -188,8 +214,21 @@
   const logoutBtnMob = document.getElementById("logoutBtnMob");
   logoutBtnMob.addEventListener("click", function () {
     showLoader();
-    document.cookie = "payload-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "payload-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     hideLoader();
     location.href = "/";
+  });
+
+  const logoutBtnPc = document.getElementById("logoutBtnPc");
+  logoutBtnPc.addEventListener("click", function () {
+    showLoader();
+    document.cookie =
+      "payload-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    hideLoader();
+    customAlert("Logged out successfully\nThank you for visiting us");
+    setTimeout(() => {
+      location.href = "/";
+    }, 1000);
   });
 </script>
