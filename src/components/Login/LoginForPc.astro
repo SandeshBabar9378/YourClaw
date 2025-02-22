@@ -28,7 +28,7 @@ import Loader from "../../components/Loader.astro";
         >
           <!-- Email Input -->
           <div class="form-control relative top-[5%]">
-            <input type="email" id="login-emailPc" required="" />
+            <input type="text" id="login-emailPc" required="" />
             <label>
               <span><i class="fa-regular fa-envelope mr-2"></i></span>
               <span style="transition-delay:0ms">E</span><span
@@ -52,7 +52,7 @@ import Loader from "../../components/Loader.astro";
                 style="transition-delay:300ms">r</span><span
                 style="transition-delay:350ms">d</span>
             </label>
-            <i class="fa fa-eye  text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleLoginPassword"></i>
+            <i class="fa fa-eye  text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleLoginPassword" title="Show"></i>
           </div>
         </div>
         <a href="/forget-pass" class="text-white text-lg font-medium underline"
@@ -83,7 +83,7 @@ import Loader from "../../components/Loader.astro";
         <h2 class="font-bold text-white text-5xl relative -top-6">Register</h2>
 
         <div
-          class="w-[100%] h-[82%] flex flex-col justify-between items-center"
+          class="w-[100%] h-[90%] flex flex-col justify-between items-center"
         >
           <!--Role Input -->
           <div class="mt-2 w-[75%] flex flex-col items-center">
@@ -135,7 +135,7 @@ import Loader from "../../components/Loader.astro";
                 style="transition-delay:300ms">r</span><span
                 style="transition-delay:350ms">d</span>
             </label>
-            <i class="fa fa-eye text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleSignupPassword"></i>
+            <i class="fa fa-eye text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleSignupPassword" title = "Show"></i>
           </div>
           <!-- Confirm Password Input -->
           <div class="form-control relative">
@@ -159,21 +159,18 @@ import Loader from "../../components/Loader.astro";
                 style="transition-delay:350ms">r</span><span
                 style="transition-delay:375ms">d</span>
             </label>
-            <i class="fa fa-eye text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleConfirmPassword"></i>
+            <i class="fa fa-eye text-white absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleConfirmPassword" title = "Show"></i>
           </div>
         </div>
 
         <!-- Submit Button -->
         <button
           type="submit"
-          class="bg-blackish text-white relative"
-        <button
-          type="submit"
-          class="bg-blackish text-white relative -bottom-4 text-xl font-medium py-[1px] px-4 w-[32%] max-w-[50%] h-[5%] mt-[5%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
+          class="bg-blackish text-white mt-5 text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
           >Submit <img
             src="/assets/transpaw.png"
             alt="transpaw"
-            class="rotate-45 bg-blackish w- h-1"
+            class="rotate-45 bg-blackish"
           />
         </button>
       </form>
@@ -267,10 +264,12 @@ import Loader from "../../components/Loader.astro";
       input.type = "text";
       icon.classList.remove("fa-eye");
       icon.classList.add("fa-eye-slash");
+      icon.title = "Hide";
     } else {
       input.type = "password";
       icon.classList.remove("fa-eye-slash");
       icon.classList.add("fa-eye");
+      icon.title = "Show";
     }
   }
 
