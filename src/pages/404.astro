@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout>
+    <div class="h-[85vh] w-screen flex flex-col justify-center items-center relative">
+        <dotlottie-player src="https://lottie.host/adb11b12-b1a4-4d96-9e61-25669487b0f7/Tw6rBbFgZt.lottie" background="transparent" speed="0.5" class="w-[45%]  h-[45vh] " style="position: relative; z-index:18;" loop autoplay></dotlottie-player>
+        <h1 class="relative -top-12 text-4xl md:text-6xl text-center text-blackish font-bold">Page Not Found</h1>
+        <h3 class="relative mt-5 -top-12 text-lg md:text-2xl w-[75%] md:w-[50%] text-center text-blackish font-semibold">We searched high and low but couldn’t find what you’re looking for. Let’s find a better place for you to go.</h1>
+        <a href="/" class="text-xl font-bold mt-9 text-white bg-redish p-3 border rounded-full border-black hover:bg-blackish hover:shadow-black hover:shadow-xl ">Go To Home Page</a>
+    </div>
+</Layout>
+
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script> 
