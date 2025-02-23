@@ -7,7 +7,7 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     const token = context.cookies.get('payload-token')?.value;
     // console.log("Token:", token);
 
-    const protectedRoutes = ['/pets', '/add-pet', '/dog-list', '/profile', '/practice-page'];
+    const protectedRoutes = ['/pets', '/add-pet', '/dog-list', '/profile', '/admin-profile'];
     const isProtectedRoute = protectedRoutes.some((route) =>
         url.pathname.startsWith(route)
     );
@@ -37,16 +37,16 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
             const userData = await response.json();
             const userRole = userData?.user.role;
             // console.log("User Role:", userRole);
-            if (url.pathname === "/profile" || url.pathname === "/practice-page") {
+            if (url.pathname === "/profile" || url.pathname === "/admin-profile") {
                 if (userRole === "Admin") {
-                    // Agar Admin already /practice-page pe hai toh redirect mat kar
-                    if (url.pathname !== "/practice-page") {
-                        // console.log("User is Admin. Redirecting to /practice-page...");
-                        return context.redirect("/practice-page");
+                    // Agar Admin already /admin-profile pe hai toh redirect mat kar
+                    if (url.pathname !== "/admin-profile") {
+                        // console.log("User is Admin. Redirecting to /admin-profile...");
+                        return context.redirect("/admin-profile");
                     }
                 } else {
-                    // Agar Admin nahi hai aur /practice-page pe hai toh wapas /profile bhej
-                    if (url.pathname === "/practice-page") {
+                    // Agar Admin nahi hai aur /admin-profile pe hai toh wapas /profile bhej
+                    if (url.pathname === "/admin-profile") {
                         // console.log("User is not an Admin. Redirecting to /profile...");
                         return context.redirect("/profile");
                     }

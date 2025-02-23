@@ -16,7 +16,7 @@ const petData = await response.json();
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {
             petData.docs.map((item) => (
-              <a href={`/pets/${item.petId.id}`}>
+              // <a href={`/pets/${item.petId.id}`}>
               <li class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100">
                 <div class="p-6 space-y-4">
                   <!-- Header with Pet Name and Status -->
@@ -117,13 +117,19 @@ const petData = await response.json();
                     body: JSON.stringify({ status }),
                 },
             );
-
-            if (!response.ok)
-                throw new Error("Failed to update request status");
-            hideloader();
-            customAlert(`Request ${status}!`);
+            const data = await response.json();
+            console.log(data);
+            if (!response.ok){
+              hideLoader();
+              customAlert(`Request ${status}!`);
+              throw new Error("Failed to update request status");
+            }else{
+              hideLoader();
+              customAlert(`Request ${status}!`);
+            }
         } catch (error) {
-            hideloader();
+            hideLoader();
+            customAlert(`Request ${status}!`);
             console.error("Error updating request status:", error);
         }
     }
@@ -135,7 +141,7 @@ const petData = await response.json();
                 updateStatus(petId, "approved");
                 setTimeout(() => {
                     window.location.reload();
-                }, 1000);
+                }, 2500);
                 
             });
         });
@@ -146,7 +152,7 @@ const petData = await response.json();
                 updateStatus(petId, "rejected");
                 setTimeout(() => {
                     window.location.reload();
-                }, 1000);
+                }, 2500);
             });
         });
     });
