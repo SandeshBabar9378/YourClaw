@@ -261,7 +261,7 @@ if (responseUserRole === "Giver") {
     document.querySelectorAll("#deletebtn").forEach((button) => {
       button.addEventListener("click", async function () {
         const petId = this.getAttribute("data-id");
-        if (confirm("Are you sure you want to delete this pet?")) {
+        if (await customAlertNew("Are you sure you want to delete this pet?")) {
           showLoader();
           const deleteReponse = await fetch(
             `https://backend.yourclaw.tech/api/pets/${petId}`,

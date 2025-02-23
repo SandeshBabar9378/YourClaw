@@ -86,7 +86,7 @@ const isAdopter = responseUserRole === "Adopter";
     document.getElementById("adopt-btn").addEventListener("click", async () => {
         console.log("Adopting pet with ID:", petId);
         console.log("Auth Token:", authToken);
-        if (confirm("Are you sure you want to adopt this pet?")) {
+        if (await customAlertNew("Are you sure you want to adopt this pet?")) {
             showLoader();
             const response = await fetch(
                 "https://backend.yourclaw.tech/api/adoption-requests",
