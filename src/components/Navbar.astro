@@ -146,12 +146,19 @@ if (token) {
   <a href="/pets" class="menu_element">Pet List</a>
   <a href="/blog-list" class="menu_element">Blog</a>
   <a href="/contact-us" class="menu_element">Contact</a>
-  <a href="/login" class="menu_element">Login</a>
-  <a class="menu_element"
-    ><button id="logoutBtnMob">
-      Log Out &#160; <i class="fa-solid fa-right-from-bracket"></i></button
-    ></a
-  >
+  {
+    user ? (
+      <a class="menu_element">
+        <button id="logoutBtnMob">
+          Log Out &#160; <i class="fa-solid fa-right-from-bracket" />
+        </button>
+      </a>
+    ) : (
+      <a href="/login" class="menu_element">
+        Login
+      </a>
+    )
+  }
 
   <div id="social_link" class="">
     <ul
@@ -217,7 +224,10 @@ if (token) {
     document.cookie =
       "payload-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     hideLoader();
-    location.href = "/";
+    customAlert("Logged out successfully\nThank you for visiting us");
+    setTimeout(() => {
+      location.href = "/";
+    }, 1500);
   });
 
   const logoutBtnPc = document.getElementById("logoutBtnPc");
@@ -229,6 +239,6 @@ if (token) {
     customAlert("Logged out successfully\nThank you for visiting us");
     setTimeout(() => {
       location.href = "/";
-    }, 1000);
+    }, 1500);
   });
 </script>

@@ -16,6 +16,7 @@ const petData = await response.json();
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {
             petData.docs.map((item) => (
+              <a href={`/pets/${item.petId.id}`}>
               <li class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100">
                 <div class="p-6 space-y-4">
                   <!-- Header with Pet Name and Status -->
@@ -65,6 +66,7 @@ const petData = await response.json();
                   </div>
                 </div>
               </li>
+              </a>
             ))
           }
         </ul>
