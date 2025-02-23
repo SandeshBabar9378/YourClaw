@@ -1,59 +1,65 @@
 <style>
     .alert-box {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      z-index: 1000;
-      display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        z-index: 1000;
+        display: none;
     }
 
     .alert-box.active {
-      display: block !important; 
+        display: block !important;
     }
 
     .alert-box button {
-      margin-top: 10px;
-      padding: 8px 15px;
-      background: #ff4b4b;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background: #ff4b4b;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
     }
 
     .alert-box button:hover {
-      background: #ff1f1f;
+        background: #ff1f1f;
     }
 </style>
 
-<div id="custom-alert" class="alert-box">
-    <p id="alert-message"></p>
-    <button id="custom-alert-yes">Yes</button>
-    <button id="custom-alert-no">No</button>
+<div id="custom-confirm" class="alert-box">
+    <p id="confirm-message"></p>
+    <div class="flex gap-4 justify-center">
+        <button id="alert-yes">Yes</button>
+        <button id="alert-no">No</button>
+    </div>
 </div>
 
 <script is:inline>
-    window.customAlertNew = function (msg) {
-      return new Promise((resolve) => {
-        document.getElementById("alert-message").innerText = msg;
-        document.getElementById("custom-alert").classList.add("active");
+    function customConfirm(message) {
+        return new Promise((resolve) => {
+            document.getElementById("confirm-message").innerText = message;
+            document.getElementById("custom-confirm").classList.add("active");
 
-        document.getElementById("custom-alert-yes").onclick = function () {
-          document.getElementById("custom-alert").classList.remove("active");
-          resolve(true); // Yes clicked
-        };
+            document.getElementById("alert-yes").onclick = function () {
+                document
+                    .getElementById("custom-confirm")
+                    .classList.remove("active");
+                resolve(true);
+            };
 
-        document.getElementById("custom-alert-no").onclick = function () {
-          document.getElementById("custom-alert").classList.remove("active");
-          resolve(false); // No clicked
-        };
-      });
-    };
+            document.getElementById("alert-no").onclick = function () {
+                document
+                    .getElementById("custom-confirm")
+                    .classList.remove("active");
+                resolve(false);
+            };
+        });
+    }
 </script>
