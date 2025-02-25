@@ -78,12 +78,12 @@ import Loader from "../../components/Loader.astro";
     >
       <form
         id="signupFormPc"
-        class="h-[90%] w-[100%] flex flex-col justify-between items-center"
+        class="h-[95%] w-[100%] flex flex-col justify-between items-center"
       >
-        <h2 class="font-bold text-white text-5xl relative -top-6">Register</h2>
+        <h2 class="font-bold text-white text-5xl relative -top-5">Register</h2>
 
         <div
-          class="w-[100%] h-[90%] flex flex-col justify-between items-center"
+          class="w-[100%] h-[95%] relative -top-2 flex flex-col justify-between items-center"
         >
           <!--Role Input -->
           <div class="mt-2 w-[75%] flex flex-col items-center">
@@ -91,9 +91,9 @@ import Loader from "../../components/Loader.astro";
             <select
               id="RolePc"
               required
-              class="h-[50%] w-[50%] mt-1 rounded p-1 mx-[0.5%] text-black"
+              class="h-[50%] w-[50%] mt-1 rounded bg-transparent p-1 mx-[0.5%] border-b-2 text-white"
             >
-              <option class="text-black" selected>Choose a option</option>
+              <option class="text-black" selected disabled>Choose a option</option>
               <option class="text-black" value="Giver">Donor</option>
               <option class="text-black" value="Adpoter">Adopter</option>
             </select>
@@ -110,6 +110,7 @@ import Loader from "../../components/Loader.astro";
             </label>
           </div>
           <!-- Email Input -->
+          <div class="flex justify-around w-[75%] gap-5">
           <div class="form-control">
             <input id="signupEmailPc" type="text" required />
             <label>
@@ -120,6 +121,22 @@ import Loader from "../../components/Loader.astro";
                 style="transition-delay:150ms">i</span><span
                 style="transition-delay:200ms">l</span>
             </label>
+          </div>
+          <!-- Phone number Input -->
+          <div class="form-control">
+            <input type="text" required />
+            <label>
+              <span><i class="fa-solid fa-phone mr-1"></i></span>
+              <span style="transition-delay:0ms">P</span><span
+                style="transition-delay:25ms">h</span><span
+                style="transition-delay:50ms">o</span><span
+                style="transition-delay:75ms">n</span><span
+                style="transition-delay:100ms">e</span><span
+                style="transition-delay:150ms"></span><span
+                style="transition-delay:175ms">N</span><span
+                style="transition-delay:200ms">o</span>
+            </label>
+          </div>
           </div>
           <!-- Password Input -->
           <div class="form-control relative">
@@ -163,14 +180,14 @@ import Loader from "../../components/Loader.astro";
           </div>
         </div>
 
-        <!-- Submit Button -->
+        <!-- Submit Button signup wala -->
         <button
           type="submit"
-          class="bg-blackish text-white mt-5 text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[11%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
+          class="bg-blackish text-white mt-5 text-xl font-medium py-2 px-4 w-[32%] max-w-[50%] h-[8%] rounded-lg flex justify-around items-center focus:border focus:border-blue-400"
           >Submit <img
             src="/assets/transpaw.png"
             alt="transpaw"
-            class="rotate-45 bg-blackish"
+            class="rotate-45 h-[100%] w-[20%]"
           />
         </button>
       </form>
@@ -222,7 +239,7 @@ import Loader from "../../components/Loader.astro";
     @apply absolute pointer-events-none left-0 top-[15px];
   }
   .form-control label span {
-    @apply inline-block text-xl font-semibold min-w-[5px] text-white transition-[0.3s] duration-[cubic-bezier(0.68,-0.55,0.265,1.55)];
+    @apply inline-block text-xl font-semibold min-w-[5px] text-white transition-[0.3s] duration-[cubic-bezier(0.68,-0.55,0.265,1.55)] ;
   }
   .form-control input:focus + label span,
   .form-control input:valid + label span {
