@@ -72,6 +72,10 @@ const petData = await response.json();
                 >
                 <th
                   class="p-5 w-24 text-xl font-semibold leading-none text-slate-500"
+                  >Price</th
+                >
+                <th
+                  class="p-5 w-24 text-xl font-semibold leading-none text-slate-500"
                   >Color</th
                 >
                 <th
@@ -120,9 +124,15 @@ const petData = await response.json();
                           {item.petId.pet_name}
                         </a>
                       </td>
+                      <!--Price added here -->
                       <td class=" border-b border-slate-200 ">
                         <p class=" text-sm text-slate-500">
                           {item.petId.pet_breed}
+                        </p>
+                      </td>
+                      <td class=" border-b border-slate-200 ">
+                        <p class=" text-sm text-slate-500">
+                          {item.petId.pet_price}
                         </p>
                       </td>
                       <td class="p-4 border-b border-slate-200 py-5">

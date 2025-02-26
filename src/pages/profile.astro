@@ -118,6 +118,11 @@ if (responseUserRole === "Giver") {
                     class="p-5 w-[30%] pl-14 text-xl font-semibold leading-none text-slate-500"
                     >Name</th
                   >
+                  <!--Price Added Here -->
+                  <th
+                    class="py-5 w-[10%] text-xl font-semibold leading-none text-slate-500"
+                    >Price</th
+                  >
                   <th
                     class="py-5 w-[10%] text-xl font-semibold leading-none text-slate-500"
                     >Breed</th
@@ -193,6 +198,12 @@ if (responseUserRole === "Giver") {
                         <td class="p-4 pl-12 border-b border-slate-200 py-5">
                           <p class="block font-medium text-base text-slate-800">
                             {item.pet_name || item.petId?.pet_name}
+                          </p>
+                        </td>
+                        <!--Price data here -->
+                        <td class="border-b border-slate-200">
+                          <p class="text-sm text-slate-500">
+                            {item.pet_price || item.petId?.pet_price}
                           </p>
                         </td>
                         <td class="border-b border-slate-200">
