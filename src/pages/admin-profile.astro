@@ -20,10 +20,10 @@ const petData = await response.json();
           </h1>
         </div>
         <div>
-          <div class="relative -top-12 md:-top-20">
+          <div class="relative -top-12 md:-top-24">
             <button
               type="button"
-              class="ml-2 text-blackish hover:text-gray-700"
+              class="ml-2 text-black hover:text-blackish"
               onclick="toggleDropdown()"
             >
               <i
@@ -36,13 +36,18 @@ const petData = await response.json();
               class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden"
             >
               <a
+              href="/donor-list"
+              class="block px-4 py-1 text-gray-800 hover:bg-gray-100"
+              >Donor List</a
+              >
+              <a
                 href="/forget-pass"
-                class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                class="block px-4 py-1 text-gray-800 hover:bg-gray-100"
                 >Reset Password</a
               >
               <a
                 id="logoutBtn"
-                class="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                class="block px-4 py-1 text-gray-800 hover:bg-gray-100 cursor-pointer"
                 >Log Out &#160; <i class="fa-solid fa-right-from-bracket"
                 ></i></a
               >

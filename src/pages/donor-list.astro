@@ -1,0 +1,157 @@
+---
+import Layout from "../layouts/Layout.astro";
+const response = await fetch(`https://backend.yourclaw.tech/api/adoption-requests`);
+const petData = await response.json();
+---
+
+<Layout>
+    <div class="relative top-[-5vh] md:static">
+        <!--start div for spacing -->
+        <div class="md:h-40 h-24"></div>
+        <!--main -->
+        <div class="flex flex-col md:w-[100%] h-[100%] bg-white p-3">
+            <!--Upper Panel -->
+            <div
+                class="flex justify-between item-center h-20 md:h-10 w-[90%] ml-[5%]"
+            >
+                <div class="relative -top-20">
+                    <h1 class="text-5xl font-extrabold text-slate-800">
+                        Donor List
+                    </h1>
+                </div>
+                <div>
+                    <div class="relative -top-12 md:-top-24">
+                        <button
+                            type="button"
+                            class="ml-2 text-black hover:text-blackish"
+                            onclick="toggleDropdown()"
+                        >
+                            <i
+                                id="dropdownIcon"
+                                class="fa-solid fa-gear fa-2xl transition-transform duration-300"
+                            ></i>
+                        </button>
+                        <div
+                            id="dropdown"
+                            class="absolute z-30 right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden"
+                        >
+                            <a
+                            href="/donor-list"
+                            class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                            >Donor List</a
+                            >
+                            <a
+                            href="/adopter-list"
+                            class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                            >Adopter List</a
+                            >
+                            <a
+                                href="/forget-pass"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                                >Reset Password</a
+                            >
+                            <a
+                                id="logoutBtn"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                                >Log Out &#160; <i class="fa-solid fa-right-from-bracket"
+                                ></i></a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--box -->
+            <div class="w-[100%] h-auto md:h-auto bg-white p-3">
+                <div
+                  class="relative flex flex-col ml-[5%] w-[90%] h-max overflow-y-scroll text-gray-700 bg-white shadow-lg border rounded-lg"
+                >
+                  <table class="w-full text-left table-auto min-w-max">
+                    <thead class="sticky z-10 top-0">
+                      <tr class="border-b border bg-slate-200">
+                        <th
+                          class="p-5 w-[10%] text-2xl font-bold leading-none text-slate-500"
+                          >Sr.No</th
+                        >
+                        <th
+                          class="p-5 w-24 text-2xl font-bold leading-none text-slate-500"
+                          >Name</th
+                        >
+                        <th
+                          class="p-5 w-24 text-2xl font-bold leading-none text-slate-500"
+                          >Email</th
+                        >
+                        <th
+                          class="p-5 w-24 text-2xl font-bold leading-none text-slate-500"
+                          >Number</th
+                        >
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        petData.docs && petData.docs.length > 0 ? (
+                          petData.docs.map((item) => (
+                            <tr class="hover:bg-slate-50 h-16">
+                                <td class=" border-b border-slate-200 ">
+                                    <a class="ml-5 text-xl font-semibold text-slate-500">
+                                    1.
+                                    </a>
+                                </td>
+                                <!--add Path to Redirect(specific) and Person Name -->
+                                <td class=" border-b border-slate-200 ">
+                                    <a href="/specific" class="ml-5 text-xl font-semibold text-slate-500">
+                                    {item.petId.pet_breed}
+                                    </a>
+                                </td>
+                                <!--Person Email -->
+                                <td class=" border-b border-slate-200 ">
+                                    <p class="ml-5 text-lg text-slate-500">
+                                    {item.petId.pet_breed}
+                                    </p>
+                                </td>
+                                <!--Person Number -->
+                                <td class=" border-b border-slate-200 ">
+                                    <p class="ml-5 text-xl text-slate-500">
+                                    {item.petId.pet_breed}
+                                    </p>
+                                </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr class="hover:bg-slate-50">
+                            <td
+                              class="p-4 border-b border-slate-200 py-5 text-center text-slate-500 "
+                              colspan="12"
+                            >
+                              You have'nt added any pets yet !
+                            </td>
+                          </tr>
+                        )
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>   
+        </div>
+    </div>
+</Layout>
+<script is:inline>
+    function toggleDropdown() {
+        const dropdown = document.getElementById("dropdown");
+        const dropdownIcon = document.getElementById("dropdownIcon");
+        dropdown.classList.toggle("hidden");
+        dropdownIcon.classList.toggle("rotate-90");
+    }
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    logoutBtn.addEventListener("click", function () {
+        showLoader();
+        document.cookie =
+            "payload-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        hideLoader();
+        customAlert("Logged out successfully\nThank you for visiting us");
+        setTimeout(() => {
+            location.href = "/";
+        }, 1500);
+    });
+
+</script>
