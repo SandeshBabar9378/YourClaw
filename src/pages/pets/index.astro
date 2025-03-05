@@ -64,18 +64,6 @@ const isGiver = responseUserRole === "Giver";
               }
             
         </div>
-        <!--Filter -->
-        <div class="flex justify-center items-center gap-3"
-        >
-            <select
-              class="text-black h-[15%] w-[10%] text-center text-sm border rounded p-2 bg-gray-50"
-            >
-              <option value="" selected disabled>Filter </option>
-              <option value="Dog">Dog</option>
-              <option value="Cat">Cat</option>
-            </select>
-        </div>
-        
         <!-- Pet Cards Section -->
         <div class="h-[45%] md:h-[40%] w-screen flex flex-col md:flex-wrap items-center md:flex-row md:justify-center md:gap-[2%]">
             {apidata.docs.map((item) => (
@@ -141,7 +129,7 @@ const isGiver = responseUserRole === "Giver";
                                 ></i>
                             </li>
                             <li class="text-[#676666] flex gap-[5px]">
-                                Total Price: <span class="text-black">Free</span>
+                                Total Price: <span class="text-black">{item.pet_price}</span>
                             </li>
                         </ul>
                     </div>

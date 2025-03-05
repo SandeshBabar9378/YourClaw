@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const apifetch = await fetch("https://backend.yourclaw.tech/api/pets");
+const apifetch = await fetch("https://backend.yourclaw.tech/api/pets?where[pet_category][equals]=Dog");
 const apidata = await apifetch.json();
 
 const token = Astro.cookies.get("payload-token")?.value || "";
@@ -64,21 +64,10 @@ const isGiver = responseUserRole === "Giver";
               }
             
         </div>
-        <!--Filter -->
-        <div class="flex justify-center items-center gap-3"
-        >
-            <select
-              class="text-black h-[15%] w-[10%] text-center text-sm border rounded p-2 bg-gray-50"
-            >
-              <option value="" selected disabled>Filter </option>
-              <option value="Dog">Dog</option>
-              <option value="Cat">Cat</option>
-            </select>
-        </div>
-        
         <!-- Pet Cards Section -->
         <div class="h-[45%] md:h-[40%] w-screen flex flex-col md:flex-wrap items-center md:flex-row md:justify-center md:gap-[2%]">
-            {apidata.docs.map((item) => (
+            {apidata.docs && apidata.docs.length > 0 ? (
+                    apidata.docs.map((item) => (
                 <a
                     href={`/pets/${item.id}`}
                     class="flex flex-col justify-center items-center h-[32%] w-[96%] md:h-[100%] md:w-[24%] mt-[2%] md:relative"
@@ -141,12 +130,18 @@ const isGiver = responseUserRole === "Giver";
                                 ></i>
                             </li>
                             <li class="text-[#676666] flex gap-[5px]">
-                                Total Price: <span class="text-black">Free</span>
+                                Total Price: <span class="text-black">{item.pet_price}</span>
                             </li>
                         </ul>
                     </div>
                 </a>
-            ))}
+            ) )) : (
+                <div class="flex justify-center items-center h-[32%] w-[96%] md:h-[100%] md:w-[24%] mt-[2%] md:relative">
+                    <p class="text-2xl font-black text-redish capitalize w-[100%] text-center">
+                        No Dogs Available
+                    </p>
+                </div>
+            )}
         </div>
     </div>
 </Layout>
