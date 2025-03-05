@@ -38,15 +38,34 @@ if (token) {
           >
           </div></a
         >
-        <a
-          href="/pets"
-          class="group text-2xl font-extrabold text-redish hover:text-blackish"
-        >
-          Dog List <div
-            class="bg-blackish h-[2px] w-0 group-hover:w-full transition-all duration-500"
+        <div class="group relative">
+          <a
+            href="/pets"
+            class="group text-2xl font-extrabold text-redish hover:text-blackish"
           >
-          </div></a
-        >
+            Pets
+            <div
+              class="bg-blackish h-[2px] w-0 group-hover:w-full transition-all duration-500"
+            >
+            </div>
+          </a>
+          <div
+            class="absolute left-0 hidden group-hover:block bg-white shadow-lg border rounded-lg w-40"
+          >
+            <a
+              href="/dogs"
+              class="block px-4 py-2 text-blackish hover:bg-gray-200 rounded-lg"
+            >
+              Dogs
+            </a>
+            <a
+              href="/cats"
+              class="block px-4 py-2 text-blackish hover:bg-gray-200 rounded-lg"
+            >
+              Cats
+            </a>
+          </div>
+        </div>
         <a
           href="/blog-list"
           class="group text-2xl font-extrabold text-redish hover:text-blackish"
