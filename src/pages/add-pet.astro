@@ -57,8 +57,8 @@ import Layout from "../layouts/Layout.astro";
             </div>
           </div>
           <!--Pet Color -->
-          <div>
-            <div class="flex flex-col mt-[4%]">
+          <div class="flex flex-row justify-around items-center">
+            <div class="flex flex-col mt-[4%] w-[46%]">
               <label
                 for="pet_color"
                 class="text-black font-bold text-xl p-[1%] ml-[2%]">Color</label
@@ -66,11 +66,28 @@ import Layout from "../layouts/Layout.astro";
               <input
                 type="text"
                 id="pet_color"
-                class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
+                class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[96%] mx-[0.5%] bg-gray-50"
                 value=""
                 required
                 placeholder="e.g., Orange"
               />
+            </div>
+
+            <div class="flex flex-col mt-[4%] w-[46%] mr-[4%]">
+              <label
+                for="pet_color"
+                class="text-black font-bold text-xl p-[1%] ml-[2%]">Category</label
+              >
+              <select
+                id="pet_category"
+                required
+                class="h-[70%] w-[96%] border mt-1 rounded p-2 mx-[0.5%] bg-gray-50"
+              >
+                <option selected disabled>Choose a option</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Others">Others</option>
+              </select>
             </div>
           </div>
           <!--Pet Gender -->
@@ -249,6 +266,7 @@ import Layout from "../layouts/Layout.astro";
     const petName = document.getElementById("pet_name").value;
     const petBreed = document.getElementById("pet_breed").value;
     const petColor = document.getElementById("pet_color").value;
+    const petCategory = document.getElementById("pet_category").value;
     const petGender = document.getElementById("pet_gender").value;
     const petNeutering = document.getElementById("pet_neutering").value;
     const petAge = document.getElementById("pet_age").value;
@@ -288,6 +306,7 @@ import Layout from "../layouts/Layout.astro";
         pet_name: petName,
         pet_breed: petBreed,
         pet_color: petColor,
+        pet_category: petCategory,
         pet_gender: petGender,
         pet_neutering: petNeutering,
         pet_age: petAge,
