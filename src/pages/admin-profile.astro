@@ -21,39 +21,44 @@ const petData = await response.json();
         </div>
         <div>
           <div class="relative -top-12 md:-top-24">
-            <button
-              type="button"
-              class="ml-2 text-black hover:text-blackish"
-              onclick="toggleDropdown()"
-            >
-              <i
-                id="dropdownIcon"
-                class="fa-solid fa-gear fa-2xl transition-transform duration-300"
-              ></i>
-            </button>
-            <div
-              id="dropdown"
-              class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden"
-            >
-              <a
-              href="/donor-list"
-              class="block px-4 py-1 text-gray-800 hover:bg-gray-100"
-              >Donor List</a
+              <button
+                  type="button"
+                  class="ml-2 text-black hover:text-blackish"
+                  onclick="toggleDropdown()"
               >
-              <a
-                href="/forget-pass"
-                class="block px-4 py-1 text-gray-800 hover:bg-gray-100"
-                >Reset Password</a
+                  <i
+                      id="dropdownIcon"
+                      class="fa-solid fa-gear fa-2xl transition-transform duration-300"
+                  ></i>
+              </button>
+              <div
+                  id="dropdown"
+                  class="absolute z-30 right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden"
               >
-              <a
-                id="logoutBtn"
-                class="block px-4 py-1 text-gray-800 hover:bg-gray-100 cursor-pointer"
-                >Log Out &#160; <i class="fa-solid fa-right-from-bracket"
-                ></i></a
-              >
-            </div>
+                  <a
+                  href="/donor-list"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  >Donor List</a
+                  >
+                  <a
+                  href="/adopter-list"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  >Adopter List</a
+                  >
+                  <a
+                      href="/forget-pass"
+                      class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                      >Reset Password</a
+                  >
+                  <a
+                      id="logoutBtn"
+                      class="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                      >Log Out &#160; <i class="fa-solid fa-right-from-bracket"
+                      ></i></a
+                  >
+              </div>
           </div>
-        </div>
+      </div>
       </div>
       <!--box -->
       <div class="w-[100%] h-[90vh] md:h-[100vh] bg-white p-3">

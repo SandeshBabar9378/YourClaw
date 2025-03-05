@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <div class="h-[3vh] bg-[url('/assets/testimonial_bg.jpg')]"></div>
   <div
-    class="h-[180vh] md:h-[225vh] w-[100vw] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat flex justify-center items-center py-[5%]"
+    class="h-[180vh] md:h-[235vh] w-[100vw] bg-[url('/assets/testimonial_bg.jpg')] bg-cover bg-no-repeat flex justify-center items-center py-[5%]"
   >
     <div
       class="z-10 bg-white h-[99%] w-[99%] md:w-[90%] flex flex-col md:flex-row justify-center rounded-lg shadow-2xl relative"
@@ -107,7 +107,7 @@ import Layout from "../layouts/Layout.astro";
               </select>
             </div>
           </div>
-          <!--Pet Weight-->
+          <!--Pet Age-->
           <div class="flex flex-row justify-around items-center">
             <div class="flex flex-col mt-[4%] w-[46%]">
               <label
@@ -150,13 +150,15 @@ import Layout from "../layouts/Layout.astro";
             >
             <!-- id="pet_price" -->
             <input
-              type="number"
-              
+              type="text"
+              inputmode="numeric"
+              id="pet_price"
               class="h-10 border mt-1 rounded px-4 w-[99%] md:w-[60%] mx-[0.5%] bg-gray-50"
               value=""
               required
               placeholder="e.g., 5000 (In INR(₹) only)"
             />
+            <p class="p-[1%] ml-[1%] text-xs text-gray-500">Note* : 20% Platform Fees Will Be Applied</p>
           </div>
           <!--Pet Image -->
           <div class="flex flex-col mt-[4%]">
@@ -226,6 +228,18 @@ import Layout from "../layouts/Layout.astro";
   // const token = getCookie("payload-token");
   // console.log("Token:", token); // Output: payload-token ki value ya null
 
+  document.getElementById("pet_price").addEventListener("input", function (e) {
+    let value = e.target.value;
+
+    value = value.replace(/[^0-9]/g, "");
+    
+    if (value !== "" && parseInt(value) < 1) {
+      value = "1000";
+    }
+
+    e.target.value = value;
+  });
+
   const authToken = localStorage.getItem('authToken');
   console.log("Token:", authToken); // Output: payload-token ki value ya null
 
@@ -239,6 +253,7 @@ import Layout from "../layouts/Layout.astro";
     const petNeutering = document.getElementById("pet_neutering").value;
     const petAge = document.getElementById("pet_age").value;
     const petWeight = document.getElementById("pet_weight").value;
+    const petPrice = document.getElementById("pet_price").value;
     const petImage = document.getElementById("pet_image");
     const petAddress = document.getElementById("pet_address").value;
     const petBio = document.getElementById("pet_bio").value;
@@ -277,6 +292,7 @@ import Layout from "../layouts/Layout.astro";
         pet_neutering: petNeutering,
         pet_age: petAge,
         pet_weight: petWeight,
+        pet_price: petPrice,
         pet_address: petAddress,
         pet_image: `https://backend.yourclaw.tech${imageUrl}`, // Send media ID
         pet_bio: petBio,

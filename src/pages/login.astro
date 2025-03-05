@@ -115,12 +115,28 @@ import Loader from "../components/Loader.astro";
 		}
 	});
 
+	document
+		.getElementById("signupPhonePc")
+		.addEventListener("input", function (e) {
+			let value = e.target.value;
+
+			// Sirf numbers allow karega (Non-numeric characters hata dega)
+			value = value.replace(/[^0-9]/g, "");
+
+			// Maximum 10 digits tak allow karega
+			if (value.length > 10) {
+				value = value.slice(0, 10);
+			}
+
+			e.target.value = value;
+		});
 	signupFormPc.addEventListener("submit", async (event) => {
 		showLoader();
 		event.preventDefault();
 		const role = document.getElementById("RolePc").value;
 		const name = document.getElementById("namePc").value;
 		const email = document.getElementById("signupEmailPc").value;
+		const phone = document.getElementById("signupPhonePc").value;
 		const password = document.getElementById("signupPasswordPc").value;
 		const confirmPassword =
 			document.getElementById("confirmPasswordPc").value;
@@ -148,6 +164,7 @@ import Loader from "../components/Loader.astro";
 						body: JSON.stringify({
 							name: name,
 							email: email,
+							phone: phone,
 							password: password,
 							role: role,
 						}),
