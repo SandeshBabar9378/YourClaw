@@ -98,7 +98,7 @@ const petData = await response.json();
                                 </td>
                                 <!--add Path to Redirect and Person Name -->
                                 <td class=" border-b border-slate-200 ">
-                                    <a href="" class="ml-5 text-xl font-semibold text-slate-500">
+                                    <a href={`/users-pet/${item.id}`} class="ml-5 text-xl font-semibold text-slate-500">
                                     {item.name}
                                     </a>
                                 </td>
@@ -111,7 +111,7 @@ const petData = await response.json();
                                 <!--Person Number -->
                                 <td class=" border-b border-slate-200 ">
                                     <p class="ml-5 text-xl text-slate-500">
-                                    {item.phone}
+                                    {item.phone || "No Phone Number Added"}
                                     </p>
                                 </td>
                             </tr>

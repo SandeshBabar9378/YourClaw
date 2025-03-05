@@ -7,11 +7,16 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     const token = context.cookies.get('payload-token')?.value;
     // console.log("Token:", token);
 
-    const protectedRoutes = ['/pets', '/add-pet', '/dog-list', '/profile', '/admin-profile'];
+    const protectedRoutes = ['/pets', '/add-pet', '/dog-list', '/profile', '/admin-profile', '/adopter-list', '/donor-list', '/users-pet'];
+    const adminOnlyRoutes = ['/adopter-list', '/donor-list', '/users-pet'];
+
     const isProtectedRoute = protectedRoutes.some((route) =>
         url.pathname.startsWith(route)
     );
-    // console.log("Is Protected Route:", isProtectedRoute);
+
+    const isAdminOnlyRoute = adminOnlyRoutes.some((route) =>
+        url.pathname.startsWith(route) // 🔥 Ye check karega ki "/users-pet/anything" bhi admin only ho
+    );
 
     // Protected route logic
     if (isProtectedRoute) {
@@ -36,7 +41,14 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
             }
             const userData = await response.json();
             const userRole = userData?.user.role;
-            // console.log("User Role:", userRole);
+
+            if (isAdminOnlyRoute) {
+                if (userRole !== "Admin") {
+                    console.log("Access Denied. Only Admins Allowed. Redirecting to Profile...");
+                    return context.redirect('/profile');
+                }
+            }
+
             if (url.pathname === "/profile" || url.pathname === "/admin-profile") {
                 if (userRole === "Admin") {
                     // Agar Admin already /admin-profile pe hai toh redirect mat kar
