@@ -7,15 +7,15 @@ export const onRequest: MiddlewareResponseHandler = async (context, next) => {
     const token = context.cookies.get('payload-token')?.value;
     // console.log("Token:", token);
 
-    const protectedRoutes = ['/pets', '/add-pet', '/dog-list', '/profile', '/dogs', '/cats', '/admin-profile', '/adopter-list', '/donor-list', '/users-pet'];
-    const adminOnlyRoutes = ['/adopter-list', '/donor-list', '/users-pet'];
+    const protectedRoutes = ['/pets', '/add-pet', '/dog-list', '/profile', '/dogs', '/cats', '/admin-profile', '/adopter-list', '/donor-list', '/donors-pet','/adopters-pet'];
+    const adminOnlyRoutes = ['/adopter-list', '/donor-list', '/donors-pet', '/adopters-pet'];
 
     const isProtectedRoute = protectedRoutes.some((route) =>
         url.pathname.startsWith(route)
     );
 
     const isAdminOnlyRoute = adminOnlyRoutes.some((route) =>
-        url.pathname.startsWith(route) // 🔥 Ye check karega ki "/users-pet/anything" bhi admin only ho
+        url.pathname.startsWith(route) // 🔥 Ye check karega ki "/donors-pet/anything" bhi admin only ho
     );
 
     // Protected route logic

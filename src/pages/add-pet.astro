@@ -23,7 +23,6 @@ import Layout from "../layouts/Layout.astro";
       <div class="flex h-[95%] w-[80%] md:w-[60%] flex-col mt-[2%]">
         <form id="addPetForm" enctype="multipart/form-data" method="POST">
           <div class="flex flex-col">
-            
             <div class="flex flex-col"></div>
             <!--Pet Name -->
             <div class="flex flex-col mt-[4%]">
@@ -76,7 +75,8 @@ import Layout from "../layouts/Layout.astro";
             <div class="flex flex-col mt-[4%] w-[46%] mr-[4%]">
               <label
                 for="pet_color"
-                class="text-black font-bold text-xl p-[1%] ml-[2%]">Category</label
+                class="text-black font-bold text-xl p-[1%] ml-[2%]"
+                >Category</label
               >
               <select
                 id="pet_category"
@@ -133,6 +133,7 @@ import Layout from "../layouts/Layout.astro";
               >
               <input
                 type="text"
+                inputmode="numeric"
                 id="pet_age"
                 class="h-10 w-[96%] border mt-1 rounded px-2 mx-[0.5%] bg-gray-50"
                 value=""
@@ -140,7 +141,7 @@ import Layout from "../layouts/Layout.astro";
                 placeholder="eg.,1 year 2 month"
               />
             </div>
-            
+
             <!--Pet Weight -->
             <div class="flex flex-col mt-[4%] w-[46%]">
               <label
@@ -161,9 +162,8 @@ import Layout from "../layouts/Layout.astro";
           <!--Pet Price -->
           <div class="flex flex-col mt-[4%]">
             <!--for="price" -->
-            <label
-              
-              class="text-black font-bold text-xl p-[1%] ml-[2%]">Price</label
+            <label class="text-black font-bold text-xl p-[1%] ml-[2%]"
+              >Price</label
             >
             <!-- id="pet_price" -->
             <input
@@ -175,7 +175,9 @@ import Layout from "../layouts/Layout.astro";
               required
               placeholder="e.g., 5000 (In INR(₹) only)"
             />
-            <p class="p-[1%] ml-[1%] text-xs text-gray-500">Note* : 20% Platform Fees Will Be Applied</p>
+            <p class="p-[1%] ml-[1%] text-xs text-gray-500">
+              Note* : 20% Platform Fees Will Be Applied
+            </p>
           </div>
           <!--Pet Image -->
           <div class="flex flex-col mt-[4%]">
@@ -249,7 +251,7 @@ import Layout from "../layouts/Layout.astro";
     let value = e.target.value;
 
     value = value.replace(/[^0-9]/g, "");
-    
+
     if (value !== "" && parseInt(value) < 1) {
       value = "1000";
     }
@@ -257,7 +259,21 @@ import Layout from "../layouts/Layout.astro";
     e.target.value = value;
   });
 
-  const authToken = localStorage.getItem('authToken');
+  document.getElementById("pet_age").addEventListener("input", function (e) {
+    let value = e.target.value;
+
+    // Sirf numbers (0-9) aur ek single dot (.) allow karne ke liye regex update
+    value = value.replace(/[^0-9.]/g, "");
+
+    // Multiple dots ko prevent karne ke liye, sirf ek "." allow karna hai
+    if ((value.match(/\./g) || []).length > 1) {
+      value = value.substring(0, value.lastIndexOf("."));
+    }
+
+    e.target.value = value;
+  });
+
+  const authToken = localStorage.getItem("authToken");
   console.log("Token:", authToken); // Output: payload-token ki value ya null
 
   const addPetForm = document.getElementById("addPetForm");
@@ -319,14 +335,17 @@ import Layout from "../layouts/Layout.astro";
       console.log("Pet Details:", petDetails);
       console.log("Auth Token:", authToken);
 
-      const petResponse = await fetch("https://backend.yourclaw.tech/api/pets", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
+      const petResponse = await fetch(
+        "https://backend.yourclaw.tech/api/pets",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify(petDetails),
         },
-        body: JSON.stringify(petDetails),
-      });
+      );
 
       console.log("Pet Response:", petResponse);
       if (!petResponse.ok) {
