@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 const response = await fetch(`https://backend.yourclaw.tech/api/adoption-requests`);
 const petData = await response.json();
 ---
-
 <Layout>
   <div class="relative top-[-5vh] md:static">
     <!--start div for spacing -->
@@ -35,6 +34,11 @@ const petData = await response.json();
                   id="dropdown"
                   class="absolute z-30 right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden"
               >
+                  <a
+                  href="/admin-profile"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  >Dashboard</a
+                  >
                   <a
                   href="/donor-list"
                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
@@ -170,14 +174,18 @@ const petData = await response.json();
                         </p>
                       </td>
                       <td class="p-4 border-b border-slate-200 py-5">
-                        <p class="block ml-5 font-medium text-base text-slate-800">
+                        <a 
+                          href={`/donors-pet/${item.petId.owner?.id}`}
+                          class="block ml-5 font-medium text-base text-slate-800">
                           {item.petId.owner?.name || "owner"}
-                        </p>
+                        </a>
                       </td>
                       <td class="p-4 border-b border-slate-200 py-5">
-                        <p class="block font-medium text-base text-slate-800">
+                        <a
+                          href={`/adopters-pet/${item.adoptedBy.id}`} 
+                          class="block font-medium text-base text-slate-800">
                           {item.adoptedBy.name}
-                        </p>
+                        </a>
                       </td>
                       <td class="p-4 border-b border-slate-200 py-5 text-center">
                         <button
