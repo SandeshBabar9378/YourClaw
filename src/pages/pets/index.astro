@@ -72,11 +72,24 @@ const isGiver = responseUserRole === "Giver";
                     class="flex flex-col justify-center items-center h-[32%] w-[96%] md:h-[100%] md:w-[24%] mt-[2%] md:relative"
                 >
                     <!-- Card Image -->
-                    <img
+                    {/* <img
                         src={item.pet_image}
-                        alt={item.pet_name || "Dog"}
-                        class="h-60 w-[21rem] md:rounded-lg flex justify-center items-center"
-                    />
+                        alt={item.pet_name + " Image" || "Dog"}
+                        class="h-60 w-[21rem] md:rounded-lg flex justify-center items-center bg-gray-500"
+                    /> */}
+
+                        <div class="relative h-60 w-[21rem] bg-black flex justify-center items-center md:rounded-lg overflow-hidden">
+                            <img
+                                src={item.pet_image}
+                                class="h-full  object-cover w-[21rem]"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            />
+                            <!--alt div -->
+                            <div style="display: none;" class="absolute inset-0 text-white text-center text-xl font-bold flex items-center justify-center">
+                                {item.pet_name + " Image" || "Dog"}
+                            </div>
+                        </div>
+
 
                     <!-- Card Content -->
                     <div
