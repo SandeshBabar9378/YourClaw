@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-const apifetch = await fetch("https://backend.yourclaw.tech/api/pets");
+const apifetch = await fetch("https://backend.yourclaw.tech/api/pets?limit=100");
 const apidata = await apifetch.json();
 
 const token = Astro.cookies.get("payload-token")?.value || "";
